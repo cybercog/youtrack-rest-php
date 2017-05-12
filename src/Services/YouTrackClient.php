@@ -15,6 +15,7 @@ namespace Cog\YouTrack\Services;
 
 use Cog\YouTrack\Contracts\YouTrackClient as YouTrackClientContract;
 use Cog\YouTrack\Exceptions\UserLoginError;
+use Cog\YouTrack\Responses\YouTrackRestResponse;
 use GuzzleHttp\ClientInterface as ClientContract;
 use GuzzleHttp\Exception\ClientException;
 
@@ -31,21 +32,6 @@ class YouTrackClient implements YouTrackClientContract
     private $http;
 
     /**
-     * @var array
-     */
-    private $options;
-
-    /**
-     * @var string
-     */
-    private $username;
-
-    /**
-     * @var string
-     */
-    private $password;
-
-    /**
      * @var string
      */
     private $cookie;
@@ -53,17 +39,20 @@ class YouTrackClient implements YouTrackClientContract
     /**
      * @param \GuzzleHttp\ClientInterface $http
      * @param array $options
+     * @throws \Exception
      */
     public function __construct(ClientContract $http, array $options = [])
     {
         $this->http = $http;
-        $this->options = $options;
-        // TODO: Strategy: If token set - call `authenticate()`
-        // TODO: Strategy: If user+password set - call `login()`
-        // TODO: Strategy: If none set - throw exception
-        $this->username = $options['username'];
-        $this->password = $options['password'];
-        $this->login();
+
+        // TODO: Use strategy pattern here
+        if (isset($options['token'])) {
+            $this->authenticate($options['token']);
+        } elseif (isset($options['username'], $options['password'])) {
+            $this->login($options['username'], $options['password']);
+        } else {
+            throw new \Exception('YouTrack require authentication credentials.');
+        }
     }
 
     /**
@@ -79,20 +68,21 @@ class YouTrackClient implements YouTrackClientContract
      * Login with the passed credentials.
      * Stores cookie when login success.
      *
+     * @param string $username
+     * @param string $password
      * @return void
      *
      * @throws \Cog\YouTrack\Exceptions\UserLoginError
      */
-    public function login()
+    public function login($username, $password)
     {
         try {
-            $response = $this->http->request('post', '/rest/user/login', $this->buildOptions([
-                'login' => $this->username,
-                'password' => $this->password,
-            ]));
+            $response = $this->post('/rest/user/login', [
+                'login' => $username,
+                'password' => $password,
+            ]);
 
-            // TODO: Use it in all future requests
-            $this->cookie = implode(', ', $response->getHeader('Set-Cookie'));
+            $this->cookie = $response->getCookie();
         } catch (ClientException $e) {
             // TODO: Make it more verbose
             throw new UserLoginError('Cannot login');
@@ -102,15 +92,25 @@ class YouTrackClient implements YouTrackClientContract
     /**
      * @param string $uri
      * @param array $formData
-     * @return array
+     * @return \Cog\YouTrack\Responses\YouTrackRestResponse
      */
     public function get(string $uri, array $formData = [])
     {
         $response = $this->http->request('get', $uri, $this->buildOptions($formData));
 
-        // TODO: Return YouTrackResponse object with ability to choose how to transform it
+        return new YouTrackRestResponse($response);
+    }
 
-        return json_decode($response->getBody()->getContents(), true);
+    /**
+     * @param string $uri
+     * @param array $formData
+     * @return \Cog\YouTrack\Responses\YouTrackRestResponse
+     */
+    public function post(string $uri, array $formData = [])
+    {
+        $response = $this->http->request('post', $uri, $this->buildOptions($formData));
+
+        return new YouTrackRestResponse($response);
     }
 
     /**

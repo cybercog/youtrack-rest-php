@@ -48,6 +48,8 @@ class ProjectRepository implements ProjectRepositoryContract
     {
         $projectsData = $this->youTrack->get('/rest/admin/project');
 
+        $projectsData = $projectsData->toArray();
+
         $projects = [];
         foreach ($projectsData as $projectData) {
             $project = new Project();
@@ -72,7 +74,7 @@ class ProjectRepository implements ProjectRepositoryContract
         $projectData = $this->youTrack->get('/rest/admin/project/' . $id);
 
         $project = new Project();
-        $project->fill($projectData);
+        $project->fill($projectData->toArray());
 
         return $project;
     }

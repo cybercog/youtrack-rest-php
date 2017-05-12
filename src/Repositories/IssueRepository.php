@@ -50,7 +50,7 @@ class IssueRepository implements IssueRepositoryContract
         $issueData = $this->youTrack->get('/rest/issue/' . $id);
 
         $issue = new Issue();
-        $issue->fill($issueData);
+        $issue->fill($issueData->toArray());
 
         return $issue;
     }

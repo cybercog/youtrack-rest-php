@@ -30,9 +30,11 @@ interface YouTrackClient
      * Login with the passed credentials.
      * Stores cookie when login success.
      *
+     * @param string $username
+     * @param string $password
      * @return void
      */
-    public function login();
+    public function login($username, $password);
 
     /**
      * @param string $uri
