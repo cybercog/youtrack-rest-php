@@ -235,7 +235,7 @@ class IssueTest extends TestCase
         $this->setPrivateProperty($issue, 'jiraId', 'TEST-1');
 
         $jiraId = $issue->getJiraId();
-        
+
         $this->assertEquals('TEST-1', $jiraId);
     }
 

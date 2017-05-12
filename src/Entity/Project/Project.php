@@ -193,7 +193,7 @@ class Project
     {
         $this->id = $id;
     }
-    
+
     /**
      * @param string $description
      * @return void
@@ -202,7 +202,7 @@ class Project
     {
         $this->description = $description;
     }
-    
+
     /**
      * @param bool $isArchived
      * @return void
@@ -211,7 +211,7 @@ class Project
     {
         $this->archived = $isArchived;
     }
-    
+
     /**
      * @param string $lead
      * @return void
@@ -220,7 +220,7 @@ class Project
     {
         $this->lead = $lead;
     }
-    
+
     /**
      * @param int $startingNumber
      * @return void

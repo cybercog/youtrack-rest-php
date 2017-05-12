@@ -41,7 +41,6 @@ class YouTrackServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind(YouTrackClientContract::class, function () {
-
             $config = $this->app->make('config');
 
             $http = new Client([
