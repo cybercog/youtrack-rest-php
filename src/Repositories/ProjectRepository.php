@@ -38,6 +38,8 @@ class ProjectRepository implements ProjectRepositoryContract
     }
 
     /**
+     * Get all accessible projects.
+     *
      * @see https://www.jetbrains.com/help/youtrack/standalone/2017.2/GET-Projects.html
      *
      * @return \Cog\YouTrack\Entity\Project\Project[]
@@ -49,7 +51,7 @@ class ProjectRepository implements ProjectRepositoryContract
         $projects = [];
         foreach ($projectsData as $projectData) {
             $project = new Project();
-            $project->hydrate($projectData);
+            $project->fill($projectData);
 
             $projects[] = $project;
         }
@@ -58,6 +60,8 @@ class ProjectRepository implements ProjectRepositoryContract
     }
 
     /**
+     * Get project by its project identifier.
+     *
      * @see https://www.jetbrains.com/help/youtrack/standalone/2017.2/GET-Project.html
      *
      * @param string $id
@@ -68,7 +72,7 @@ class ProjectRepository implements ProjectRepositoryContract
         $projectData = $this->youTrack->get('/rest/admin/project/' . $id);
 
         $project = new Project();
-        $project->hydrate($projectData);
+        $project->fill($projectData);
 
         return $project;
     }

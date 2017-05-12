@@ -159,7 +159,7 @@ class Issue
 
     public function __construct(array $attributes = [])
     {
-        $this->hydrate($attributes);
+        $this->fill($attributes);
     }
 
     /**
@@ -447,6 +447,14 @@ class Issue
      */
     public function setComment(array $comments): void
     {
+        if (!empty($comments) && is_array($comments[0])) {
+            foreach ($comments as $key => $commentData) {
+                $comment = new Comment();
+                $comment->fill($commentData);
+                $comments[$key] = $comment;
+            }
+        }
+
         $this->comment = $comments;
     }
 

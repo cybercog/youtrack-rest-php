@@ -22,7 +22,7 @@ trait HasHydrator
      * @param array $attributes
      * @return void
      */
-    public function hydrate(array $attributes)
+    public function fill(array $attributes)
     {
         foreach ($attributes as $attributeKey => $attributeValue) {
             if (is_null($attributeValue)) {
