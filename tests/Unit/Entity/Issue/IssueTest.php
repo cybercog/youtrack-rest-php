@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Cog\YouTrack\Tests\Unit\Entity\Issue;
 
 use Cog\YouTrack\Entity\Issue\Comment;
+use Cog\YouTrack\Entity\Issue\Field;
 use Cog\YouTrack\Entity\Issue\Issue;
 use Cog\YouTrack\Tests\TestCase;
 
@@ -178,11 +179,9 @@ class IssueTest extends TestCase
     public function it_can_set_comments()
     {
         $issue = new Issue();
-        $comment1 = new Comment();
-        $comment2 = new Comment();
         $comments = [
-            $comment1,
-            $comment2,
+            new Comment(),
+            new Comment(),
         ];
 
         $issue->setComment($comments);
@@ -209,8 +208,8 @@ class IssueTest extends TestCase
     {
         $issue = new Issue();
         $fields = [
-            'test',
-            'field',
+            new Field(),
+            new Field(),
         ];
 
         $issue->setField($fields);

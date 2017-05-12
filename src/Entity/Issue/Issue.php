@@ -138,7 +138,7 @@ class Issue
      *
      * @see https://www.jetbrains.com/help/youtrack/standalone/2017.2/Get-Comments-of-an-Issue.html
      *
-     * @var array
+     * @var \Cog\YouTrack\Entity\Issue\Comment[]
      */
     private $comment = [];
 
@@ -153,7 +153,7 @@ class Issue
      * Represent any field of the issue including custom fields (depending on name attribute).
      * Number and type of fields depends on project settings.
      *
-     * @var array
+     * @var \Cog\YouTrack\Entity\Issue\Field[]
      */
     private $field = [];
 
@@ -447,7 +447,7 @@ class Issue
      */
     public function setComment(array $comments): void
     {
-        if (!empty($comments) && is_array($comments[0])) {
+        if (isset($comments[0]) && is_array($comments[0])) {
             foreach ($comments as $key => $commentData) {
                 $comment = new Comment();
                 $comment->fill($commentData);
@@ -473,6 +473,14 @@ class Issue
      */
     public function setField(array $fields): void
     {
+        if (isset($fields[0]) && is_array($fields[0])) {
+            foreach ($fields as $key => $fieldData) {
+                $field = new Field();
+                $field->fill($fieldData);
+                $fields[$key] = $field;
+            }
+        }
+
         $this->field = $fields;
     }
 }

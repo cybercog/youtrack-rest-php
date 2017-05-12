@@ -13,6 +13,8 @@ declare(strict_types=1);
 
 namespace Cog\YouTrack\Entity\Issue;
 
+use Cog\YouTrack\Traits\HasHydrator;
+
 /**
  * YouTrack Issue Field Entity.
  *
@@ -20,6 +22,8 @@ namespace Cog\YouTrack\Entity\Issue;
  */
 class Field
 {
+    use HasHydrator;
+
     /**
      * Issue Field name.
      *
