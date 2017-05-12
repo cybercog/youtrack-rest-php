@@ -1,0 +1,65 @@
+{
+    "name": "cybercog/youtrack-rest-php",
+    "description": "YouTrack REST API PHP Client.",
+    "type": "library",
+    "license": "MIT",
+    "keywords": [
+        "cybercog",
+        "cog",
+        "laravel",
+        "youtrack",
+        "rest",
+        "api",
+        "client",
+        "jetbrains",
+        "issues",
+        "helpdesk",
+        "pm",
+        "tickets"
+    ],
+    "authors": [
+        {
+            "name": "Anton Komarev",
+            "email": "a.komarev@cybercog.su",
+            "homepage": "http://ell.folio.su",
+            "role": "Developer"
+        }
+    ],
+    "homepage": "https://github.com/cybercog/youtrack-rest-php",
+    "support": {
+        "email": "oss@cybercog.su",
+        "issues": "https://github.com/cybercog/youtrack-rest-php/issues",
+        "wiki": "https://github.com/cybercog/youtrack-rest-php/wiki",
+        "source": "https://github.com/cybercog/youtrack-rest-php",
+        "docs": "https://github.com/cybercog/youtrack-rest-php/wiki"
+    },
+    "require": {
+        "guzzlehttp/guzzle": "^6.2",
+        "php": "^5.6|^7.0"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^1.11",
+        "mockery/mockery": "^0.9.8",
+        "orchestra/database": "~3.4.0",
+        "orchestra/testbench": "~3.4.0",
+        "phpunit/phpunit": "^5.7"
+    },
+    "autoload": {
+        "psr-4": {
+            "Cog\\YouTrack\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Cog\\YouTrack\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable" : true
+}
