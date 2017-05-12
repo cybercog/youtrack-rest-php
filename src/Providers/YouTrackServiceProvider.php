@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Cog\YouTrack\Providers;
 
+use Cog\YouTrack\Contracts\YouTrackClient as YouTrackClientContract;
 use Cog\YouTrack\Services\YouTrackClient;
 use GuzzleHttp\Client;
 use Illuminate\Support\ServiceProvider;
@@ -39,7 +40,7 @@ class YouTrackServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('youtrack', function () {
+        $this->app->bind(YouTrackClientContract::class, function () {
 
             $config = $this->app->make('config');
 
