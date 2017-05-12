@@ -13,9 +13,6 @@ declare(strict_types=1);
 
 namespace Cog\YouTrack\Contracts;
 
-use Cog\YouTrack\Contracts\YouTrackClient as YouTrackClientContract;
-use Cog\YouTrack\Entity\Issue\Issue;
-
 /**
  * Class IssueRepository.
  *

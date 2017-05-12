@@ -431,7 +431,7 @@ class IssueTest extends TestCase
 
     /**
      * @test
-     * 
+     *
      * TODO: Move to Hydrator tests
      */
     public function it_can_fill_id()

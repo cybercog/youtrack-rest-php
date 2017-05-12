@@ -47,10 +47,10 @@ class Project
     private $description;
 
     /**
-     * @var boolean
+     * @var bool
      */
     private $archived;
-    
+
     /**
      * Login name of a user to be assigned as a project leader.
      *

@@ -145,7 +145,7 @@ class Comment
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function getDeleted(): bool
     {

@@ -231,7 +231,7 @@ class ProjectTest extends TestCase
 
         $this->assertEquals('https://cybercog.su', $subsystemsUrl);
     }
-    
+
     /** @test */
     public function it_can_get_builds_url()
     {
