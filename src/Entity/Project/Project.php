@@ -66,6 +66,11 @@ class Project
     /**
      * @var string
      */
+    private $url;
+
+    /**
+     * @var string
+     */
     private $assigneesUrl;
 
     /**
@@ -129,6 +134,14 @@ class Project
     public function getStartingNumber(): int
     {
         return $this->startingNumber;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUrl(): string
+    {
+        return $this->url;
     }
 
     /**
@@ -215,6 +228,15 @@ class Project
     public function setStartingNumber(int $startingNumber): void
     {
         $this->startingNumber = $startingNumber;
+    }
+
+    /**
+     * @param string $url
+     * @return void
+     */
+    public function setUrl(string $url): void
+    {
+        $this->url = $url;
     }
 
     /**

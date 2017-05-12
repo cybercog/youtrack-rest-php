@@ -17,6 +17,7 @@ trait HasHydrator
 {
     /**
      * Hydrate entity with attributes.
+     * TODO: Rename it to `fill()`?
      *
      * @param array $attributes
      * @return void

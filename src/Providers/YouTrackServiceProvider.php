@@ -49,7 +49,6 @@ class YouTrackServiceProvider extends ServiceProvider
             ]);
 
             return new YouTrackClient($http, [
-                'uri' => $config->get('youtrack.base_uri'), // TODO: Make it optional
                 'username' => $config->get('youtrack.username'),
                 'password' => $config->get('youtrack.password'),
             ]);

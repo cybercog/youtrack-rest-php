@@ -27,12 +27,24 @@ class ProjectRepositoryTest extends TestCase
     private $project = 'LARABOT';
 
     /** @test */
+    public function it_can_list_all_projects()
+    {
+        $repository = $this->app->make(ProjectRepository::class);
+
+        $projects = $repository->all();
+
+        $this->assertTrue(is_array($projects));
+        $this->assertGreaterThan(0, $projects);
+        $this->assertInstanceOf(Project::class, $projects[0]);
+    }
+
+    /** @test */
     public function it_can_get_project()
     {
         $repository = $this->app->make(ProjectRepository::class);
         $projectId = $this->project;
 
-        $project = $repository->projectGet($projectId);
+        $project = $repository->find($projectId);
 
         $this->assertInstanceOf(Project::class, $project);
         $this->assertEquals($projectId, $project->getId());

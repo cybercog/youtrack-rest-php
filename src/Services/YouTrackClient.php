@@ -94,6 +94,7 @@ class YouTrackClient implements YouTrackClientContract
             // TODO: Use it in all future requests
             $this->cookie = implode(', ', $response->getHeader('Set-Cookie'));
         } catch (ClientException $e) {
+            // TODO: Make it more verbose
             throw new UserLoginError('Cannot login');
         }
     }

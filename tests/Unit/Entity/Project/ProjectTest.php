@@ -84,6 +84,16 @@ class ProjectTest extends TestCase
     }
 
     /** @test */
+    public function it_can_set_url()
+    {
+        $project = new Project();
+
+        $project->setUrl('https://cybercog.su');
+
+        $this->assertAttributeSame('https://cybercog.su', 'url', $project);
+    }
+
+    /** @test */
     public function it_can_set_assignees_url()
     {
         $project = new Project();
@@ -187,6 +197,17 @@ class ProjectTest extends TestCase
         $startingNumber = $project->getStartingNumber();
 
         $this->assertSame(4, $startingNumber);
+    }
+
+    /** @test */
+    public function it_can_get_url()
+    {
+        $project = new Project();
+        $this->setPrivateProperty($project, 'url', 'https://cybercog.su');
+
+        $url = $project->getUrl();
+
+        $this->assertEquals('https://cybercog.su', $url);
     }
 
     /** @test */
