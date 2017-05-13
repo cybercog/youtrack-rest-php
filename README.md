@@ -131,7 +131,7 @@ $repository->create([
 
 ```php
 $issueId = 'TEST-1';
-$repository = new \Cog\YouTrack\Repositories\IssueRepository($client);
+$repository = new \Cog\YouTrack\Repositories\RestIssueRepository($client);
 $repository->update($issueId, [
     'summary' => 'New summary',
     'description' => 'New description',
@@ -142,7 +142,7 @@ $repository->update($issueId, [
 
 ```php
 $issueId = 'TEST-1';
-$repository = new \Cog\YouTrack\Repositories\IssueRepository($client);
+$repository = new \Cog\YouTrack\Repositories\RestIssueRepository($client);
 $isIssueExists = $repository->exists($issueId);
 ```
 
