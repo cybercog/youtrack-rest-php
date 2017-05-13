@@ -25,8 +25,6 @@ interface ProjectRepository
     /**
      * Get all accessible projects.
      *
-     * @see https://www.jetbrains.com/help/youtrack/standalone/2017.2/GET-Projects.html
-     *
      * @return \Cog\YouTrack\Entity\Project\Project[]
      */
     public function all(): array;
@@ -34,10 +32,8 @@ interface ProjectRepository
     /**
      * Get project by its project identifier.
      *
-     * @see https://www.jetbrains.com/help/youtrack/standalone/2017.2/GET-Project.html
-     *
      * @param string $id
      * @return \Cog\YouTrack\Entity\Project\Project
      */
-    public function find($id): Project;
+    public function find(string $id): Project;
 }

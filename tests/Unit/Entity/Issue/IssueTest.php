@@ -284,6 +284,17 @@ class IssueTest extends TestCase
     }
 
     /** @test */
+    public function it_can_get_null_description()
+    {
+        $issue = new Issue();
+        $this->setPrivateProperty($issue, 'description', null);
+
+        $description = $issue->getDescription();
+
+        $this->assertNull($description);
+    }
+
+    /** @test */
     public function it_can_get_created()
     {
         $issue = new Issue();

@@ -111,6 +111,17 @@ $repository = new \Cog\YouTrack\Repositories\IssueRepository($client);
 $issue = $repository->find($issueId);
 ```
 
+#### Update summary and description for an issue
+
+```php
+$issueId = 'TEST-1';
+$repository = new \Cog\YouTrack\Repositories\IssueRepository($client);
+$issue = $repository->update($issueId, [
+    'summary' => 'New summary',
+    'description' => 'New description',
+]);
+```
+
 #### Check that an issue exists
 
 ```php

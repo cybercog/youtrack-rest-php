@@ -45,7 +45,7 @@ class IssueRepository implements IssueRepositoryContract
      * @param string $id
      * @return \Cog\YouTrack\Entity\Issue\Issue
      */
-    public function find($id): Issue
+    public function find(string $id): Issue
     {
         $issueData = $this->youTrack->get('/rest/issue/' . $id);
 
@@ -56,12 +56,28 @@ class IssueRepository implements IssueRepositoryContract
     }
 
     /**
+     * Update summary and description for an issue specified by its `issueID`.
+     *
+     * @see https://www.jetbrains.com/help/youtrack/standalone/2017.2/Update-an-Issue.html
+     *
+     * @param string $id
+     * @param array $attributes
+     * @return void
+     */
+    public function update(string $id, array $attributes): void
+    {
+        $this->youTrack->post('/rest/issue/' . $id, $attributes);
+    }
+
+    /**
      * Check that an issue exists.
+     *
+     * @see https://www.jetbrains.com/help/youtrack/standalone/2017.2/Check-that-an-Issue-Exists.html
      *
      * @param string $id
      * @return bool
      */
-    public function exists($id): bool
+    public function exists(string $id): bool
     {
         try {
             $response = $this->youTrack->get('/rest/issue/' . $id . '/exists');
