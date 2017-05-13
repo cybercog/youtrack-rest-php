@@ -12,7 +12,7 @@
 
 ## Introduction
 
-This library utilizes Guzzle HTTP client to perform requests to YouTrack REST API.
+This library utilizes Guzzle HTTP client to perform requests to JetBrains YouTrack REST API.
 
 ## Contents
 

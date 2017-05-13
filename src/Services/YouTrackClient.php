@@ -105,7 +105,7 @@ class YouTrackClient implements YouTrackClientContract
      */
     public function get(string $uri, array $formData = []): YouTrackRestResponseContract
     {
-        return $this->request('get', $uri, $formData);
+        return $this->request('GET', $uri, $formData);
     }
 
     /**
@@ -117,7 +117,7 @@ class YouTrackClient implements YouTrackClientContract
      */
     public function post(string $uri, array $formData = []): YouTrackRestResponseContract
     {
-        return $this->request('post', $uri, $formData);
+        return $this->request('POST', $uri, $formData);
     }
 
     /**
@@ -129,7 +129,7 @@ class YouTrackClient implements YouTrackClientContract
      */
     public function put(string $uri, array $formData = []): YouTrackRestResponseContract
     {
-        return $this->request('put', $uri, $formData);
+        return $this->request('PUT', $uri, $formData);
     }
 
     /**
@@ -141,7 +141,7 @@ class YouTrackClient implements YouTrackClientContract
      */
     public function delete(string $uri, array $formData = []): YouTrackRestResponseContract
     {
-        return $this->request('delete', $uri, $formData);
+        return $this->request('DELETE', $uri, $formData);
     }
 
     /**
