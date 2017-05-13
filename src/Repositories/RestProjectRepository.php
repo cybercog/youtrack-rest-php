@@ -92,4 +92,17 @@ class RestProjectRepository implements ProjectRepositoryContract
     {
         $this->youTrack->put('/rest/admin/project/' . $id, $attributes);
     }
+
+    /**
+     * Delete specified project.
+     *
+     * @see https://www.jetbrains.com/help/youtrack/standalone/2017.2/DELETE-Project.html
+     *
+     * @param string $id
+     * @return void
+     */
+    public function delete(string $id): void
+    {
+        $this->youTrack->delete('/rest/admin/project/' . $id);
+    }
 }
