@@ -36,11 +36,11 @@ class CookieAuthenticator implements RestAuthenticatorContract
     private $cookie;
 
     /**
+     * CookieAuthenticator constructor.
+     *
      * @param \Cog\YouTrack\Contracts\YouTrackClient $http
-     * @param array $options
-     * @throws \Exception
      */
-    public function __construct(YouTrackClientContract $http, array $options = [])
+    public function __construct(YouTrackClientContract $http)
     {
         $this->http = $http;
     }

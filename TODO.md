@@ -10,3 +10,9 @@
 - [x] Repository: Issue update
 - [ ] Repository: Issue patch (update only provided params)
 - [ ] Testing: Snapshot\Mock\Stub\Fake testing for API calls
+- [ ] Exceptions: Design exceptions (use static or not)
+- [ ] Frameworks: Design Laravel config
+- [x] CI: Automate unit tests
+- [ ] CI: Coverage analysis
+- [ ] CI: Code mess detector
+- [x] CI: Code style checker

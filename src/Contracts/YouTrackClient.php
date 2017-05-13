@@ -24,20 +24,20 @@ use Cog\YouTrack\Responses\YouTrackRestResponse;
 interface YouTrackClient
 {
     /**
-     * Create client authenticator instance.
-     *
-     * @param array $options
-     * @return \Cog\YouTrack\Contracts\RestAuthenticator
-     */
-    public function createAuthenticator(array $options): RestAuthenticatorContract;
-
-    /**
      * Set authentication strategy.
      *
      * @param \Cog\YouTrack\Contracts\RestAuthenticator $authenticator
      * @return void
      */
     public function setAuthenticator(RestAuthenticatorContract $authenticator): void;
+
+    /**
+     * Create client authenticator instance.
+     *
+     * @param array $options
+     * @return \Cog\YouTrack\Contracts\RestAuthenticator
+     */
+    public function createAuthenticator(array $options): RestAuthenticatorContract;
 
     /**
      * Create and send an HTTP request.
