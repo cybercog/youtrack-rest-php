@@ -12,7 +12,7 @@
 
 ## Introduction
 
-This library utilizes Guzzle HTTP client to perform requests to YouTrack REST API.
+This library utilizes Guzzle HTTP client to perform requests to JetBrains YouTrack REST API.
 
 ## Contents
 
@@ -37,7 +37,7 @@ This library utilizes Guzzle HTTP client to perform requests to YouTrack REST AP
 - Framework agnostic.
 - Using contracts to keep high customization capabilities.
 - YouTrack Entities with relationships.
-- Multiple authentication strategy.
+- Multiple authentication strategy: Token, Cookie.
 - Covered with unit tests.
 
 ## Installation
@@ -62,20 +62,22 @@ Include the service provider within `app/config/app.php`:
 
 ### Initialize API client
 
-#### Token authentication
+#### Token Authenticator
+
+Starting with YouTrack 2017.1 release [authorization based on permanent tokens](https://www.jetbrains.com/help/youtrack/standalone/2017.2/Manage-Permanent-Token.html) is recommended as the main approach for the authorization in your REST API calls. 
 
 ```php
 $http = new \GuzzleHttp\Client([
     'base_uri' => 'https://example.com',
 ]);
 
-$client = new YouTrackClient($http, [
+$client = new \Cog\YouTrack\Services\YouTrackClient($http, [
     'class' => \Cog\YouTrack\Authenticators\TokenAuthenticator::class,
     'token' => 'YOUTRACK_API_TOKEN',
 ]);
 ```
 
-#### Cookie authentication
+#### Cookie Authenticator
 
 ```php
 $http = new \GuzzleHttp\Client([
@@ -94,7 +96,7 @@ $client = new \Cog\YouTrack\Services\YouTrackClient($http, [
 #### Get all accessible projects.
 
 ```php
-$repository = new \Cog\YouTrack\Repositories\ProjectRepository($client);
+$repository = new \Cog\YouTrack\Repositories\RestProjectRepository($client);
 $projects = $repository->all();
 ```
 
@@ -102,7 +104,7 @@ $projects = $repository->all();
 
 ```php
 $projectId = 'TEST';
-$repository = new \Cog\YouTrack\Repositories\ProjectRepository($client);
+$repository = new \Cog\YouTrack\Repositories\RestProjectRepository($client);
 $projects = $repository->find($projectId);
 ```
 
@@ -110,16 +112,27 @@ $projects = $repository->find($projectId);
 
 ```php
 $issueId = 'TEST-1';
-$repository = new \Cog\YouTrack\Repositories\IssueRepository($client);
+$repository = new \Cog\YouTrack\Repositories\RestIssueRepository($client);
 $issue = $repository->find($issueId);
+```
+
+#### Report a new issue
+
+```php
+$repository = new \Cog\YouTrack\Repositories\RestIssueRepository($client);
+$repository->create([
+    'project' => 'TEST',
+    'summary' => 'New summary',
+    'description' => 'New description',
+]);
 ```
 
 #### Update summary and description for an issue
 
 ```php
 $issueId = 'TEST-1';
-$repository = new \Cog\YouTrack\Repositories\IssueRepository($client);
-$issue = $repository->update($issueId, [
+$repository = new \Cog\YouTrack\Repositories\RestIssueRepository($client);
+$repository->update($issueId, [
     'summary' => 'New summary',
     'description' => 'New description',
 ]);
@@ -129,7 +142,7 @@ $issue = $repository->update($issueId, [
 
 ```php
 $issueId = 'TEST-1';
-$repository = new \Cog\YouTrack\Repositories\IssueRepository($client);
+$repository = new \Cog\YouTrack\Repositories\RestIssueRepository($client);
 $isIssueExists = $repository->exists($issueId);
 ```
 

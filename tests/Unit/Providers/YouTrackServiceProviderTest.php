@@ -27,8 +27,8 @@ class YouTrackServiceProviderTest extends TestCase
     /** @test */
     public function it_can_instantiate_youtrack_client_from_container()
     {
-        $youtrack = $this->app->make(YouTrackClientContract::class);
+        $client = $this->app->make(YouTrackClientContract::class);
 
-        $this->assertInstanceOf(YouTrackClient::class, $youtrack);
+        $this->assertInstanceOf(YouTrackClient::class, $client);
     }
 }

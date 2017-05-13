@@ -8,11 +8,13 @@
         "cog",
         "laravel",
         "youtrack",
+        "yt",
         "rest",
         "api",
         "client",
         "jetbrains",
         "issues",
+        "bugtracker",
         "helpdesk",
         "pm",
         "tickets"
@@ -53,6 +55,12 @@
         "psr-4": {
             "Cog\\YouTrack\\Tests\\": "tests/"
         }
+    },
+    "conflict": {
+        "illuminate/support": "<5.1"
+    },
+    "suggest": {
+        "illuminate/support": "Required for Laravel integration."
     },
     "scripts": {
         "test": "vendor/bin/phpunit"

@@ -16,7 +16,7 @@ namespace Cog\YouTrack\Contracts;
 use Cog\YouTrack\Entity\Project\Project;
 
 /**
- * Class ProjectRepository.
+ * Class RestProjectRepository.
  *
  * @package Cog\YouTrack\Contracts
  */

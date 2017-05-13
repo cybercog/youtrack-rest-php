@@ -16,7 +16,7 @@ namespace Cog\YouTrack\Contracts;
 use Cog\YouTrack\Entity\Issue\Issue;
 
 /**
- * Class IssueRepository.
+ * Class RestIssueRepository.
  *
  * @package Cog\YouTrack\Contracts
  */
@@ -29,6 +29,14 @@ interface IssueRepository
      * @return \Cog\YouTrack\Entity\Issue\Issue
      */
     public function find(string $id): Issue;
+
+    /**
+     * Report a new issue to YouTrack.
+     *
+     * @param array $attributes
+     * @return void
+     */
+    public function create(array $attributes): void;
 
     /**
      * Update summary and description for an issue specified by its `issueID`.
