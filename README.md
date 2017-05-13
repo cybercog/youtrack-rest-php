@@ -91,7 +91,7 @@ $client = new YouTrackClient($http, [
 #### Get all accessible projects.
 
 ```php
-$repository = app(\Cog\YouTrack\Repositories\ProjectRepository::class);
+$repository = new \Cog\YouTrack\Repositories\ProjectRepository($client);
 $projects = $repository->all();
 ```
 
@@ -99,7 +99,7 @@ $projects = $repository->all();
 
 ```php
 $projectId = 'TEST';
-$repository = app(\Cog\YouTrack\Repositories\ProjectRepository::class);
+$repository = new \Cog\YouTrack\Repositories\ProjectRepository($client);
 $projects = $repository->find($projectId);
 ```
 
@@ -107,7 +107,7 @@ $projects = $repository->find($projectId);
 
 ```php
 $issueId = 'TEST-1';
-$repository = app(\Cog\YouTrack\Repositories\IssueRepository::class);
+$repository = new \Cog\YouTrack\Repositories\IssueRepository($client);
 $issue = $repository->find($issueId);
 ```
 
