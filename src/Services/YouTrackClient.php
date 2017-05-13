@@ -19,7 +19,9 @@ use Cog\YouTrack\Responses\YouTrackRestResponse;
 use GuzzleHttp\ClientInterface as ClientContract;
 
 /**
- * @see https://www.jetbrains.com/help/youtrack/standalone/2017.2/YouTrack-REST-API-Reference.html
+ * Class YouTrackClient.
+ *
+ * @see https://www.jetbrains.com/help/youtrack/standalone/2017.2/YouTrack-REST-API-Reference.html *
  *
  * @package Cog\YouTrack\Services
  */

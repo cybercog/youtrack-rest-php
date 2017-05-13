@@ -16,6 +16,11 @@ namespace Cog\YouTrack\Authenticators;
 use Cog\YouTrack\Contracts\RestAuthenticator as RestAuthenticatorContract;
 use Cog\YouTrack\Contracts\YouTrackClient as YouTrackClientContract;
 
+/**
+ * Class TokenAuthenticator.
+ *
+ * @package Cog\YouTrack\Authenticators
+ */
 class TokenAuthenticator implements RestAuthenticatorContract
 {
     /**

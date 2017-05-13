@@ -13,11 +13,15 @@ declare(strict_types=1);
 
 namespace Cog\YouTrack\Traits;
 
+/**
+ * Trait HasHydrator.
+ *
+ * @package Cog\YouTrack\Traits
+ */
 trait HasHydrator
 {
     /**
      * Hydrate entity with attributes.
-     * TODO: Rename it to `fill()`?
      *
      * @param array $attributes
      * @return void

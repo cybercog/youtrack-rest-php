@@ -18,6 +18,11 @@ use Cog\YouTrack\Contracts\YouTrackClient as YouTrackClientContract;
 use Cog\YouTrack\Exceptions\AuthenticationException;
 use GuzzleHttp\Exception\ClientException;
 
+/**
+ * Class CookieAuthenticator.
+ *
+ * @package Cog\YouTrack\Authenticators
+ */
 class CookieAuthenticator implements RestAuthenticatorContract
 {
     /**

@@ -13,6 +13,10 @@ This library utilizes Guzzle HTTP client to perform requests to YouTrack REST AP
 
 ## Contents
 
+- [Features](#features)
+- [Installation](#installation)
+    - [Laravel integration](#laravel-integration)
+- [Usage](#usage)
 - [Change log](#change-log)
 - [Contributing](#contributing)
 - [Testing](#testing)
@@ -21,6 +25,89 @@ This library utilizes Guzzle HTTP client to perform requests to YouTrack REST AP
 - [Alternatives](#alternatives)
 - [License](#license)
 - [About CyberCog](#about-cybercog)
+
+
+## Features
+
+- Framework agnostic.
+- Using contracts to keep high customization capabilities.
+- YouTrack Entities with relationships.
+- Multiple authentication strategy.
+- Covered with unit tests.
+
+## Installation
+
+First, pull in the package through Composer:
+
+```sh
+$ composer require cybercog/youtrack-rest-php
+```
+
+### Laravel integration
+
+Include the service provider within `app/config/app.php`:
+
+```php
+'providers' => [
+    Cog\YouTrack\Providers\YouTrackServiceProvider::class,
+],
+```
+
+## Usage
+
+### Initialize API client
+
+#### Token authentication
+
+```
+$http = new \GuzzleHttp\Client([
+    'base_uri' => 'https://example.com',
+]);
+
+$client = new YouTrackClient($http, [
+    'class' => \Cog\YouTrack\Authenticators\TokenAuthenticator::class,
+    'token' => 'YOUTRACK_USERNAME',
+]);
+```
+
+#### Cookie authentication
+
+```
+$http = new \GuzzleHttp\Client([
+    'base_uri' => 'https://example.com',
+]);
+
+$client = new YouTrackClient($http, [
+    'class' => \Cog\YouTrack\Authenticators\CookieAuthenticator::class,
+    'username' => 'YOUTRACK_USERNAME',
+    'password' => 'YOUTRACK_PASSWORD',
+]);
+```
+
+### Repositories methods
+
+#### Get all accessible projects.
+
+```php
+$repository = app(\Cog\YouTrack\Repositories\ProjectRepository::class);
+$projects = $repository->all();
+```
+
+#### Get project by its project identifier
+
+```php
+$projectId = 'TEST';
+$repository = app(\Cog\YouTrack\Repositories\ProjectRepository::class);
+$projects = $repository->find($projectId);
+```
+
+#### Get issue by id
+
+```php
+$issueId = 'TEST-1';
+$repository = app(\Cog\YouTrack\Repositories\IssueRepository::class);
+$issue = $repository->find($issueId);
+```
 
 ## Change log
 
@@ -49,8 +136,14 @@ If you discover any security related issues, please email oss@cybercog.su instea
 
 ## Alternatives
 
+### PHP
+
 - [samson/youtrack](https://github.com/SamsonIT/YouTrack)
 - [jsto/youtrack_api_client_php](https://github.com/jsto/youtrack_api_client_php)
+
+### Java
+
+- [byte-imagination/ytapi](https://github.com/byte-imagination/ytapi)
 
 *Feel free to add more alternatives as Pull Request.*
 
