@@ -40,7 +40,7 @@ class TokenAuthenticator implements RestAuthenticatorContract
 
     /**
      * Authenticate Http Client.
-     * https://www.jetbrains.com/help/youtrack/standalone/2017.2/Log-in-to-YouTrack.html
+     * https://www.jetbrains.com/help/youtrack/standalone/2017.2/Log-in-to-YouTrack.html.
      *
      * @param array $credentials
      * @return void

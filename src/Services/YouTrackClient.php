@@ -14,7 +14,6 @@ declare(strict_types=1);
 namespace Cog\YouTrack\Services;
 
 use Cog\YouTrack\Contracts\RestAuthenticator as RestAuthenticatorContract;
-use Cog\YouTrack\Contracts\RestAuthenticator;
 use Cog\YouTrack\Contracts\YouTrackClient as YouTrackClientContract;
 use Cog\YouTrack\Responses\YouTrackRestResponse;
 use GuzzleHttp\ClientInterface as ClientContract;
