@@ -78,4 +78,18 @@ class RestProjectRepository implements ProjectRepositoryContract
 
         return $project;
     }
+
+    /**
+     * Create new project.
+     *
+     * @see https://www.jetbrains.com/help/youtrack/standalone/2017.2/PUT-Project.html
+     *
+     * @param string $id
+     * @param array $attributes
+     * @return void
+     */
+    public function create(string $id, array $attributes): void
+    {
+        $this->youTrack->put('/rest/admin/project/' . $id, $attributes);
+    }
 }

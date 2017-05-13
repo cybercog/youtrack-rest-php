@@ -36,4 +36,13 @@ interface ProjectRepository
      * @return \Cog\YouTrack\Entity\Project\Project
      */
     public function find(string $id): Project;
+
+    /**
+     * Create new project.
+     *
+     * @param string $id
+     * @param array $attributes
+     * @return void
+     */
+    public function create(string $id, array $attributes): void;
 }

@@ -64,4 +64,22 @@ class RestProjectRepositoryTest extends TestCase
         $this->assertInstanceOf(Project::class, $project);
         $this->assertEquals($projectId, $project->getId());
     }
+
+    /**
+     * test
+     * TODO: Test it
+     */
+    public function it_can_create_project()
+    {
+        $projectId = 'TESTPROJECT';
+
+        $this->repository->create($projectId, [
+            'projectName' => 'Test project',
+            'startingNumber' => 4,
+            'projectLeadLogin' => 'admin',
+            'description' => 'Test description',
+        ]);
+
+        // TODO: Assert project being created
+    }
 }
