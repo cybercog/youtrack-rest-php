@@ -71,7 +71,7 @@ $http = new \GuzzleHttp\Client([
     'base_uri' => 'https://example.com',
 ]);
 
-$client = new YouTrackClient($http, [
+$client = new \Cog\YouTrack\Services\YouTrackClient($http, [
     'class' => \Cog\YouTrack\Authenticators\TokenAuthenticator::class,
     'token' => 'YOUTRACK_API_TOKEN',
 ]);
