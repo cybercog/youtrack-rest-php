@@ -14,7 +14,6 @@ declare(strict_types=1);
 namespace Cog\YouTrack\Authenticators;
 
 use Cog\YouTrack\Contracts\RestAuthenticator as RestAuthenticatorContract;
-use Cog\YouTrack\Contracts\YouTrackClient as YouTrackClientContract;
 
 /**
  * Class TokenAuthenticator.
@@ -24,28 +23,14 @@ use Cog\YouTrack\Contracts\YouTrackClient as YouTrackClientContract;
 class TokenAuthenticator implements RestAuthenticatorContract
 {
     /**
-     * @var \Cog\YouTrack\Contracts\YouTrackClient
-     */
-    private $http;
-
-    /**
      * @var string
      */
     private $token;
 
     /**
-     * @param \Cog\YouTrack\Contracts\YouTrackClient $http
-     * @param array $options
-     * @throws \Exception
-     */
-    public function __construct(YouTrackClientContract $http, array $options = [])
-    {
-        $this->http = $http;
-    }
-
-    /**
      * Authenticate Http Client.
-     * https://www.jetbrains.com/help/youtrack/standalone/2017.2/Log-in-to-YouTrack.html.
+     *
+     * @see https://www.jetbrains.com/help/youtrack/standalone/2017.2/Log-in-to-YouTrack.html.
      *
      * @param array $credentials
      * @return void

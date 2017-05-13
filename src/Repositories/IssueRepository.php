@@ -83,7 +83,7 @@ class IssueRepository implements IssueRepositoryContract
             $response = $this->youTrack->get('/rest/issue/' . $id . '/exists');
 
             return $response->getStatusCode() === 200;
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             return false;
         }
     }

@@ -54,6 +54,17 @@ class YouTrackClient implements YouTrackClientContract
     }
 
     /**
+     * Set authentication strategy.
+     *
+     * @param \Cog\YouTrack\Contracts\RestAuthenticator $authenticator
+     * @return void
+     */
+    public function setAuthenticator(RestAuthenticatorContract $authenticator): void
+    {
+        $this->authenticator = $authenticator;
+    }
+
+    /**
      * Create client authenticator instance.
      *
      * @param array $options
@@ -67,17 +78,6 @@ class YouTrackClient implements YouTrackClientContract
         }
 
         return new $options['class']($this);
-    }
-
-    /**
-     * Set authentication strategy.
-     *
-     * @param \Cog\YouTrack\Contracts\RestAuthenticator $authenticator
-     * @return void
-     */
-    public function setAuthenticator(RestAuthenticatorContract $authenticator): void
-    {
-        $this->authenticator = $authenticator;
     }
 
     /**

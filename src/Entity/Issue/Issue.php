@@ -157,6 +157,11 @@ class Issue
      */
     private $field = [];
 
+    /**
+     * Issue constructor.
+     *
+     * @param array $attributes
+     */
     public function __construct(array $attributes = [])
     {
         $this->fill($attributes);
@@ -205,7 +210,7 @@ class Issue
     /**
      * @return null|string
      */
-    public function getDescription(): ? string
+    public function getDescription(): ?string
     {
         return $this->description;
     }
