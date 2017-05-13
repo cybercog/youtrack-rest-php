@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Cog\YouTrack\Services;
 
+use Cog\YouTrack\Authenticators\NullAuthenticator;
 use Cog\YouTrack\Contracts\RestAuthenticator as RestAuthenticatorContract;
 use Cog\YouTrack\Contracts\YouTrackClient as YouTrackClientContract;
 use Cog\YouTrack\Contracts\YouTrackRestResponse as YouTrackRestResponseContract;
@@ -48,7 +49,7 @@ class YouTrackClient implements YouTrackClientContract
         $this->http = $http;
 
         $this->setAuthenticator(
-            $this->createAuthenticator($options)
+            $this->createAuthenticator($options['class'])
         );
 
         $this->authenticator->authenticate($options);
@@ -66,19 +67,28 @@ class YouTrackClient implements YouTrackClientContract
     }
 
     /**
+     * Get authentication strategy.
+     *
+     * @return \Cog\YouTrack\Contracts\RestAuthenticator
+     */
+    public function getAuthenticator(): RestAuthenticatorContract
+    {
+        return $this->authenticator;
+    }
+
+    /**
      * Create client authenticator instance.
      *
-     * @param array $options
+     * @param string $authenticator
      * @return \Cog\YouTrack\Contracts\RestAuthenticator
-     * @throws \Exception
      */
-    public function createAuthenticator(array $options): RestAuthenticatorContract
+    public function createAuthenticator(string $authenticator): RestAuthenticatorContract
     {
-        if (!isset($options['class'])) {
-            throw new \Exception('Set YouTrack authenticator class.');
+        if (!$authenticator) {
+            return new NullAuthenticator();
         }
 
-        return new $options['class']($this);
+        return new $authenticator($this);
     }
 
     /**
