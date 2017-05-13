@@ -54,4 +54,21 @@ class IssueRepository implements IssueRepositoryContract
 
         return $issue;
     }
+
+    /**
+     * Check that an issue exists.
+     *
+     * @param string $id
+     * @return bool
+     */
+    public function exists($id): bool
+    {
+        try {
+            $response = $this->youTrack->get('/rest/issue/' . $id . '/exists');
+
+            return $response->getStatusCode() === 200;
+        } catch (\Exception $e) {
+            return false;
+        }
+    }
 }

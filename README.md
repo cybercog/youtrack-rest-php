@@ -111,6 +111,14 @@ $repository = new \Cog\YouTrack\Repositories\IssueRepository($client);
 $issue = $repository->find($issueId);
 ```
 
+#### Check that an issue exists
+
+```php
+$issueId = 'TEST-1';
+$repository = new \Cog\YouTrack\Repositories\IssueRepository($client);
+$isIssueExists = $repository->exists($issueId);
+```
+
 ## Change log
 
 Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.

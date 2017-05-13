@@ -31,4 +31,12 @@ interface IssueRepository
      * @return \Cog\YouTrack\Entity\Issue\Issue
      */
     public function find($id): Issue;
+
+    /**
+     * Check that an issue exists.
+     *
+     * @param string $id
+     * @return bool
+     */
+    public function exists($id): bool;
 }
