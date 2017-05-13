@@ -1,30 +1,65 @@
-## To do
+# To do
 
-- [ ] Entity: Issue Field color
-- [ ] Entity: Issue Field Value
-- [ ] Entity: Relation collections
-- [ ] Exceptions: (?) Design exceptions (use static or not)
-- [x] Client: Authentication strategy
-- [ ] Client: Design YouTrackClient
-- [ ] Client: Design YouTrackResponse object
-- [ ] Client: (?) YouTrackClient should has `Endpoints` entity
-- [ ] Client: (?) Ignore Guzzle exceptions to cleanup code? What if guzzle will be initialized with exceptions flag?
-- [ ] Client: (?) Do we need to YouTrackRestResponse contract extend Psr\Http\Message\ResponseInterface
-- [x] Repository: Issue get
-- [x] Repository: Issue create
-- [x] Repository: Issue update
-- [x] Repository: Issue delete
-- [x] Repository: Issue exists check
-- [ ] Repository: Issue patch (update only provided params)
-- [x] Repository: Project list
-- [x] Repository: Project create
-- [ ] Repository: Project update
-- [x] Repository: Project delete
-- [ ] Frameworks: Design Laravel config
-- [x] Frameworks: Laravel integration
-- [ ] Frameworks: Symfony integration
-- [ ] Testing: Snapshot\Mock\Stub\Fake testing for API calls
-- [x] CI: Automate unit tests
-- [ ] CI: Coverage analysis
-- [ ] CI: Code mess detector
-- [x] CI: Code style checker
+## Entities
+
+- [ ] Issue
+- [ ] Issue Comment
+- [ ] Issue Field color
+- [ ] Issue FieldValue
+- [ ] Project
+- [ ] Relation collections
+
+## Exceptions
+
+- [ ] (?) Design exceptions (use static or not)
+
+## Client
+
+- [x] Authentication strategy
+- [ ] Design YouTrackClient
+- [ ] Design YouTrackResponse object
+- [ ] (?) YouTrackClient should has `Endpoints` entity
+- [ ] (?) Ignore Guzzle exceptions to cleanup code? What if guzzle will be initialized with exceptions flag?
+- [ ] (?) Do we need to YouTrackRestResponse contract extend Psr\Http\Message\ResponseInterface
+
+## Repositories
+
+### Issue Repository
+
+- [x] Issue get
+- [x] Issue create
+- [x] Issue update
+- [x] Issue delete
+- [x] Issue exists check
+- [ ] Issue patch (update only provided params)
+
+### Project Repository
+
+- [x] Project list
+- [x] Project get
+- [x] Project create
+- [ ] Project update
+- [x] Project delete
+
+## Framework Integrations
+
+### Laravel
+
+- [x] Laravel integration
+- [ ] Design Laravel config
+
+### Symfony
+
+- [ ] Symfony integration
+- [ ] (?) Can Symfony share Laravel config
+
+## Testing
+
+- [ ] Snapshot\Mock\Stub\Fake testing for API calls
+
+## Continuous Integration
+
+- [x] Automate unit tests
+- [ ] Coverage analysis
+- [ ] Code mess detector
+- [x] Code style checker
