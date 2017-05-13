@@ -114,6 +114,17 @@ $repository = new \Cog\YouTrack\Repositories\IssueRepository($client);
 $issue = $repository->find($issueId);
 ```
 
+#### Report a new issue
+
+```php
+$repository = new \Cog\YouTrack\Repositories\IssueRepository($client);
+$issue = $repository->create([
+    'project' => 'TEST',
+    'summary' => 'New summary',
+    'description' => 'New description',
+]);
+```
+
 #### Update summary and description for an issue
 
 ```php
