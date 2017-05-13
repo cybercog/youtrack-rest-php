@@ -96,6 +96,20 @@ class RestIssueRepositoryTest extends TestCase
         );
     }
 
+    /**
+     * test
+     * TODO: Test it.
+     */
+    public function it_can_delete_issue()
+    {
+        // TODO: Create issue
+        $issueId = 'LARABOT-1000';
+
+        $this->repository->delete($issueId);
+
+        // TODO: Assert that issue was deleted successfully
+    }
+
     /** @test */
     public function it_can_check_if_issue_exists()
     {

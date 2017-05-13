@@ -48,6 +48,14 @@ interface IssueRepository
     public function update(string $id, array $attributes): void;
 
     /**
+     * Delete specified issue.
+     *
+     * @param string $id
+     * @return void
+     */
+    public function delete(string $id): void;
+
+    /**
      * Check that an issue exists.
      *
      * @param string $id
