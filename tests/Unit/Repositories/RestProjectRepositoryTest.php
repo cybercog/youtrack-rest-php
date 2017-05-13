@@ -14,24 +14,40 @@ declare(strict_types=1);
 namespace Cog\YouTrack\Tests\Unit\Repositories;
 
 use Cog\YouTrack\Entity\Project\Project;
-use Cog\YouTrack\Repositories\ProjectRepository;
+use Cog\YouTrack\Repositories\RestProjectRepository;
 use Cog\YouTrack\Tests\TestCase;
 
 /**
- * Class ProjectRepositoryTest.
+ * Class RestProjectRepositoryTest.
  *
  * @package Cog\YouTrack\Tests\Unit\Repositories
  */
-class ProjectRepositoryTest extends TestCase
+class RestProjectRepositoryTest extends TestCase
 {
+    /**
+     * @var string
+     */
     private $project = 'LARABOT';
+
+    /**
+     * @var \Cog\YouTrack\Contracts\ProjectRepository
+     */
+    private $repository;
+
+    /**
+     * Actions to be performed on PHPUnit start.
+     */
+    protected function setUp()
+    {
+        parent::setUp();
+
+        $this->repository = $this->app->make(RestProjectRepository::class);
+    }
 
     /** @test */
     public function it_can_list_all_projects()
     {
-        $repository = $this->app->make(ProjectRepository::class);
-
-        $projects = $repository->all();
+        $projects = $this->repository->all();
 
         $this->assertTrue(is_array($projects));
         $this->assertGreaterThan(0, $projects);
@@ -41,10 +57,9 @@ class ProjectRepositoryTest extends TestCase
     /** @test */
     public function it_can_get_project()
     {
-        $repository = $this->app->make(ProjectRepository::class);
         $projectId = $this->project;
 
-        $project = $repository->find($projectId);
+        $project = $this->repository->find($projectId);
 
         $this->assertInstanceOf(Project::class, $project);
         $this->assertEquals($projectId, $project->getId());

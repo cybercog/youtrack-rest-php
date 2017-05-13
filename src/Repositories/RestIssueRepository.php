@@ -18,11 +18,11 @@ use Cog\YouTrack\Contracts\YouTrackClient as YouTrackClientContract;
 use Cog\YouTrack\Entity\Issue\Issue;
 
 /**
- * Class IssueRepository.
+ * Class RestIssueRepository.
  *
  * @package Cog\YouTrack\Repositories
  */
-class IssueRepository implements IssueRepositoryContract
+class RestIssueRepository implements IssueRepositoryContract
 {
     /**
      * @var \Cog\YouTrack\Contracts\YouTrackClient

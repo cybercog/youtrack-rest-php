@@ -16,7 +16,7 @@ namespace Cog\YouTrack\Contracts;
 use Cog\YouTrack\Entity\Issue\Issue;
 
 /**
- * Class IssueRepository.
+ * Class RestIssueRepository.
  *
  * @package Cog\YouTrack\Contracts
  */

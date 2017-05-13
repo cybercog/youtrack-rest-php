@@ -14,26 +14,47 @@ declare(strict_types=1);
 namespace Cog\YouTrack\Tests\Unit\Repositories;
 
 use Cog\YouTrack\Entity\Issue\Issue;
-use Cog\YouTrack\Repositories\IssueRepository;
+use Cog\YouTrack\Repositories\RestIssueRepository;
 use Cog\YouTrack\Tests\TestCase;
 
 /**
- * Class IssueRepositoryTest.
+ * Class RestIssueRepositoryTest.
  *
  * @package Cog\YouTrack\Tests\Unit\Repositories
  */
-class IssueRepositoryTest extends TestCase
+class RestIssueRepositoryTest extends TestCase
 {
+    /**
+     * @var string
+     */
     private $project = 'LARABOT';
+
+    /**
+     * @var string
+     */
     private $issue = 'LARABOT-1';
+
+    /**
+     * @var \Cog\YouTrack\Contracts\IssueRepository
+     */
+    private $repository;
+
+    /**
+     * Actions to be performed on PHPUnit start.
+     */
+    protected function setUp()
+    {
+        parent::setUp();
+
+        $this->repository = $this->app->make(RestIssueRepository::class);
+    }
 
     /** @test */
     public function it_can_get_issue()
     {
-        $repository = $this->app->make(IssueRepository::class);
         $issueId = $this->issue;
 
-        $issue = $repository->find($issueId);
+        $issue = $this->repository->find($issueId);
 
         $this->assertInstanceOf(Issue::class, $issue);
         $this->assertEquals($issueId, $issue->getId());
@@ -45,7 +66,6 @@ class IssueRepositoryTest extends TestCase
      */
     public function it_can_create_issue()
     {
-        $repository = $this->app->make(IssueRepository::class);
         $attributes = [
             'project' => $this->project,
             'summary' => 'Test issue create',
@@ -54,33 +74,34 @@ class IssueRepositoryTest extends TestCase
             //'permittedGroup' => null', // TODO: Test permitted groups
         ];
 
-        $repository->create($attributes);
+        $this->repository->create($attributes);
     }
 
     /** @test */
     public function it_can_update_issue()
     {
-        $repository = $this->app->make(IssueRepository::class);
         $issueId = $this->issue;
-        $issue = $repository->find($issueId);
+        $issue = $this->repository->find($issueId);
         $newDescription = 'Updated: ' . time();
 
-        $repository->update($issueId, [
+        $this->repository->update($issueId, [
             'summary' => $issue->getSummary(),
             'description' => $newDescription,
         ]);
 
         // TODO: How to check it without real API call
-        $this->assertEquals($newDescription, $repository->find($issueId)->getDescription());
+        $this->assertEquals(
+            $newDescription,
+            $this->repository->find($issueId)->getDescription()
+        );
     }
 
     /** @test */
     public function it_can_check_if_issue_exists()
     {
-        $repository = $this->app->make(IssueRepository::class);
         $issueId = $this->issue;
 
-        $exists = $repository->exists($issueId);
+        $exists = $this->repository->exists($issueId);
 
         $this->assertTrue($exists);
     }
@@ -88,10 +109,9 @@ class IssueRepositoryTest extends TestCase
     /** @test */
     public function it_can_check_if_issue_not_exists()
     {
-        $repository = $this->app->make(IssueRepository::class);
         $issueId = 'UNEXIST-ISSUE';
 
-        $exists = $repository->exists($issueId);
+        $exists = $this->repository->exists($issueId);
 
         $this->assertFalse($exists);
     }
