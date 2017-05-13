@@ -25,12 +25,19 @@ interface IssueRepository
     /**
      * Get issue by id.
      *
-     * @see https://www.jetbrains.com/help/youtrack/standalone/2017.2/Get-an-Issue.html
-     *
      * @param string $id
      * @return \Cog\YouTrack\Entity\Issue\Issue
      */
-    public function find($id): Issue;
+    public function find(string $id): Issue;
+
+    /**
+     * Update summary and description for an issue specified by its `issueID`.
+     *
+     * @param string $id
+     * @param array $attributes
+     * @return void
+     */
+    public function update(string $id, array $attributes): void;
 
     /**
      * Check that an issue exists.
@@ -38,5 +45,5 @@ interface IssueRepository
      * @param string $id
      * @return bool
      */
-    public function exists($id): bool;
+    public function exists(string $id): bool;
 }

@@ -59,4 +59,21 @@ class IssueRepositoryTest extends TestCase
 
         $this->assertFalse($exists);
     }
+
+    /** @test */
+    public function it_can_update_issue()
+    {
+        $repository = $this->app->make(IssueRepository::class);
+        $issueId = $this->issue;
+        $issue = $repository->find($issueId);
+        $newDescription = 'Updated: ' . time();
+
+        $repository->update($issueId, [
+            'summary' => $issue->getSummary(),
+            'description' => $newDescription,
+        ]);
+
+        // TODO: How to check it without real API call
+        $this->assertEquals($newDescription, $repository->find($issueId)->getDescription());
+    }
 }

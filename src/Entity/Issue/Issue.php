@@ -62,7 +62,7 @@ class Issue
     /**
      * Description of the issue.
      *
-     * @var string
+     * @var null|string
      */
     private $description;
 
@@ -203,9 +203,9 @@ class Issue
     }
 
     /**
-     * @return string
+     * @return null|string
      */
-    public function getDescription(): string
+    public function getDescription(): ? string
     {
         return $this->description;
     }
@@ -213,7 +213,7 @@ class Issue
     /**
      * @return string
      */
-    public function getCreated(): string
+    public function getCreated() : string
     {
         return $this->created;
     }
@@ -478,6 +478,19 @@ class Issue
                 $field = new Field();
                 $field->fill($fieldData);
                 $fields[$key] = $field;
+
+                // TODO: Optimize it (not all fields will have only 1 value)
+                switch ($field->getName()) {
+                    case 'summary':
+                        $this->setSummary($fieldData['value']);
+                        break;
+                    case 'description':
+                        $this->setDescription($fieldData['value']);
+                        break;
+                    case 'projectShortName':
+                        $this->setProjectShortName($fieldData['value']);
+                        break;
+                }
             }
         }
 

@@ -69,7 +69,7 @@ class ProjectRepository implements ProjectRepositoryContract
      * @param string $id
      * @return \Cog\YouTrack\Entity\Project\Project
      */
-    public function find($id): Project
+    public function find(string $id): Project
     {
         $projectData = $this->youTrack->get('/rest/admin/project/' . $id);
 
