@@ -37,4 +37,26 @@ class IssueRepositoryTest extends TestCase
         $this->assertInstanceOf(Issue::class, $issue);
         $this->assertEquals($issueId, $issue->getId());
     }
+
+    /** @test */
+    public function it_can_check_if_issue_exists()
+    {
+        $repository = $this->app->make(IssueRepository::class);
+        $issueId = $this->issue;
+
+        $exists = $repository->exists($issueId);
+
+        $this->assertTrue($exists);
+    }
+
+    /** @test */
+    public function it_can_check_if_issue_not_exists()
+    {
+        $repository = $this->app->make(IssueRepository::class);
+        $issueId = 'UNEXIST-ISSUE';
+
+        $exists = $repository->exists($issueId);
+
+        $this->assertFalse($exists);
+    }
 }
