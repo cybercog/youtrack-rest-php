@@ -111,6 +111,7 @@ $projects = $repository->find($projectId);
 #### Create new project
 
 ```php
+$projectId = 'TEST';
 $repository = new \Cog\YouTrack\Repositories\RestProjectRepository($client);
 $repository->create($projectId, [
    'projectName' => 'Test project',
@@ -125,6 +126,7 @@ $repository->create($projectId, [
 #### Delete specified project
 
 ```php
+$projectId = 'TEST';
 $repository = new \Cog\YouTrack\Repositories\RestProjectRepository($client);
 $repository->delete($projectId);
 ```
