@@ -91,7 +91,7 @@ $client = new \Cog\YouTrack\Services\YouTrackClient($http, [
 ]);
 ```
 
-### Repositories methods
+### Project repository methods
 
 #### Get all accessible projects.
 
@@ -107,6 +107,22 @@ $projectId = 'TEST';
 $repository = new \Cog\YouTrack\Repositories\RestProjectRepository($client);
 $projects = $repository->find($projectId);
 ```
+
+#### Create new project
+
+```php
+$repository = new \Cog\YouTrack\Repositories\RestProjectRepository($client);
+$repository->create($projectId, [
+   'projectName' => 'Test project',
+   'startingNumber' => 4,
+   'projectLeadLogin' => 'admin',
+   
+   // Optional
+   'description' => 'Test description',
+]);
+```
+
+### Issue repository methods
 
 #### Get issue by id
 
