@@ -17,6 +17,8 @@ This library utilizes Guzzle HTTP client to perform requests to YouTrack REST AP
 - [Installation](#installation)
     - [Laravel integration](#laravel-integration)
 - [Usage](#usage)
+    - [Initialize API client](#initialize-api-client)
+    - [Repositories methods](#repositories-methods)
 - [Change log](#change-log)
 - [Contributing](#contributing)
 - [Testing](#testing)
@@ -59,7 +61,7 @@ Include the service provider within `app/config/app.php`:
 
 #### Token authentication
 
-```
+```php
 $http = new \GuzzleHttp\Client([
     'base_uri' => 'https://example.com',
 ]);
@@ -72,7 +74,7 @@ $client = new YouTrackClient($http, [
 
 #### Cookie authentication
 
-```
+```php
 $http = new \GuzzleHttp\Client([
     'base_uri' => 'https://example.com',
 ]);
