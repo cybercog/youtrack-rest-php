@@ -37,7 +37,7 @@ This library utilizes Guzzle HTTP client to perform requests to YouTrack REST AP
 - Framework agnostic.
 - Using contracts to keep high customization capabilities.
 - YouTrack Entities with relationships.
-- Multiple authentication strategy.
+- Multiple authentication strategy: Token, Cookie.
 - Covered with unit tests.
 
 ## Installation
@@ -62,7 +62,9 @@ Include the service provider within `app/config/app.php`:
 
 ### Initialize API client
 
-#### Token authentication
+#### Token Authenticator
+
+Starting with YouTrack 2017.1 release [authorization based on permanent tokens](https://www.jetbrains.com/help/youtrack/standalone/2017.2/Manage-Permanent-Token.html) is recommended as the main approach for the authorization in your REST API calls. 
 
 ```php
 $http = new \GuzzleHttp\Client([
@@ -75,7 +77,7 @@ $client = new YouTrackClient($http, [
 ]);
 ```
 
-#### Cookie authentication
+#### Cookie Authenticator
 
 ```php
 $http = new \GuzzleHttp\Client([
@@ -118,7 +120,7 @@ $issue = $repository->find($issueId);
 
 ```php
 $repository = new \Cog\YouTrack\Repositories\IssueRepository($client);
-$issue = $repository->create([
+$repository->create([
     'project' => 'TEST',
     'summary' => 'New summary',
     'description' => 'New description',
@@ -130,7 +132,7 @@ $issue = $repository->create([
 ```php
 $issueId = 'TEST-1';
 $repository = new \Cog\YouTrack\Repositories\IssueRepository($client);
-$issue = $repository->update($issueId, [
+$repository->update($issueId, [
     'summary' => 'New summary',
     'description' => 'New description',
 ]);
