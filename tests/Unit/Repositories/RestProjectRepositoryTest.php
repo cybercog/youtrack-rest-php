@@ -82,4 +82,17 @@ class RestProjectRepositoryTest extends TestCase
 
         // TODO: Assert project being created
     }
+
+    /**
+     * test
+     * TODO: Test it.
+     */
+    public function it_can_delete_project()
+    {
+        $projectId = 'TESTPROJECT';
+
+        $this->repository->delete($projectId);
+
+        // TODO: Assert project being deleted
+    }
 }

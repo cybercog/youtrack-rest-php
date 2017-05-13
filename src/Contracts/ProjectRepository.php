@@ -45,4 +45,12 @@ interface ProjectRepository
      * @return void
      */
     public function create(string $id, array $attributes): void;
+
+    /**
+     * Delete specified project.
+     *
+     * @param string $id
+     * @return void
+     */
+    public function delete(string $id): void;
 }

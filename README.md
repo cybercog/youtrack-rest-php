@@ -122,6 +122,13 @@ $repository->create($projectId, [
 ]);
 ```
 
+#### Delete specified project
+
+```php
+$repository = new \Cog\YouTrack\Repositories\RestProjectRepository($client);
+$repository->delete($projectId);
+```
+
 ### Issue repository methods
 
 #### Get issue by id
