@@ -85,6 +85,19 @@ class RestIssueRepository implements IssueRepositoryContract
     }
 
     /**
+     * Delete specified issue.
+     *
+     * @see https://www.jetbrains.com/help/youtrack/standalone/2017.2/Delete-an-Issue.html
+     *
+     * @param string $id
+     * @return void
+     */
+    public function delete(string $id): void
+    {
+        $this->youTrack->delete('/rest/issue/' . $id);
+    }
+
+    /**
      * Check that an issue exists.
      *
      * @see https://www.jetbrains.com/help/youtrack/standalone/2017.2/Check-that-an-Issue-Exists.html

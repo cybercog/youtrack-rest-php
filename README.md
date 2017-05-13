@@ -138,6 +138,14 @@ $repository->update($issueId, [
 ]);
 ```
 
+#### Delete specified issue
+
+```php
+$issueId = 'TEST-1';
+$repository = new \Cog\YouTrack\Repositories\RestIssueRepository($client);
+$repository->delete($issueId);
+```
+
 #### Check that an issue exists
 
 ```php
