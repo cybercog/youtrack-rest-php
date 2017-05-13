@@ -13,6 +13,9 @@ declare(strict_types=1);
 
 namespace Cog\YouTrack\Contracts;
 
+use Cog\YouTrack\Contracts\RestAuthenticator as RestAuthenticatorContract;
+use Cog\YouTrack\Responses\YouTrackRestResponse;
+
 /**
  * Interface YouTrackClient.
  *
@@ -21,23 +24,64 @@ namespace Cog\YouTrack\Contracts;
 interface YouTrackClient
 {
     /**
-     * @see https://www.jetbrains.com/help/youtrack/standalone/2017.2/Log-in-to-YouTrack.html
-     * @return void
-     */
-    public function authenticate();
-
-    /**
-     * Login with the passed credentials.
-     * Stores cookie when login success.
+     * Create client authenticator instance.
      *
-     * @return void
+     * @param array $options
+     * @return \Cog\YouTrack\Contracts\RestAuthenticator
      */
-    public function login();
+    public function createAuthenticator(array $options): RestAuthenticatorContract;
 
     /**
+     * Set authentication strategy.
+     *
+     * @param \Cog\YouTrack\Contracts\RestAuthenticator $authenticator
+     * @return void
+     */
+    public function setAuthenticator(RestAuthenticatorContract $authenticator): void;
+
+    /**
+     * Create and send an HTTP request.
+     *
+     * @param string $method
      * @param string $uri
      * @param array $formData
-     * @return array
+     * @return \Cog\YouTrack\Responses\YouTrackRestResponse
      */
-    public function get(string $uri, array $formData = []);
+    public function request(string $method, string $uri, array $formData = []) : YouTrackRestResponse;
+
+    /**
+     * Create and send an GET HTTP request.
+     *
+     * @param string $uri
+     * @param array $formData
+     * @return \Cog\YouTrack\Responses\YouTrackRestResponse
+     */
+    public function get(string $uri, array $formData = []): YouTrackRestResponse;
+
+    /**
+     * Create and send an POST HTTP request.
+     *
+     * @param string $uri
+     * @param array $formData
+     * @return \Cog\YouTrack\Responses\YouTrackRestResponse
+     */
+    public function post(string $uri, array $formData = []): YouTrackRestResponse;
+
+    /**
+     * Create and send an PUT HTTP request.
+     *
+     * @param string $uri
+     * @param array $formData
+     * @return \Cog\YouTrack\Responses\YouTrackRestResponse
+     */
+    public function put(string $uri, array $formData = []): YouTrackRestResponse;
+
+    /**
+     * Create and send an DELETE HTTP request.
+     *
+     * @param string $uri
+     * @param array $formData
+     * @return \Cog\YouTrack\Responses\YouTrackRestResponse
+     */
+    public function delete(string $uri, array $formData = []): YouTrackRestResponse;
 }

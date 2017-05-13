@@ -44,9 +44,11 @@ class ProjectRepository implements ProjectRepositoryContract
      *
      * @return \Cog\YouTrack\Entity\Project\Project[]
      */
-    public function all()
+    public function all(): array
     {
         $projectsData = $this->youTrack->get('/rest/admin/project');
+
+        $projectsData = $projectsData->toArray();
 
         $projects = [];
         foreach ($projectsData as $projectData) {
@@ -67,12 +69,12 @@ class ProjectRepository implements ProjectRepositoryContract
      * @param string $id
      * @return \Cog\YouTrack\Entity\Project\Project
      */
-    public function find($id)
+    public function find($id): Project
     {
         $projectData = $this->youTrack->get('/rest/admin/project/' . $id);
 
         $project = new Project();
-        $project->fill($projectData);
+        $project->fill($projectData->toArray());
 
         return $project;
     }

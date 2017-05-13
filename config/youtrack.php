@@ -11,6 +11,20 @@
 
 return [
     'base_uri' => env('YOUTRACK_BASE_URI'),
-    'username' => env('YOUTRACK_USERNAME'),
-    'password' => env('YOUTRACK_PASSWORD'),
+    'auth' => [
+        'driver' => env('YOUTRACK_AUTH', 'token'),
+
+        'drivers' => [
+            'token' => [
+                'class' => \Cog\YouTrack\Authenticators\TokenAuthenticator::class,
+                'token' => env('YOUTRACK_TOKEN'),
+            ],
+
+            'cookie' => [
+                'class' => \Cog\YouTrack\Authenticators\CookieAuthenticator::class,
+                'username' => env('YOUTRACK_USERNAME'),
+                'password' => env('YOUTRACK_PASSWORD'),
+            ],
+        ],
+    ],
 ];

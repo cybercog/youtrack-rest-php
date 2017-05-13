@@ -25,6 +25,8 @@
         <env name="DB_CONNECTION" value="sqlite"/>
         <env name="DB_DATABASE" value=":memory:"/>
         <env name="YOUTRACK_BASE_URI" value="https://youtrack.example.com"/>
+        <env name="YOUTRACK_AUTH" value="token"/>
+        <env name="YOUTRACK_TOKEN" value=""/>
         <env name="YOUTRACK_USERNAME" value=""/>
         <env name="YOUTRACK_PASSWORD" value=""/>
         <env name="YOUTRACK_PROJECT" value="LARABOT"/>
