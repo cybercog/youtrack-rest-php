@@ -67,7 +67,7 @@ class RestProjectRepositoryTest extends TestCase
 
     /**
      * test
-     * TODO: Test it
+     * TODO: Test it.
      */
     public function it_can_create_project()
     {
