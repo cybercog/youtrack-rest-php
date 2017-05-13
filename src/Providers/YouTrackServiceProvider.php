@@ -51,7 +51,7 @@ class YouTrackServiceProvider extends ServiceProvider
                 'base_uri' => $config->get('youtrack.base_uri'),
             ]);
 
-            $options = $config->get('youtrack.auth.drivers.' . $config->get('youtrack.auth.driver'));
+            $options = $config->get('youtrack.authenticators.' . $config->get('youtrack.authenticator'));
 
             return new YouTrackClient($http, $options);
         });

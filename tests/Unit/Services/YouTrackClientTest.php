@@ -53,10 +53,10 @@ class YouTrackClientTest extends TestCase
     {
         $this->expectException(AuthenticationException::class);
 
-        $this->app['config']->set('youtrack.auth.drivers.null', [
-            'class' => NullAuthenticator::class,
+        $this->app['config']->set('youtrack.authenticators.null', [
+            'driver' => NullAuthenticator::class,
         ]);
-        $this->app['config']->set('youtrack.auth.driver', 'null');
+        $this->app['config']->set('youtrack.authenticator', 'null');
 
         $this->app->make(YouTrackClientContract::class);
     }
@@ -64,7 +64,7 @@ class YouTrackClientTest extends TestCase
     /** @test */
     public function it_can_instantiate_youtrack_client_from_container_with_token_authenticator()
     {
-        $this->app['config']->set('youtrack.auth.driver', 'token');
+        $this->app['config']->set('youtrack.authenticator', 'token');
 
         $client = $this->app->make(YouTrackClientContract::class);
 
@@ -74,7 +74,7 @@ class YouTrackClientTest extends TestCase
     /** @test */
     public function it_can_instantiate_youtrack_client_from_container_with_cookie_authenticator()
     {
-        $this->app['config']->set('youtrack.auth.driver', 'cookie');
+        $this->app['config']->set('youtrack.authenticator', 'cookie');
 
         $client = $this->app->make(YouTrackClientContract::class);
 

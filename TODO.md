@@ -46,7 +46,7 @@
 ### Laravel
 
 - [x] Laravel integration
-- [ ] Design Laravel config
+- [x] Design Laravel config
 
 ### Symfony
 

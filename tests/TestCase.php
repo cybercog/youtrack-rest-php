@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Cog\YouTrack\Tests;
 
+use Cog\YouTrack\Providers\YouTrackServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 use ReflectionClass;
 
@@ -51,11 +52,13 @@ abstract class TestCase extends Orchestra
     protected function getPackageProviders($app)
     {
         return [
-            \Cog\YouTrack\Providers\YouTrackServiceProvider::class,
+            YouTrackServiceProvider::class,
         ];
     }
 
     /**
+     * Force set private property of the object.
+     *
      * @param object $class
      * @param string $property
      * @param mixed $value

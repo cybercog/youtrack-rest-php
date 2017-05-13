@@ -72,7 +72,7 @@ $http = new \GuzzleHttp\Client([
 ]);
 
 $client = new \Cog\YouTrack\Services\YouTrackClient($http, [
-    'class' => \Cog\YouTrack\Authenticators\TokenAuthenticator::class,
+    'driver' => \Cog\YouTrack\Authenticators\TokenAuthenticator::class,
     'token' => 'YOUTRACK_API_TOKEN',
 ]);
 ```
@@ -85,7 +85,7 @@ $http = new \GuzzleHttp\Client([
 ]);
 
 $client = new \Cog\YouTrack\Services\YouTrackClient($http, [
-    'class' => \Cog\YouTrack\Authenticators\CookieAuthenticator::class,
+    'driver' => \Cog\YouTrack\Authenticators\CookieAuthenticator::class,
     'username' => 'YOUTRACK_USERNAME',
     'password' => 'YOUTRACK_PASSWORD',
 ]);
