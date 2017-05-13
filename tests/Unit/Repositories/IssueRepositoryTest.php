@@ -24,6 +24,7 @@ use Cog\YouTrack\Tests\TestCase;
  */
 class IssueRepositoryTest extends TestCase
 {
+    private $project = 'LARABOT';
     private $issue = 'LARABOT-1';
 
     /** @test */
@@ -36,6 +37,41 @@ class IssueRepositoryTest extends TestCase
 
         $this->assertInstanceOf(Issue::class, $issue);
         $this->assertEquals($issueId, $issue->getId());
+    }
+
+    /** @test */
+    public function it_can_create_issue()
+    {
+        $repository = $this->app->make(IssueRepository::class);
+        $attributes = [
+            'project' => $this->project,
+            'summary' => 'Test issue create',
+            'description' => 'Test description',
+            //'attachments' => null, // TODO: Implement add attachments
+            //'permittedGroup' => null', // TODO: Test permitted groups
+        ];
+
+        $issueId = $repository->create($attributes);
+
+        // TODO: How to check it without real API call
+        $this->assertEquals($attributes, $repository->find($issueId)->getDescription());
+    }
+
+    /** @test */
+    public function it_can_update_issue()
+    {
+        $repository = $this->app->make(IssueRepository::class);
+        $issueId = $this->issue;
+        $issue = $repository->find($issueId);
+        $newDescription = 'Updated: ' . time();
+
+        $repository->update($issueId, [
+            'summary' => $issue->getSummary(),
+            'description' => $newDescription,
+        ]);
+
+        // TODO: How to check it without real API call
+        $this->assertEquals($newDescription, $repository->find($issueId)->getDescription());
     }
 
     /** @test */
@@ -58,22 +94,5 @@ class IssueRepositoryTest extends TestCase
         $exists = $repository->exists($issueId);
 
         $this->assertFalse($exists);
-    }
-
-    /** @test */
-    public function it_can_update_issue()
-    {
-        $repository = $this->app->make(IssueRepository::class);
-        $issueId = $this->issue;
-        $issue = $repository->find($issueId);
-        $newDescription = 'Updated: ' . time();
-
-        $repository->update($issueId, [
-            'summary' => $issue->getSummary(),
-            'description' => $newDescription,
-        ]);
-
-        // TODO: How to check it without real API call
-        $this->assertEquals($newDescription, $repository->find($issueId)->getDescription());
     }
 }

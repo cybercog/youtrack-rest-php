@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace Cog\YouTrack\Contracts;
 
 use Cog\YouTrack\Contracts\RestAuthenticator as RestAuthenticatorContract;
-use Cog\YouTrack\Responses\YouTrackRestResponse;
+use Cog\YouTrack\Contracts\YouTrackRestResponse as YouTrackRestResponseContract;
 
 /**
  * Interface YouTrackClient.
@@ -45,43 +45,43 @@ interface YouTrackClient
      * @param string $method
      * @param string $uri
      * @param array $formData
-     * @return \Cog\YouTrack\Responses\YouTrackRestResponse
+     * @return \Cog\YouTrack\Contracts\YouTrackRestResponse
      */
-    public function request(string $method, string $uri, array $formData = []) : YouTrackRestResponse;
+    public function request(string $method, string $uri, array $formData = []) : YouTrackRestResponseContract;
 
     /**
      * Create and send an GET HTTP request.
      *
      * @param string $uri
      * @param array $formData
-     * @return \Cog\YouTrack\Responses\YouTrackRestResponse
+     * @return \Cog\YouTrack\Contracts\YouTrackRestResponse
      */
-    public function get(string $uri, array $formData = []): YouTrackRestResponse;
+    public function get(string $uri, array $formData = []): YouTrackRestResponseContract;
 
     /**
      * Create and send an POST HTTP request.
      *
      * @param string $uri
      * @param array $formData
-     * @return \Cog\YouTrack\Responses\YouTrackRestResponse
+     * @return \Cog\YouTrack\Contracts\YouTrackRestResponse
      */
-    public function post(string $uri, array $formData = []): YouTrackRestResponse;
+    public function post(string $uri, array $formData = []): YouTrackRestResponseContract;
 
     /**
      * Create and send an PUT HTTP request.
      *
      * @param string $uri
      * @param array $formData
-     * @return \Cog\YouTrack\Responses\YouTrackRestResponse
+     * @return \Cog\YouTrack\Contracts\YouTrackRestResponse
      */
-    public function put(string $uri, array $formData = []): YouTrackRestResponse;
+    public function put(string $uri, array $formData = []): YouTrackRestResponseContract;
 
     /**
      * Create and send an DELETE HTTP request.
      *
      * @param string $uri
      * @param array $formData
-     * @return \Cog\YouTrack\Responses\YouTrackRestResponse
+     * @return \Cog\YouTrack\Contracts\YouTrackRestResponse
      */
-    public function delete(string $uri, array $formData = []): YouTrackRestResponse;
+    public function delete(string $uri, array $formData = []): YouTrackRestResponseContract;
 }

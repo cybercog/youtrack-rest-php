@@ -31,6 +31,14 @@ interface IssueRepository
     public function find(string $id): Issue;
 
     /**
+     * Report a new issue to YouTrack.
+     *
+     * @param array $attributes
+     * @return void
+     */
+    public function create(array $attributes): void;
+
+    /**
      * Update summary and description for an issue specified by its `issueID`.
      *
      * @param string $id

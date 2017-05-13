@@ -47,12 +47,27 @@ class IssueRepository implements IssueRepositoryContract
      */
     public function find(string $id): Issue
     {
-        $issueData = $this->youTrack->get('/rest/issue/' . $id);
+        $response = $this->youTrack->get('/rest/issue/' . $id);
 
         $issue = new Issue();
-        $issue->fill($issueData->toArray());
+        $issue->fill($response->toArray());
 
         return $issue;
+    }
+
+    /**
+     * Report a new issue to YouTrack.
+     *
+     * @see https://www.jetbrains.com/help/youtrack/standalone/2017.2/Create-New-Issue.html
+     *
+     * @param array $attributes
+     * @return void
+     */
+    public function create(array $attributes): void
+    {
+        $this->youTrack->put('/rest/issue', $attributes);
+        // TODO: Do we need to check $response->getStatusCode() === 201 here?
+        // TODO: Do we need to use $response->getLocation() here?
     }
 
     /**

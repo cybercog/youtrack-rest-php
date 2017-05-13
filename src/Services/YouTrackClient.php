@@ -15,6 +15,7 @@ namespace Cog\YouTrack\Services;
 
 use Cog\YouTrack\Contracts\RestAuthenticator as RestAuthenticatorContract;
 use Cog\YouTrack\Contracts\YouTrackClient as YouTrackClientContract;
+use Cog\YouTrack\Contracts\YouTrackRestResponse as YouTrackRestResponseContract;
 use Cog\YouTrack\Responses\YouTrackRestResponse;
 use GuzzleHttp\ClientInterface as ClientContract;
 
@@ -86,9 +87,9 @@ class YouTrackClient implements YouTrackClientContract
      * @param string $method
      * @param string $uri
      * @param array $formData
-     * @return \Cog\YouTrack\Responses\YouTrackRestResponse
+     * @return \Cog\YouTrack\Contracts\YouTrackRestResponse
      */
-    public function request(string $method, string $uri, array $formData = []) : YouTrackRestResponse
+    public function request(string $method, string $uri, array $formData = []) : YouTrackRestResponseContract
     {
         $response = $this->http->request($method, $uri, $this->buildOptions($formData));
 
@@ -100,9 +101,9 @@ class YouTrackClient implements YouTrackClientContract
      *
      * @param string $uri
      * @param array $formData
-     * @return \Cog\YouTrack\Responses\YouTrackRestResponse
+     * @return \Cog\YouTrack\Contracts\YouTrackRestResponse
      */
-    public function get(string $uri, array $formData = []): YouTrackRestResponse
+    public function get(string $uri, array $formData = []): YouTrackRestResponseContract
     {
         return $this->request('get', $uri, $formData);
     }
@@ -112,9 +113,9 @@ class YouTrackClient implements YouTrackClientContract
      *
      * @param string $uri
      * @param array $formData
-     * @return \Cog\YouTrack\Responses\YouTrackRestResponse
+     * @return \Cog\YouTrack\Contracts\YouTrackRestResponse
      */
-    public function post(string $uri, array $formData = []): YouTrackRestResponse
+    public function post(string $uri, array $formData = []): YouTrackRestResponseContract
     {
         return $this->request('post', $uri, $formData);
     }
@@ -124,9 +125,9 @@ class YouTrackClient implements YouTrackClientContract
      *
      * @param string $uri
      * @param array $formData
-     * @return \Cog\YouTrack\Responses\YouTrackRestResponse
+     * @return \Cog\YouTrack\Contracts\YouTrackRestResponse
      */
-    public function put(string $uri, array $formData = []): YouTrackRestResponse
+    public function put(string $uri, array $formData = []): YouTrackRestResponseContract
     {
         return $this->request('put', $uri, $formData);
     }
@@ -136,9 +137,9 @@ class YouTrackClient implements YouTrackClientContract
      *
      * @param string $uri
      * @param array $formData
-     * @return \Cog\YouTrack\Responses\YouTrackRestResponse
+     * @return \Cog\YouTrack\Contracts\YouTrackRestResponse
      */
-    public function delete(string $uri, array $formData = []): YouTrackRestResponse
+    public function delete(string $uri, array $formData = []): YouTrackRestResponseContract
     {
         return $this->request('delete', $uri, $formData);
     }

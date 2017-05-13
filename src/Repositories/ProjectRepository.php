@@ -46,11 +46,11 @@ class ProjectRepository implements ProjectRepositoryContract
      */
     public function all(): array
     {
-        $projectsData = $this->youTrack->get('/rest/admin/project');
-
-        $projectsData = $projectsData->toArray();
+        $response = $this->youTrack->get('/rest/admin/project');
 
         $projects = [];
+        $projectsData = $response->toArray();
+
         foreach ($projectsData as $projectData) {
             $project = new Project();
             $project->fill($projectData);
@@ -71,10 +71,10 @@ class ProjectRepository implements ProjectRepositoryContract
      */
     public function find(string $id): Project
     {
-        $projectData = $this->youTrack->get('/rest/admin/project/' . $id);
+        $response = $this->youTrack->get('/rest/admin/project/' . $id);
 
         $project = new Project();
-        $project->fill($projectData->toArray());
+        $project->fill($response->toArray());
 
         return $project;
     }

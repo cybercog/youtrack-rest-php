@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Cog\YouTrack\Responses;
 
+use Cog\YouTrack\Contracts\YouTrackRestResponse as YouTrackRestResponseContract;
 use Psr\Http\Message\ResponseInterface;
 
 /**
@@ -20,7 +21,7 @@ use Psr\Http\Message\ResponseInterface;
  *
  * @package Cog\YouTrack\Responses
  */
-class YouTrackRestResponse
+class YouTrackRestResponse implements YouTrackRestResponseContract
 {
     /**
      * @var \Psr\Http\Message\ResponseInterface
@@ -48,16 +49,6 @@ class YouTrackRestResponse
     }
 
     /**
-     * Transform response cookie headers to string.
-     *
-     * @return string
-     */
-    public function getCookie(): string
-    {
-        return implode(', ', $this->response->getHeader('Set-Cookie'));
-    }
-
-    /**
      * Gets the response status code.
      *
      * The status code is a 3-digit integer result code of the server's attempt
@@ -68,5 +59,25 @@ class YouTrackRestResponse
     public function getStatusCode(): int
     {
         return $this->response->getStatusCode();
+    }
+
+    /**
+     * Transform response cookie headers to string.
+     *
+     * @return string
+     */
+    public function getCookie(): string
+    {
+        return $this->response->getHeaderLine('Set-Cookie');
+    }
+
+    /**
+     * Gets the response Location header.
+     *
+     * @return string
+     */
+    public function getLocation(): string
+    {
+        return $this->response->getHeaderLine('Location');
     }
 }

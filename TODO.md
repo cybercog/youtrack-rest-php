@@ -4,10 +4,13 @@
 - [ ] Entity: Issue Field Value
 - [x] Client: Authentication strategy
 - [ ] Client: YouTrackResponse object
-- [ ] Client: YouTrackClient should has `Endpoints` entity (?)
-- [ ] Client: Ignore Guzzle exceptions to cleanup code? What if guzzle will be initialized with exceptions flag?
-- [x] Repository: Issue exists check
+- [ ] Client: (?) YouTrackClient should has `Endpoints` entity
+- [ ] Client: (?) Ignore Guzzle exceptions to cleanup code? What if guzzle will be initialized with exceptions flag?
+- [ ] Client: (?) Do we need to YouTrackRestResponse contract extend Psr\Http\Message\ResponseInterface
+- [x] Repository: Issue get
+- [ ] Repository: Issue create
 - [x] Repository: Issue update
+- [x] Repository: Issue exists check
 - [ ] Repository: Issue patch (update only provided params)
 - [ ] Testing: Snapshot\Mock\Stub\Fake testing for API calls
 - [ ] Exceptions: Design exceptions (use static or not)
