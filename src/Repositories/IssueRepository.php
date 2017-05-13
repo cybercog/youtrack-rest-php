@@ -38,7 +38,7 @@ class IssueRepository implements IssueRepositoryContract
     }
 
     /**
-     * Update summary and description for an issue specified by its issueID.
+     * Get issue by id.
      *
      * @see https://www.jetbrains.com/help/youtrack/standalone/2017.2/Update-an-Issue.html
      *
