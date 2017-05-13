@@ -40,7 +40,7 @@ class IssueRepository implements IssueRepositoryContract
     /**
      * Get issue by id.
      *
-     * @see https://www.jetbrains.com/help/youtrack/standalone/2017.2/Update-an-Issue.html
+     * @see https://www.jetbrains.com/help/youtrack/standalone/2017.2/Get-an-Issue.html
      *
      * @param string $id
      * @return \Cog\YouTrack\Entity\Issue\Issue
