@@ -40,6 +40,11 @@ class TokenAuthenticator implements RestAuthenticatorContract
         $this->token = $credentials['token'];
     }
 
+    /**
+     * Authentication headers.
+     *
+     * @return array
+     */
     public function getHeaders(): array
     {
         return [
