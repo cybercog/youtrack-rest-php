@@ -13,9 +13,13 @@
 - [x] Repository: Issue get
 - [x] Repository: Issue create
 - [x] Repository: Issue update
-- [ ] Repository: Issue delete
+- [x] Repository: Issue delete
 - [x] Repository: Issue exists check
 - [ ] Repository: Issue patch (update only provided params)
+- [x] Repository: Project list
+- [x] Repository: Project create
+- [ ] Repository: Project update
+- [x] Repository: Project delete
 - [ ] Frameworks: Design Laravel config
 - [x] Frameworks: Laravel integration
 - [ ] Frameworks: Symfony integration
