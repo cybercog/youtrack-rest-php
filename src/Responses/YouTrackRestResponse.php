@@ -13,6 +13,8 @@ declare(strict_types=1);
 
 namespace Cog\YouTrack\Responses;
 
+use Psr\Http\Message\ResponseInterface;
+
 /**
  * Class YouTrackRestResponse.
  *
@@ -30,23 +32,27 @@ class YouTrackRestResponse
      *
      * @param $response \Psr\Http\Message\ResponseInterface
      */
-    public function __construct($response)
+    public function __construct(ResponseInterface $response)
     {
         $this->response = $response;
     }
 
     /**
+     * Transform response body to array.
+     *
      * @return array
      */
-    public function toArray()
+    public function toArray(): array
     {
         return json_decode($this->response->getBody()->getContents(), true);
     }
 
     /**
+     * Transform response cookie headers to string.
+     *
      * @return string
      */
-    public function getCookie()
+    public function getCookie(): string
     {
         return implode(', ', $this->response->getHeader('Set-Cookie'));
     }

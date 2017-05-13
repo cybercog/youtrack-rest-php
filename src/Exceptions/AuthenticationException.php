@@ -16,11 +16,11 @@ namespace Cog\YouTrack\Exceptions;
 use Exception;
 
 /**
- * Class UserLoginError.
+ * Class AuthenticationException.
  *
  * @package Cog\YouTrack\Exceptions
  */
-class UserLoginError extends Exception
+class AuthenticationException extends Exception
 {
     //
 }

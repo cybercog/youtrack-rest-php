@@ -45,7 +45,7 @@ class IssueRepository implements IssueRepositoryContract
      * @param string $id
      * @return \Cog\YouTrack\Entity\Issue\Issue
      */
-    public function find($id)
+    public function find($id): Issue
     {
         $issueData = $this->youTrack->get('/rest/issue/' . $id);
 

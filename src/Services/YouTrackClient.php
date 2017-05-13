@@ -13,11 +13,11 @@ declare(strict_types=1);
 
 namespace Cog\YouTrack\Services;
 
+use Cog\YouTrack\Contracts\RestAuthenticator as RestAuthenticatorContract;
+use Cog\YouTrack\Contracts\RestAuthenticator;
 use Cog\YouTrack\Contracts\YouTrackClient as YouTrackClientContract;
-use Cog\YouTrack\Exceptions\UserLoginError;
 use Cog\YouTrack\Responses\YouTrackRestResponse;
 use GuzzleHttp\ClientInterface as ClientContract;
-use GuzzleHttp\Exception\ClientException;
 
 /**
  * @see https://www.jetbrains.com/help/youtrack/standalone/2017.2/YouTrack-REST-API-Reference.html
@@ -32,9 +32,9 @@ class YouTrackClient implements YouTrackClientContract
     private $http;
 
     /**
-     * @var string
+     * @var \Cog\YouTrack\Contracts\RestAuthenticator
      */
-    private $cookie;
+    private $authenticator;
 
     /**
      * @param \GuzzleHttp\ClientInterface $http
@@ -45,87 +45,124 @@ class YouTrackClient implements YouTrackClientContract
     {
         $this->http = $http;
 
-        // TODO: Use strategy pattern here
-        if (isset($options['token'])) {
-            $this->authenticate($options['token']);
-        } elseif (isset($options['username'], $options['password'])) {
-            $this->login($options['username'], $options['password']);
-        } else {
-            throw new \Exception('YouTrack require authentication credentials.');
-        }
+        $this->setAuthenticator(
+            $this->createAuthenticator($options)
+        );
+
+        $this->authenticator->authenticate($options);
     }
 
     /**
-     * @see https://www.jetbrains.com/help/youtrack/standalone/2017.2/Log-in-to-YouTrack.html
+     * Create client authenticator instance.
+     *
+     * @param array $options
+     * @return \Cog\YouTrack\Contracts\RestAuthenticator
+     * @throws \Exception
+     */
+    public function createAuthenticator(array $options): RestAuthenticatorContract
+    {
+        if (!isset($options['class'])) {
+            throw new \Exception('Set YouTrack authenticator class.');
+        }
+
+        return new $options['class']($this);
+    }
+
+    /**
+     * Set authentication strategy.
+     *
+     * @param \Cog\YouTrack\Contracts\RestAuthenticator $authenticator
      * @return void
      */
-    public function authenticate()
+    public function setAuthenticator(RestAuthenticatorContract $authenticator): void
     {
-        //
+        $this->authenticator = $authenticator;
     }
 
     /**
-     * Login with the passed credentials.
-     * Stores cookie when login success.
+     * Create and send an HTTP request.
      *
-     * @param string $username
-     * @param string $password
-     * @return void
-     *
-     * @throws \Cog\YouTrack\Exceptions\UserLoginError
-     */
-    public function login($username, $password)
-    {
-        try {
-            $response = $this->post('/rest/user/login', [
-                'login' => $username,
-                'password' => $password,
-            ]);
-
-            $this->cookie = $response->getCookie();
-        } catch (ClientException $e) {
-            // TODO: Make it more verbose
-            throw new UserLoginError('Cannot login');
-        }
-    }
-
-    /**
+     * @param string $method
      * @param string $uri
      * @param array $formData
      * @return \Cog\YouTrack\Responses\YouTrackRestResponse
      */
-    public function get(string $uri, array $formData = [])
+    public function request(string $method, string $uri, array $formData = []) : YouTrackRestResponse
     {
-        $response = $this->http->request('get', $uri, $this->buildOptions($formData));
+        $response = $this->http->request($method, $uri, $this->buildOptions($formData));
 
         return new YouTrackRestResponse($response);
     }
 
     /**
+     * Create and send an GET HTTP request.
+     *
      * @param string $uri
      * @param array $formData
      * @return \Cog\YouTrack\Responses\YouTrackRestResponse
      */
-    public function post(string $uri, array $formData = [])
+    public function get(string $uri, array $formData = []): YouTrackRestResponse
     {
-        $response = $this->http->request('post', $uri, $this->buildOptions($formData));
+        return $this->request('get', $uri, $formData);
+    }
 
-        return new YouTrackRestResponse($response);
+    /**
+     * Create and send an POST HTTP request.
+     *
+     * @param string $uri
+     * @param array $formData
+     * @return \Cog\YouTrack\Responses\YouTrackRestResponse
+     */
+    public function post(string $uri, array $formData = []): YouTrackRestResponse
+    {
+        return $this->request('post', $uri, $formData);
+    }
+
+    /**
+     * Create and send an PUT HTTP request.
+     *
+     * @param string $uri
+     * @param array $formData
+     * @return \Cog\YouTrack\Responses\YouTrackRestResponse
+     */
+    public function put(string $uri, array $formData = []): YouTrackRestResponse
+    {
+        return $this->request('put', $uri, $formData);
+    }
+
+    /**
+     * Create and send an DELETE HTTP request.
+     *
+     * @param string $uri
+     * @param array $formData
+     * @return \Cog\YouTrack\Responses\YouTrackRestResponse
+     */
+    public function delete(string $uri, array $formData = []): YouTrackRestResponse
+    {
+        return $this->request('delete', $uri, $formData);
     }
 
     /**
      * @param array $formData
      * @return array
      */
-    protected function buildOptions(array $formData = [])
+    protected function buildOptions(array $formData = []): array
     {
         return [
             'form_params' => $formData,
-            'headers' => [
-                'Cookie' => $this->cookie,
-                'User-Agent' => 'Cog-YouTrack-REST-PHP/1.0',
-                'Accept' => 'application/json',
-            ],
+            'headers' => $this->buildHeaders(),
         ];
+    }
+
+    /**
+     * @param array $headers
+     * @return array
+     */
+    protected function buildHeaders(array $headers = []): array
+    {
+        return array_merge([
+            'User-Agent' => 'Cog-YouTrack-REST-PHP/1.0',
+            'Accept' => 'application/json',
+        ], $this->authenticator->getHeaders(), $headers);
     }
 }

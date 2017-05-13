@@ -13,6 +13,8 @@ declare(strict_types=1);
 
 namespace Cog\YouTrack\Contracts;
 
+use Cog\YouTrack\Entity\Project\Project;
+
 /**
  * Class ProjectRepository.
  *
@@ -27,7 +29,7 @@ interface ProjectRepository
      *
      * @return \Cog\YouTrack\Entity\Project\Project[]
      */
-    public function all();
+    public function all(): array;
 
     /**
      * Get project by its project identifier.
@@ -37,5 +39,5 @@ interface ProjectRepository
      * @param string $id
      * @return \Cog\YouTrack\Entity\Project\Project
      */
-    public function find($id);
+    public function find($id): Project;
 }

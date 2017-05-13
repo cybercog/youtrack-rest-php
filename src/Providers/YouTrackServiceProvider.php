@@ -29,16 +29,20 @@ class YouTrackServiceProvider extends ServiceProvider
 {
     /**
      * Perform post-registration booting of services.
+     *
+     * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         $this->bootConfig();
     }
 
     /**
      * Register bindings in the container.
+     *
+     * @return void
      */
-    public function register()
+    public function register(): void
     {
         $this->app->bind(YouTrackClientContract::class, function () {
             $config = $this->app->make('config');
@@ -47,14 +51,18 @@ class YouTrackServiceProvider extends ServiceProvider
                 'base_uri' => $config->get('youtrack.base_uri'),
             ]);
 
-            return new YouTrackClient($http, [
-                'username' => $config->get('youtrack.username'),
-                'password' => $config->get('youtrack.password'),
-            ]);
+            $options = $config->get('youtrack.auth.drivers.' . $config->get('youtrack.auth.driver'));
+
+            return new YouTrackClient($http, $options);
         });
     }
 
-    protected function bootConfig()
+    /**
+     * Boot Laravel or Lumen config.
+     *
+     * @return void
+     */
+    protected function bootConfig(): void
     {
         $source = realpath(__DIR__ . '/../../config/youtrack.php');
 

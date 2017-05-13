@@ -13,22 +13,25 @@ declare(strict_types=1);
 
 namespace Cog\YouTrack\Contracts;
 
-use Cog\YouTrack\Entity\Issue\Issue;
-
 /**
- * Class IssueRepository.
+ * Interface RestAuthenticator.
  *
  * @package Cog\YouTrack\Contracts
  */
-interface IssueRepository
+interface RestAuthenticator
 {
     /**
-     * Get issue by id.
+     * Authenticate Http Client.
      *
-     * @see https://www.jetbrains.com/help/youtrack/standalone/2017.2/Get-an-Issue.html
-     *
-     * @param string $id
-     * @return \Cog\YouTrack\Entity\Issue\Issue
+     * @param array $credentials
+     * @return void
      */
-    public function find($id): Issue;
+    public function authenticate(array $credentials): void;
+
+    /**
+     * Authentication headers.
+     *
+     * @return array
+     */
+    public function getHeaders(): array;
 }
