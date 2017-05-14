@@ -21,8 +21,13 @@
 - [ ] (?) `YouTrackClient` should has `Endpoints` entity
 - [ ] (?) Ignore `Guzzle` exceptions to cleanup code? What if guzzle will be initialized with exceptions flag?
 - [ ] (?) Do we need to `YouTrackRestResponse` contract extend `Psr\Http\Message\ResponseInterface`
+- [ ] Move `authenticate()` method out from the constructor. It should be called before each request, but prevent authentication call recursion.
+- [ ] `authenticate()` or `authorize()`? 
 
 ## Repositories
+
+- [ ] `Query Object` to make build requests to the `ApiClient`
+- [ ] `Data Mapper` to transform responses from the `ApiClient`
 
 ### Issue Repository
 

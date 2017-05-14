@@ -48,10 +48,22 @@ This library utilizes Guzzle HTTP client to perform requests to JetBrains [YouTr
 
 ## Installation
 
-First, pull in the package through Composer:
+The preferred method is via [composer](https://getcomposer.org). Follow the
+[installation instructions](https://getcomposer.org/doc/00-intro.md) if you do not already have
+composer installed.
+
+Once composer is installed, execute the following command in your project root to install this library:
 
 ```sh
 $ composer require cybercog/youtrack-rest-php
+```
+
+### Without framework
+
+Be sure to include the autoloader in your project:
+
+```php
+require_once '/path/to/your-project/vendor/autoload.php';
 ```
 
 ### Laravel integration
@@ -101,7 +113,7 @@ $client = new \Cog\YouTrack\Rest\YouTrackClient($http, $authenticator);
 
 ### Project repository methods
 
-#### Get all accessible projects.
+#### Get all accessible projects
 
 ```php
 $repository = new \Cog\YouTrack\Repositories\RestProjectRepository($client);
