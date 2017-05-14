@@ -15,6 +15,7 @@ namespace Cog\YouTrack\Authenticators;
 
 use Cog\YouTrack\Contracts\RestAuthenticator as RestAuthenticatorContract;
 use Cog\YouTrack\Contracts\YouTrackClient as YouTrackClientContract;
+use Cog\YouTrack\Contracts\YouTrackClient;
 use Cog\YouTrack\Exceptions\AuthenticationException;
 use GuzzleHttp\Exception\ClientException;
 
@@ -26,40 +27,45 @@ use GuzzleHttp\Exception\ClientException;
 class CookieAuthenticator implements RestAuthenticatorContract
 {
     /**
-     * @var \Cog\YouTrack\Contracts\YouTrackClient
-     */
-    private $http;
-
-    /**
      * @var string
      */
     private $cookie;
 
     /**
+     * @var string
+     */
+    private $username;
+
+    /**
+     * @var string
+     */
+    private $password;
+
+    /**
      * CookieAuthenticator constructor.
      *
-     * @param \Cog\YouTrack\Contracts\YouTrackClient $http
+     * @param array $options
      */
-    public function __construct(YouTrackClientContract $http)
+    public function __construct(array $options)
     {
-        $this->http = $http;
+        $this->setCredentials($options);
     }
 
     /**
      * Authenticate Http Client.
      * Stores cookie on success login.
      *
-     * @param array $credentials
+     * @param \Cog\YouTrack\Contracts\YouTrackClient $connection
      * @return void
      *
      * @throws \Cog\YouTrack\Exceptions\AuthenticationException
      */
-    public function authenticate(array $credentials): void
+    public function authenticate(YouTrackClientContract $connection): void
     {
         try {
-            $response = $this->http->post('/rest/user/login', [
-                'login' => $credentials['username'],
-                'password' => $credentials['password'],
+            $response = $connection->post('/rest/user/login', [
+                'login' => $this->username,
+                'password' => $this->password,
             ]);
 
             $this->cookie = $response->getCookie();
@@ -79,5 +85,17 @@ class CookieAuthenticator implements RestAuthenticatorContract
         return [
             'Cookie' => $this->cookie,
         ];
+    }
+
+    /**
+     * Set authentication credentials.
+     *
+     * @param array $credentials
+     * @return void
+     */
+    protected function setCredentials(array $credentials): void
+    {
+        $this->username = $credentials['username'];
+        $this->password = $credentials['password'];
     }
 }

@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Cog\YouTrack\Authenticators;
 
 use Cog\YouTrack\Contracts\RestAuthenticator as RestAuthenticatorContract;
+use Cog\YouTrack\Contracts\YouTrackClient as YouTrackClientContract;
 use Cog\YouTrack\Exceptions\AuthenticationException;
 
 /**
@@ -24,21 +25,6 @@ use Cog\YouTrack\Exceptions\AuthenticationException;
 class NullAuthenticator implements RestAuthenticatorContract
 {
     /**
-     * Authenticate Http Client.
-     *
-     * @see https://www.jetbrains.com/help/youtrack/standalone/2017.2/Log-in-to-YouTrack.html.
-     *
-     * @param array $credentials
-     * @return void
-     *
-     * @throws \Exception
-     */
-    public function authenticate(array $credentials): void
-    {
-        throw new AuthenticationException('Set YouTrack authenticator class.');
-    }
-
-    /**
      * Authentication headers.
      *
      * @return array
@@ -46,5 +32,20 @@ class NullAuthenticator implements RestAuthenticatorContract
     public function getHeaders(): array
     {
         return [];
+    }
+
+    /**
+     * Authenticate Http Client.
+     *
+     * @see https://www.jetbrains.com/help/youtrack/standalone/2017.2/Log-in-to-YouTrack.html.
+     *
+     * @param \Cog\YouTrack\Contracts\YouTrackClient $connection
+     * @return void
+     *
+     * @throws \Cog\YouTrack\Exceptions\AuthenticationException
+     */
+    public function authenticate(YouTrackClientContract $connection): void
+    {
+        throw new AuthenticationException('Set YouTrack authenticator class.');
     }
 }

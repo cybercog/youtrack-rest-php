@@ -52,8 +52,9 @@ class YouTrackServiceProvider extends ServiceProvider
             ]);
 
             $options = $config->get('youtrack.authenticators.' . $config->get('youtrack.authenticator'));
+            $authenticator = new $options['driver']($options);
 
-            return new YouTrackClient($http, $options);
+            return new YouTrackClient($http, $authenticator);
         });
     }
 

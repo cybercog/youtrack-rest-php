@@ -13,6 +13,8 @@ declare(strict_types=1);
 
 namespace Cog\YouTrack\Contracts;
 
+use Cog\YouTrack\Contracts\YouTrackClient as YouTrackClientContract;
+
 /**
  * Interface RestAuthenticator.
  *
@@ -23,10 +25,12 @@ interface RestAuthenticator
     /**
      * Authenticate Http Client.
      *
-     * @param array $credentials
+     * @param \Cog\YouTrack\Contracts\YouTrackClient $connection
      * @return void
+     *
+     * @throws \Cog\YouTrack\Exceptions\AuthenticationException
      */
-    public function authenticate(array $credentials): void;
+    public function authenticate(YouTrackClientContract $connection): void;
 
     /**
      * Authentication headers.

@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Cog\YouTrack\Tests\Unit\Services;
 
 use Cog\YouTrack\Authenticators\NullAuthenticator;
+use Cog\YouTrack\Contracts\RestAuthenticator as RestAuthenticatorContract;
 use Cog\YouTrack\Contracts\YouTrackClient as YouTrackClientContract;
 use Cog\YouTrack\Exceptions\AuthenticationException;
 use Cog\YouTrack\Services\YouTrackClient;
@@ -30,22 +31,23 @@ class YouTrackClientTest extends TestCase
     public function it_can_get_authenticator()
     {
         $client = $this->app->make(YouTrackClientContract::class);
+        $authenticator = $this->createMock(RestAuthenticatorContract::class);
+        $this->setPrivateProperty($client, 'authenticator', $authenticator);
 
-        // TODO: Pass Stub Authenticator
-        $this->setPrivateProperty($client, 'authenticator', new NullAuthenticator());
+        $actualAuthenticator = $client->getAuthenticator();
 
-        $this->assertInstanceOf(NullAuthenticator::class, $client->getAuthenticator());
+        $this->assertInstanceOf(get_class($authenticator), $actualAuthenticator);
     }
 
     /** @test */
     public function it_can_set_authenticator()
     {
         $client = $this->app->make(YouTrackClientContract::class);
+        $authenticator = $this->createMock(RestAuthenticatorContract::class);
 
-        // TODO: Pass Stub Authenticator
-        $client->setAuthenticator(new NullAuthenticator());
+        $client->setAuthenticator($authenticator);
 
-        $this->assertAttributeInstanceOf(NullAuthenticator::class, 'authenticator', $client);
+        $this->assertAttributeInstanceOf(get_class($authenticator), 'authenticator', $client);
     }
 
     /** @test */

@@ -15,6 +15,7 @@ namespace Cog\YouTrack\Services;
 
 use Cog\YouTrack\Authenticators\NullAuthenticator;
 use Cog\YouTrack\Contracts\RestAuthenticator as RestAuthenticatorContract;
+use Cog\YouTrack\Contracts\RestAuthenticator;
 use Cog\YouTrack\Contracts\YouTrackClient as YouTrackClientContract;
 use Cog\YouTrack\Contracts\YouTrackRestResponse as YouTrackRestResponseContract;
 use Cog\YouTrack\Responses\YouTrackRestResponse;
@@ -39,20 +40,18 @@ class YouTrackClient implements YouTrackClientContract
      */
     private $authenticator;
 
+
     /**
+     * YouTrackClient constructor.
+     *
      * @param \GuzzleHttp\ClientInterface $http
-     * @param array $options
-     * @throws \Exception
+     * @param \Cog\YouTrack\Contracts\RestAuthenticator $authenticator
      */
-    public function __construct(ClientContract $http, array $options = [])
+    public function __construct(ClientContract $http, RestAuthenticatorContract $authenticator)
     {
         $this->http = $http;
-
-        $this->setAuthenticator(
-            $this->createAuthenticator($options['driver'])
-        );
-
-        $this->authenticator->authenticate($options);
+        $this->setAuthenticator($authenticator);
+        $this->authenticator->authenticate($this);
     }
 
     /**
