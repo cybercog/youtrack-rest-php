@@ -12,7 +12,7 @@ declare(strict_types=1);
  */
 
 // Boot third party libraries
-require_once(__DIR__ . '/../vendor/autoload.php');
+require_once __DIR__ . '/../vendor/autoload.php';
 
 // Application configuration
 $apiBaseUri = 'https://write-youtrack-domain.here';
