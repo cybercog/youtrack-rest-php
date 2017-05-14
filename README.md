@@ -12,11 +12,12 @@
 
 ## Introduction
 
-This library utilizes Guzzle HTTP client to perform requests to JetBrains YouTrack REST API.
+This library utilizes Guzzle HTTP client to perform requests to JetBrains [YouTrack REST API](https://www.jetbrains.com/help/youtrack/standalone/2017.2/Resources-for-Developers.html).
 
 ## Contents
 
 - [Features](#features)
+- [Requirements](#requirements)
 - [Installation](#installation)
     - [Laravel integration](#laravel-integration)
 - [Usage](#usage)
@@ -31,14 +32,19 @@ This library utilizes Guzzle HTTP client to perform requests to JetBrains YouTra
 - [License](#license)
 - [About CyberCog](#about-cybercog)
 
-
 ## Features
 
 - Framework agnostic.
 - Using contracts to keep high customization capabilities.
 - YouTrack Entities with relationships.
-- Multiple authentication strategy: Token, Cookie.
+- Multiple authentication strategies: Token, Cookie.
 - Covered with unit tests.
+
+## Requirements
+
+- YouTrack >= 2017.1 with REST-API enabled (always enabled, by default)
+- PHP >= 7.1
+- Guzzle HTTP Client >= 6.2
 
 ## Installation
 
@@ -71,10 +77,11 @@ $http = new \GuzzleHttp\Client([
     'base_uri' => 'https://example.com',
 ]);
 
-$client = new \Cog\YouTrack\Services\YouTrackClient($http, [
-    'driver' => \Cog\YouTrack\Authenticators\TokenAuthenticator::class,
+$authenticator = new \Cog\YouTrack\Rest\Authenticators\TokenAuthenticator([
     'token' => 'YOUTRACK_API_TOKEN',
 ]);
+
+$client = new \Cog\YouTrack\Rest\YouTrackClient($http, $authenticator);
 ```
 
 #### Cookie Authenticator
@@ -84,11 +91,12 @@ $http = new \GuzzleHttp\Client([
     'base_uri' => 'https://example.com',
 ]);
 
-$client = new \Cog\YouTrack\Services\YouTrackClient($http, [
-    'driver' => \Cog\YouTrack\Authenticators\CookieAuthenticator::class,
+$authenticator = new \Cog\YouTrack\Rest\Authenticators\CookieAuthenticator([
     'username' => 'YOUTRACK_USERNAME',
     'password' => 'YOUTRACK_PASSWORD',
 ]);
+
+$client = new \Cog\YouTrack\Rest\YouTrackClient($http, $authenticator);
 ```
 
 ### Project repository methods

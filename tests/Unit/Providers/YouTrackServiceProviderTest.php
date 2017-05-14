@@ -13,9 +13,9 @@ declare(strict_types=1);
 
 namespace Cog\YouTrack\Tests\Unit\Providers;
 
-use Cog\YouTrack\Contracts\YouTrackClient as YouTrackClientContract;
+use Cog\YouTrack\Contracts\ApiClient as ApiClientContract;
 use Cog\YouTrack\Tests\TestCase;
-use Cog\YouTrack\Services\YouTrackClient;
+use Cog\YouTrack\Rest\YouTrackClient;
 
 /**
  * Class YouTrackServiceProviderTest.
@@ -27,7 +27,7 @@ class YouTrackServiceProviderTest extends TestCase
     /** @test */
     public function it_can_instantiate_youtrack_client_from_container()
     {
-        $client = $this->app->make(YouTrackClientContract::class);
+        $client = $this->app->make(ApiClientContract::class);
 
         $this->assertInstanceOf(YouTrackClient::class, $client);
     }

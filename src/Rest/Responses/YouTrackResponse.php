@@ -11,17 +11,17 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Cog\YouTrack\Responses;
+namespace Cog\YouTrack\Rest\Responses;
 
-use Cog\YouTrack\Contracts\YouTrackRestResponse as YouTrackRestResponseContract;
+use Cog\YouTrack\Contracts\ApiResponse as ApiResponseContract;
 use Psr\Http\Message\ResponseInterface;
 
 /**
- * Class YouTrackRestResponse.
+ * Class YouTrackResponse.
  *
- * @package Cog\YouTrack\Responses
+ * @package Cog\YouTrack\Rest\Responses
  */
-class YouTrackRestResponse implements YouTrackRestResponseContract
+class YouTrackResponse implements ApiResponseContract
 {
     /**
      * @var \Psr\Http\Message\ResponseInterface
@@ -29,7 +29,7 @@ class YouTrackRestResponse implements YouTrackRestResponseContract
     private $response;
 
     /**
-     * YouTrackRestResponse constructor.
+     * YouTrackResponse constructor.
      *
      * @param $response \Psr\Http\Message\ResponseInterface
      */

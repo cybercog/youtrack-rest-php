@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace Cog\YouTrack\Repositories;
 
 use Cog\YouTrack\Contracts\IssueRepository as IssueRepositoryContract;
-use Cog\YouTrack\Contracts\YouTrackClient as YouTrackClientContract;
+use Cog\YouTrack\Contracts\ApiClient as ApiClientContract;
 use Cog\YouTrack\Entity\Issue\Issue;
 
 /**
@@ -25,14 +25,14 @@ use Cog\YouTrack\Entity\Issue\Issue;
 class RestIssueRepository implements IssueRepositoryContract
 {
     /**
-     * @var \Cog\YouTrack\Contracts\YouTrackClient
+     * @var \Cog\YouTrack\Contracts\ApiClient
      */
     private $youTrack;
 
     /**
-     * @param \Cog\YouTrack\Contracts\YouTrackClient $youTrack
+     * @param \Cog\YouTrack\Contracts\ApiClient $youTrack
      */
-    public function __construct(YouTrackClientContract $youTrack)
+    public function __construct(ApiClientContract $youTrack)
     {
         $this->youTrack = $youTrack;
     }

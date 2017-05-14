@@ -13,9 +13,11 @@ declare(strict_types=1);
 
 namespace Cog\YouTrack\Providers;
 
-use Cog\YouTrack\Contracts\YouTrackClient as YouTrackClientContract;
-use Cog\YouTrack\Services\YouTrackClient;
-use GuzzleHttp\Client;
+use Cog\YouTrack\Contracts\ApiAuthenticator as ApiAuthenticatorContract;
+use Cog\YouTrack\Contracts\ApiClient as ApiClientContract;
+use Cog\YouTrack\Rest\YouTrackClient;
+use GuzzleHttp\Client as HttpClient;
+use Illuminate\Contracts\Config\Repository as ConfigContract;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Foundation\Application as LaravelApplication;
 use Laravel\Lumen\Application as LumenApplication;
@@ -44,16 +46,14 @@ class YouTrackServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->bind(YouTrackClientContract::class, function () {
-            $config = $this->app->make('config');
+        $this->app->bind(ApiClientContract::class, function () {
+            $config = $this->app->make(ConfigContract::class);
 
-            $http = new Client([
+            $http = new HttpClient([
                 'base_uri' => $config->get('youtrack.base_uri'),
             ]);
 
-            $options = $config->get('youtrack.authenticators.' . $config->get('youtrack.authenticator'));
-
-            return new YouTrackClient($http, $options);
+            return new YouTrackClient($http, $this->resolveAuthenticator($config));
         });
     }
 
@@ -73,5 +73,18 @@ class YouTrackServiceProvider extends ServiceProvider
         }
 
         $this->mergeConfigFrom($source, 'youtrack');
+    }
+
+    /**
+     * Resolve Authenticator driver.
+     *
+     * @param \Illuminate\Contracts\Config\Repository $config
+     * @return \Cog\YouTrack\Contracts\ApiAuthenticator
+     */
+    protected function resolveAuthenticator(ConfigContract $config): ApiAuthenticatorContract
+    {
+        $options = $config->get('youtrack.authenticators.' . $config->get('youtrack.authenticator'));
+
+        return new $options['driver']($options);
     }
 }
