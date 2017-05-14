@@ -49,7 +49,7 @@ class YouTrackClient implements YouTrackClientContract
         $this->http = $http;
 
         $this->setAuthenticator(
-            $this->createAuthenticator($options['class'])
+            $this->createAuthenticator($options['driver'])
         );
 
         $this->authenticator->authenticate($options);
