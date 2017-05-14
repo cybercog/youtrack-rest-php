@@ -50,12 +50,12 @@ return [
 
     'authenticators' => [
         'token' => [
-            'driver' => \Cog\YouTrack\Authenticators\TokenAuthenticator::class,
+            'driver' => \Cog\YouTrack\Rest\Authenticators\TokenAuthenticator::class,
             'token' => env('YOUTRACK_TOKEN'),
         ],
 
         'cookie' => [
-            'driver' => \Cog\YouTrack\Authenticators\CookieAuthenticator::class,
+            'driver' => \Cog\YouTrack\Rest\Authenticators\CookieAuthenticator::class,
             'username' => env('YOUTRACK_USERNAME'),
             'password' => env('YOUTRACK_PASSWORD'),
         ],

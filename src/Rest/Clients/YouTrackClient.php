@@ -11,12 +11,12 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Cog\YouTrack\Clients;
+namespace Cog\YouTrack\Rest\Clients;
 
 use Cog\YouTrack\Contracts\ApiAuthenticator as ApiAuthenticatorContract;
 use Cog\YouTrack\Contracts\ApiClient as ApiClientContract;
 use Cog\YouTrack\Contracts\ApiResponse as ApiResponseContract;
-use Cog\YouTrack\Responses\YouTrackResponse;
+use Cog\YouTrack\Rest\Responses\YouTrackResponse;
 use GuzzleHttp\ClientInterface as ClientContract;
 
 /**
@@ -24,7 +24,7 @@ use GuzzleHttp\ClientInterface as ClientContract;
  *
  * @see https://www.jetbrains.com/help/youtrack/standalone/2017.2/YouTrack-REST-API-Reference.html *
  *
- * @package Cog\YouTrack\Clients
+ * @package Cog\YouTrack\Rest\Clients
  */
 class YouTrackClient implements ApiClientContract
 {

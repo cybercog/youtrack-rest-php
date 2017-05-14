@@ -11,7 +11,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Cog\YouTrack\Responses;
+namespace Cog\YouTrack\Rest\Responses;
 
 use Cog\YouTrack\Contracts\ApiResponse as ApiResponseContract;
 use Psr\Http\Message\ResponseInterface;
@@ -19,7 +19,7 @@ use Psr\Http\Message\ResponseInterface;
 /**
  * Class YouTrackResponse.
  *
- * @package Cog\YouTrack\Responses
+ * @package Cog\YouTrack\Rest\Responses
  */
 class YouTrackResponse implements ApiResponseContract
 {

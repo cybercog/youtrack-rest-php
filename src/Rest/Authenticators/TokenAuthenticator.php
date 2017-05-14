@@ -11,7 +11,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Cog\YouTrack\Authenticators;
+namespace Cog\YouTrack\Rest\Authenticators;
 
 use Cog\YouTrack\Contracts\ApiAuthenticator as ApiAuthenticatorContract;
 use Cog\YouTrack\Contracts\ApiClient as ApiClientContract;
@@ -21,7 +21,7 @@ use Cog\YouTrack\Contracts\ApiClient as ApiClientContract;
  *
  * @see https://www.jetbrains.com/help/youtrack/standalone/2017.2/Log-in-to-YouTrack.html.
  *
- * @package Cog\YouTrack\Authenticators
+ * @package Cog\YouTrack\Rest\Authenticators
  */
 class TokenAuthenticator implements ApiAuthenticatorContract
 {

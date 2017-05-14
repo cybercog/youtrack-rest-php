@@ -77,11 +77,11 @@ $http = new \GuzzleHttp\Client([
     'base_uri' => 'https://example.com',
 ]);
 
-$authenticator = new \Cog\YouTrack\Authenticators\TokenAuthenticator([
+$authenticator = new \Cog\YouTrack\Rest\Authenticators\TokenAuthenticator([
     'token' => 'YOUTRACK_API_TOKEN',
 ]);
 
-$client = new \Cog\YouTrack\Clients\YouTrackClient($http, $authenticator);
+$client = new \Cog\YouTrack\Rest\Clients\YouTrackClient($http, $authenticator);
 ```
 
 #### Cookie Authenticator
@@ -91,12 +91,12 @@ $http = new \GuzzleHttp\Client([
     'base_uri' => 'https://example.com',
 ]);
 
-$authenticator = new \Cog\YouTrack\Authenticators\CookieAuthenticator([
+$authenticator = new \Cog\YouTrack\Rest\Authenticators\CookieAuthenticator([
     'username' => 'YOUTRACK_USERNAME',
     'password' => 'YOUTRACK_PASSWORD',
 ]);
 
-$client = new \Cog\YouTrack\Clients\YouTrackClient($http, $authenticator);
+$client = new \Cog\YouTrack\Rest\Clients\YouTrackClient($http, $authenticator);
 ```
 
 ### Project repository methods
