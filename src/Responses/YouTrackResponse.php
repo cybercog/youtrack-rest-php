@@ -17,11 +17,11 @@ use Cog\YouTrack\Contracts\ApiResponse as ApiResponseContract;
 use Psr\Http\Message\ResponseInterface;
 
 /**
- * Class YouTrackApiResponse.
+ * Class YouTrackResponse.
  *
  * @package Cog\YouTrack\Responses
  */
-class YouTrackApiResponse implements ApiResponseContract
+class YouTrackResponse implements ApiResponseContract
 {
     /**
      * @var \Psr\Http\Message\ResponseInterface
@@ -29,7 +29,7 @@ class YouTrackApiResponse implements ApiResponseContract
     private $response;
 
     /**
-     * YouTrackApiResponse constructor.
+     * YouTrackResponse constructor.
      *
      * @param $response \Psr\Http\Message\ResponseInterface
      */

@@ -16,7 +16,7 @@ namespace Cog\YouTrack\Clients;
 use Cog\YouTrack\Contracts\ApiAuthenticator as ApiAuthenticatorContract;
 use Cog\YouTrack\Contracts\ApiClient as ApiClientContract;
 use Cog\YouTrack\Contracts\ApiResponse as ApiResponseContract;
-use Cog\YouTrack\Responses\YouTrackApiResponse;
+use Cog\YouTrack\Responses\YouTrackResponse;
 use GuzzleHttp\ClientInterface as ClientContract;
 
 /**
@@ -89,7 +89,7 @@ class YouTrackClient implements ApiClientContract
     {
         $response = $this->http->request($method, $uri, $this->buildOptions($formData));
 
-        return new YouTrackApiResponse($response);
+        return new YouTrackResponse($response);
     }
 
     /**
