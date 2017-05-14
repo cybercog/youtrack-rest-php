@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace Cog\YouTrack\Services;
 
-use Cog\YouTrack\Authenticators\NullAuthenticator;
 use Cog\YouTrack\Contracts\RestAuthenticator as RestAuthenticatorContract;
 use Cog\YouTrack\Contracts\YouTrackClient as YouTrackClientContract;
 use Cog\YouTrack\Contracts\YouTrackRestResponse as YouTrackRestResponseContract;
@@ -71,21 +70,6 @@ class YouTrackClient implements YouTrackClientContract
     public function getAuthenticator(): RestAuthenticatorContract
     {
         return $this->authenticator;
-    }
-
-    /**
-     * Create client authenticator instance.
-     *
-     * @param string $authenticator
-     * @return \Cog\YouTrack\Contracts\RestAuthenticator
-     */
-    public function createAuthenticator(string $authenticator): RestAuthenticatorContract
-    {
-        if (!$authenticator) {
-            return new NullAuthenticator();
-        }
-
-        return new $authenticator($this);
     }
 
     /**

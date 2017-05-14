@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace Cog\YouTrack\Tests\Unit\Services;
 
-use Cog\YouTrack\Authenticators\NullAuthenticator;
 use Cog\YouTrack\Contracts\RestAuthenticator as RestAuthenticatorContract;
 use Cog\YouTrack\Contracts\YouTrackClient as YouTrackClientContract;
 use Cog\YouTrack\Exceptions\AuthenticationException;
@@ -51,19 +50,6 @@ class YouTrackClientTest extends TestCase
     }
 
     /** @test */
-    public function it_throws_exception_on_null_authenticator_when_resolving_youtrack_client_from_container()
-    {
-        $this->expectException(AuthenticationException::class);
-
-        $this->app['config']->set('youtrack.authenticators.null', [
-            'driver' => NullAuthenticator::class,
-        ]);
-        $this->app['config']->set('youtrack.authenticator', 'null');
-
-        $this->app->make(YouTrackClientContract::class);
-    }
-
-    /** @test */
     public function it_can_instantiate_youtrack_client_from_container_with_token_authenticator()
     {
         $this->app['config']->set('youtrack.authenticator', 'token');
@@ -81,5 +67,15 @@ class YouTrackClientTest extends TestCase
         $client = $this->app->make(YouTrackClientContract::class);
 
         $this->assertInstanceOf(YouTrackClient::class, $client);
+    }
+
+    /** @test */
+    public function it_throws_exception_on_failed_cookie_authentication()
+    {
+        $this->expectException(AuthenticationException::class);
+        $this->app['config']->set('youtrack.authenticator', 'cookie');
+        $this->app['config']->set('youtrack.authenticators.cookie.password', 'wrong-password');
+
+        $this->app->make(YouTrackClientContract::class);
     }
 }

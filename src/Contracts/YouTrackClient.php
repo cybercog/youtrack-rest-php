@@ -39,14 +39,6 @@ interface YouTrackClient
     public function getAuthenticator(): RestAuthenticatorContract;
 
     /**
-     * Create client authenticator instance.
-     *
-     * @param string $authenticator
-     * @return \Cog\YouTrack\Contracts\RestAuthenticator
-     */
-    public function createAuthenticator(string $authenticator): RestAuthenticatorContract;
-
-    /**
      * Create and send an HTTP request.
      *
      * @param string $method
