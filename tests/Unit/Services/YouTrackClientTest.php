@@ -16,7 +16,7 @@ namespace Cog\YouTrack\Tests\Unit\Services;
 use Cog\YouTrack\Contracts\ApiAuthenticator as ApiAuthenticatorContract;
 use Cog\YouTrack\Contracts\ApiClient as ApiClientContract;
 use Cog\YouTrack\Exceptions\AuthenticationException;
-use Cog\YouTrack\Services\YouTrackClient;
+use Cog\YouTrack\Clients\YouTrackClient;
 use Cog\YouTrack\Tests\TestCase;
 
 /**
