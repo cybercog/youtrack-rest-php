@@ -15,7 +15,7 @@ namespace Cog\YouTrack\Providers;
 
 use Cog\YouTrack\Contracts\YouTrackClient as YouTrackClientContract;
 use Cog\YouTrack\Services\YouTrackClient;
-use GuzzleHttp\Client;
+use GuzzleHttp\Client as HttpClient;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Foundation\Application as LaravelApplication;
 use Laravel\Lumen\Application as LumenApplication;
@@ -47,7 +47,7 @@ class YouTrackServiceProvider extends ServiceProvider
         $this->app->bind(YouTrackClientContract::class, function () {
             $config = $this->app->make('config');
 
-            $http = new Client([
+            $http = new HttpClient([
                 'base_uri' => $config->get('youtrack.base_uri'),
             ]);
 
