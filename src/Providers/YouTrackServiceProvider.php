@@ -13,9 +13,11 @@ declare(strict_types=1);
 
 namespace Cog\YouTrack\Providers;
 
+use Cog\YouTrack\Contracts\RestAuthenticator as RestAuthenticatorContract;
 use Cog\YouTrack\Contracts\YouTrackClient as YouTrackClientContract;
 use Cog\YouTrack\Services\YouTrackClient;
 use GuzzleHttp\Client as HttpClient;
+use Illuminate\Contracts\Config\Repository as ConfigContract;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Foundation\Application as LaravelApplication;
 use Laravel\Lumen\Application as LumenApplication;
@@ -45,16 +47,13 @@ class YouTrackServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->bind(YouTrackClientContract::class, function () {
-            $config = $this->app->make('config');
+            $config = $this->app->make(ConfigContract::class);
 
             $http = new HttpClient([
                 'base_uri' => $config->get('youtrack.base_uri'),
             ]);
 
-            $options = $config->get('youtrack.authenticators.' . $config->get('youtrack.authenticator'));
-            $authenticator = new $options['driver']($options);
-
-            return new YouTrackClient($http, $authenticator);
+            return new YouTrackClient($http, $this->resolveAuthenticator($config));
         });
     }
 
@@ -74,5 +73,18 @@ class YouTrackServiceProvider extends ServiceProvider
         }
 
         $this->mergeConfigFrom($source, 'youtrack');
+    }
+
+    /**
+     * Resolve Authenticator driver.
+     *
+     * @param \Illuminate\Contracts\Config\Repository $config
+     * @return \Cog\YouTrack\Contracts\RestAuthenticator
+     */
+    protected function resolveAuthenticator(ConfigContract $config): RestAuthenticatorContract
+    {
+        $options = $config->get('youtrack.authenticators.' . $config->get('youtrack.authenticator'));
+
+        return new $options['driver']($options);
     }
 }
