@@ -15,7 +15,7 @@ namespace Cog\YouTrack\Tests\Unit\Providers;
 
 use Cog\YouTrack\Contracts\ApiClient as ApiClientContract;
 use Cog\YouTrack\Tests\TestCase;
-use Cog\YouTrack\Rest\Clients\YouTrackClient;
+use Cog\YouTrack\Rest\YouTrackClient;
 
 /**
  * Class YouTrackServiceProviderTest.

@@ -81,7 +81,7 @@ $authenticator = new \Cog\YouTrack\Rest\Authenticators\TokenAuthenticator([
     'token' => 'YOUTRACK_API_TOKEN',
 ]);
 
-$client = new \Cog\YouTrack\Rest\Clients\YouTrackClient($http, $authenticator);
+$client = new \Cog\YouTrack\Rest\YouTrackClient($http, $authenticator);
 ```
 
 #### Cookie Authenticator
@@ -96,7 +96,7 @@ $authenticator = new \Cog\YouTrack\Rest\Authenticators\CookieAuthenticator([
     'password' => 'YOUTRACK_PASSWORD',
 ]);
 
-$client = new \Cog\YouTrack\Rest\Clients\YouTrackClient($http, $authenticator);
+$client = new \Cog\YouTrack\Rest\YouTrackClient($http, $authenticator);
 ```
 
 ### Project repository methods

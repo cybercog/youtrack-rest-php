@@ -15,7 +15,7 @@ namespace Cog\YouTrack\Providers;
 
 use Cog\YouTrack\Contracts\ApiAuthenticator as ApiAuthenticatorContract;
 use Cog\YouTrack\Contracts\ApiClient as ApiClientContract;
-use Cog\YouTrack\Rest\Clients\YouTrackClient;
+use Cog\YouTrack\Rest\YouTrackClient;
 use GuzzleHttp\Client as HttpClient;
 use Illuminate\Contracts\Config\Repository as ConfigContract;
 use Illuminate\Support\ServiceProvider;
