@@ -13,24 +13,24 @@ declare(strict_types=1);
 
 namespace Cog\YouTrack\Contracts;
 
-use Cog\YouTrack\Contracts\YouTrackClient as YouTrackClientContract;
+use Cog\YouTrack\Contracts\ApiClient as ApiClientContract;
 
 /**
- * Interface RestAuthenticator.
+ * Interface ApiAuthenticator.
  *
  * @package Cog\YouTrack\Contracts
  */
-interface RestAuthenticator
+interface ApiAuthenticator
 {
     /**
-     * Authenticate Http Client.
+     * Authenticate API Client.
      *
-     * @param \Cog\YouTrack\Contracts\YouTrackClient $connection
+     * @param \Cog\YouTrack\Contracts\ApiClient $client
      * @return void
      *
      * @throws \Cog\YouTrack\Exceptions\AuthenticationException
      */
-    public function authenticate(YouTrackClientContract $connection): void;
+    public function authenticate(ApiClientContract $client): void;
 
     /**
      * Authentication headers.

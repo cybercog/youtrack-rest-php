@@ -14,11 +14,11 @@ declare(strict_types=1);
 namespace Cog\YouTrack\Contracts;
 
 /**
- * Interface YouTrackRestResponse.
+ * Interface ApiResponse.
  *
  * @package Cog\YouTrack\Contracts
  */
-interface YouTrackRestResponse
+interface ApiResponse
 {
     /**
      * Transform response body to array.

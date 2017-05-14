@@ -13,8 +13,8 @@ declare(strict_types=1);
 
 namespace Cog\YouTrack\Authenticators;
 
-use Cog\YouTrack\Contracts\RestAuthenticator as RestAuthenticatorContract;
-use Cog\YouTrack\Contracts\YouTrackClient as YouTrackClientContract;
+use Cog\YouTrack\Contracts\ApiAuthenticator as ApiAuthenticatorContract;
+use Cog\YouTrack\Contracts\ApiClient as ApiClientContract;
 
 /**
  * Class TokenAuthenticator.
@@ -23,7 +23,7 @@ use Cog\YouTrack\Contracts\YouTrackClient as YouTrackClientContract;
  *
  * @package Cog\YouTrack\Authenticators
  */
-class TokenAuthenticator implements RestAuthenticatorContract
+class TokenAuthenticator implements ApiAuthenticatorContract
 {
     /**
      * @var string
@@ -53,12 +53,12 @@ class TokenAuthenticator implements RestAuthenticatorContract
     }
 
     /**
-     * Authenticate Http Client.
+     * Authenticate API Client.
      *
-     * @param \Cog\YouTrack\Contracts\YouTrackClient $connection
+     * @param \Cog\YouTrack\Contracts\ApiClient $client
      * @return void
      */
-    public function authenticate(YouTrackClientContract $connection): void
+    public function authenticate(ApiClientContract $client): void
     {
         // Nothing to do
     }

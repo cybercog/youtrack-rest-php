@@ -13,10 +13,10 @@ declare(strict_types=1);
 
 namespace Cog\YouTrack\Services;
 
-use Cog\YouTrack\Contracts\RestAuthenticator as RestAuthenticatorContract;
-use Cog\YouTrack\Contracts\YouTrackClient as YouTrackClientContract;
-use Cog\YouTrack\Contracts\YouTrackRestResponse as YouTrackRestResponseContract;
-use Cog\YouTrack\Responses\YouTrackRestResponse;
+use Cog\YouTrack\Contracts\ApiAuthenticator as ApiAuthenticatorContract;
+use Cog\YouTrack\Contracts\ApiClient as ApiClientContract;
+use Cog\YouTrack\Contracts\ApiResponse as ApiResponseContract;
+use Cog\YouTrack\Responses\YouTrackApiResponse;
 use GuzzleHttp\ClientInterface as ClientContract;
 
 /**
@@ -26,15 +26,20 @@ use GuzzleHttp\ClientInterface as ClientContract;
  *
  * @package Cog\YouTrack\Services
  */
-class YouTrackClient implements YouTrackClientContract
+class YouTrackClient implements ApiClientContract
 {
+    /**
+     * Version of YouTrack REST PHP client.
+     */
+    const CLIENT_VERSION = '1.0.0';
+
     /**
      * @var \GuzzleHttp\ClientInterface
      */
     private $http;
 
     /**
-     * @var \Cog\YouTrack\Contracts\RestAuthenticator
+     * @var \Cog\YouTrack\Contracts\ApiAuthenticator
      */
     private $authenticator;
 
@@ -42,9 +47,9 @@ class YouTrackClient implements YouTrackClientContract
      * YouTrackClient constructor.
      *
      * @param \GuzzleHttp\ClientInterface $http
-     * @param \Cog\YouTrack\Contracts\RestAuthenticator $authenticator
+     * @param \Cog\YouTrack\Contracts\ApiAuthenticator $authenticator
      */
-    public function __construct(ClientContract $http, RestAuthenticatorContract $authenticator)
+    public function __construct(ClientContract $http, ApiAuthenticatorContract $authenticator)
     {
         $this->http = $http;
         $this->setAuthenticator($authenticator);
@@ -54,10 +59,10 @@ class YouTrackClient implements YouTrackClientContract
     /**
      * Set authentication strategy.
      *
-     * @param \Cog\YouTrack\Contracts\RestAuthenticator $authenticator
+     * @param \Cog\YouTrack\Contracts\ApiAuthenticator $authenticator
      * @return void
      */
-    public function setAuthenticator(RestAuthenticatorContract $authenticator): void
+    public function setAuthenticator(ApiAuthenticatorContract $authenticator): void
     {
         $this->authenticator = $authenticator;
     }
@@ -65,9 +70,9 @@ class YouTrackClient implements YouTrackClientContract
     /**
      * Get authentication strategy.
      *
-     * @return \Cog\YouTrack\Contracts\RestAuthenticator
+     * @return \Cog\YouTrack\Contracts\ApiAuthenticator
      */
-    public function getAuthenticator(): RestAuthenticatorContract
+    public function getAuthenticator(): ApiAuthenticatorContract
     {
         return $this->authenticator;
     }
@@ -78,13 +83,13 @@ class YouTrackClient implements YouTrackClientContract
      * @param string $method
      * @param string $uri
      * @param array $formData
-     * @return \Cog\YouTrack\Contracts\YouTrackRestResponse
+     * @return \Cog\YouTrack\Contracts\ApiResponse
      */
-    public function request(string $method, string $uri, array $formData = []) : YouTrackRestResponseContract
+    public function request(string $method, string $uri, array $formData = []) : ApiResponseContract
     {
         $response = $this->http->request($method, $uri, $this->buildOptions($formData));
 
-        return new YouTrackRestResponse($response);
+        return new YouTrackApiResponse($response);
     }
 
     /**
@@ -92,9 +97,9 @@ class YouTrackClient implements YouTrackClientContract
      *
      * @param string $uri
      * @param array $formData
-     * @return \Cog\YouTrack\Contracts\YouTrackRestResponse
+     * @return \Cog\YouTrack\Contracts\ApiResponse
      */
-    public function get(string $uri, array $formData = []): YouTrackRestResponseContract
+    public function get(string $uri, array $formData = []): ApiResponseContract
     {
         return $this->request('GET', $uri, $formData);
     }
@@ -104,9 +109,9 @@ class YouTrackClient implements YouTrackClientContract
      *
      * @param string $uri
      * @param array $formData
-     * @return \Cog\YouTrack\Contracts\YouTrackRestResponse
+     * @return \Cog\YouTrack\Contracts\ApiResponse
      */
-    public function post(string $uri, array $formData = []): YouTrackRestResponseContract
+    public function post(string $uri, array $formData = []): ApiResponseContract
     {
         return $this->request('POST', $uri, $formData);
     }
@@ -116,9 +121,9 @@ class YouTrackClient implements YouTrackClientContract
      *
      * @param string $uri
      * @param array $formData
-     * @return \Cog\YouTrack\Contracts\YouTrackRestResponse
+     * @return \Cog\YouTrack\Contracts\ApiResponse
      */
-    public function put(string $uri, array $formData = []): YouTrackRestResponseContract
+    public function put(string $uri, array $formData = []): ApiResponseContract
     {
         return $this->request('PUT', $uri, $formData);
     }
@@ -128,9 +133,9 @@ class YouTrackClient implements YouTrackClientContract
      *
      * @param string $uri
      * @param array $formData
-     * @return \Cog\YouTrack\Contracts\YouTrackRestResponse
+     * @return \Cog\YouTrack\Contracts\ApiResponse
      */
-    public function delete(string $uri, array $formData = []): YouTrackRestResponseContract
+    public function delete(string $uri, array $formData = []): ApiResponseContract
     {
         return $this->request('DELETE', $uri, $formData);
     }
@@ -154,7 +159,7 @@ class YouTrackClient implements YouTrackClientContract
     protected function buildHeaders(array $headers = []): array
     {
         return array_merge([
-            'User-Agent' => 'Cog-YouTrack-REST-PHP/1.0',
+            'User-Agent' => 'Cog-YouTrack-REST-PHP/' . self::CLIENT_VERSION,
             'Accept' => 'application/json',
         ], $this->authenticator->getHeaders(), $headers);
     }

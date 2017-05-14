@@ -13,8 +13,8 @@ declare(strict_types=1);
 
 namespace Cog\YouTrack\Tests\Unit\Services;
 
-use Cog\YouTrack\Contracts\RestAuthenticator as RestAuthenticatorContract;
-use Cog\YouTrack\Contracts\YouTrackClient as YouTrackClientContract;
+use Cog\YouTrack\Contracts\ApiAuthenticator as ApiAuthenticatorContract;
+use Cog\YouTrack\Contracts\ApiClient as ApiClientContract;
 use Cog\YouTrack\Exceptions\AuthenticationException;
 use Cog\YouTrack\Services\YouTrackClient;
 use Cog\YouTrack\Tests\TestCase;
@@ -29,8 +29,8 @@ class YouTrackClientTest extends TestCase
     /** @test */
     public function it_can_get_authenticator()
     {
-        $client = $this->app->make(YouTrackClientContract::class);
-        $authenticator = $this->createMock(RestAuthenticatorContract::class);
+        $client = $this->app->make(ApiClientContract::class);
+        $authenticator = $this->createMock(ApiAuthenticatorContract::class);
         $this->setPrivateProperty($client, 'authenticator', $authenticator);
 
         $actualAuthenticator = $client->getAuthenticator();
@@ -41,8 +41,8 @@ class YouTrackClientTest extends TestCase
     /** @test */
     public function it_can_set_authenticator()
     {
-        $client = $this->app->make(YouTrackClientContract::class);
-        $authenticator = $this->createMock(RestAuthenticatorContract::class);
+        $client = $this->app->make(ApiClientContract::class);
+        $authenticator = $this->createMock(ApiAuthenticatorContract::class);
 
         $client->setAuthenticator($authenticator);
 
@@ -54,7 +54,7 @@ class YouTrackClientTest extends TestCase
     {
         $this->app['config']->set('youtrack.authenticator', 'token');
 
-        $client = $this->app->make(YouTrackClientContract::class);
+        $client = $this->app->make(ApiClientContract::class);
 
         $this->assertInstanceOf(YouTrackClient::class, $client);
     }
@@ -64,7 +64,7 @@ class YouTrackClientTest extends TestCase
     {
         $this->app['config']->set('youtrack.authenticator', 'cookie');
 
-        $client = $this->app->make(YouTrackClientContract::class);
+        $client = $this->app->make(ApiClientContract::class);
 
         $this->assertInstanceOf(YouTrackClient::class, $client);
     }
@@ -76,6 +76,6 @@ class YouTrackClientTest extends TestCase
         $this->app['config']->set('youtrack.authenticator', 'cookie');
         $this->app['config']->set('youtrack.authenticators.cookie.password', 'wrong-password');
 
-        $this->app->make(YouTrackClientContract::class);
+        $this->app->make(ApiClientContract::class);
     }
 }

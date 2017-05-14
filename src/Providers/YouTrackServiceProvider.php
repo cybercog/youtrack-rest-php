@@ -13,8 +13,8 @@ declare(strict_types=1);
 
 namespace Cog\YouTrack\Providers;
 
-use Cog\YouTrack\Contracts\RestAuthenticator as RestAuthenticatorContract;
-use Cog\YouTrack\Contracts\YouTrackClient as YouTrackClientContract;
+use Cog\YouTrack\Contracts\ApiAuthenticator as ApiAuthenticatorContract;
+use Cog\YouTrack\Contracts\ApiClient as ApiClientContract;
 use Cog\YouTrack\Services\YouTrackClient;
 use GuzzleHttp\Client as HttpClient;
 use Illuminate\Contracts\Config\Repository as ConfigContract;
@@ -46,7 +46,7 @@ class YouTrackServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->bind(YouTrackClientContract::class, function () {
+        $this->app->bind(ApiClientContract::class, function () {
             $config = $this->app->make(ConfigContract::class);
 
             $http = new HttpClient([
@@ -79,9 +79,9 @@ class YouTrackServiceProvider extends ServiceProvider
      * Resolve Authenticator driver.
      *
      * @param \Illuminate\Contracts\Config\Repository $config
-     * @return \Cog\YouTrack\Contracts\RestAuthenticator
+     * @return \Cog\YouTrack\Contracts\ApiAuthenticator
      */
-    protected function resolveAuthenticator(ConfigContract $config): RestAuthenticatorContract
+    protected function resolveAuthenticator(ConfigContract $config): ApiAuthenticatorContract
     {
         $options = $config->get('youtrack.authenticators.' . $config->get('youtrack.authenticator'));
 

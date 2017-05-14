@@ -13,8 +13,8 @@ declare(strict_types=1);
 
 namespace Cog\YouTrack\Authenticators;
 
-use Cog\YouTrack\Contracts\RestAuthenticator as RestAuthenticatorContract;
-use Cog\YouTrack\Contracts\YouTrackClient as YouTrackClientContract;
+use Cog\YouTrack\Contracts\ApiAuthenticator as ApiAuthenticatorContract;
+use Cog\YouTrack\Contracts\ApiClient as ApiClientContract;
 use Cog\YouTrack\Exceptions\AuthenticationException;
 use GuzzleHttp\Exception\ClientException;
 
@@ -23,7 +23,7 @@ use GuzzleHttp\Exception\ClientException;
  *
  * @package Cog\YouTrack\Authenticators
  */
-class CookieAuthenticator implements RestAuthenticatorContract
+class CookieAuthenticator implements ApiAuthenticatorContract
 {
     /**
      * @var string
@@ -51,18 +51,18 @@ class CookieAuthenticator implements RestAuthenticatorContract
     }
 
     /**
-     * Authenticate Http Client.
+     * Authenticate API Client.
      * Stores cookie on success login.
      *
-     * @param \Cog\YouTrack\Contracts\YouTrackClient $connection
+     * @param \Cog\YouTrack\Contracts\ApiClient $client
      * @return void
      *
      * @throws \Cog\YouTrack\Exceptions\AuthenticationException
      */
-    public function authenticate(YouTrackClientContract $connection): void
+    public function authenticate(ApiClientContract $client): void
     {
         try {
-            $response = $connection->post('/rest/user/login', [
+            $response = $client->post('/rest/user/login', [
                 'login' => $this->username,
                 'password' => $this->password,
             ]);

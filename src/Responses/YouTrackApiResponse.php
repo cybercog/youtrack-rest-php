@@ -13,15 +13,15 @@ declare(strict_types=1);
 
 namespace Cog\YouTrack\Responses;
 
-use Cog\YouTrack\Contracts\YouTrackRestResponse as YouTrackRestResponseContract;
+use Cog\YouTrack\Contracts\ApiResponse as ApiResponseContract;
 use Psr\Http\Message\ResponseInterface;
 
 /**
- * Class YouTrackRestResponse.
+ * Class YouTrackApiResponse.
  *
  * @package Cog\YouTrack\Responses
  */
-class YouTrackRestResponse implements YouTrackRestResponseContract
+class YouTrackApiResponse implements ApiResponseContract
 {
     /**
      * @var \Psr\Http\Message\ResponseInterface
@@ -29,7 +29,7 @@ class YouTrackRestResponse implements YouTrackRestResponseContract
     private $response;
 
     /**
-     * YouTrackRestResponse constructor.
+     * YouTrackApiResponse constructor.
      *
      * @param $response \Psr\Http\Message\ResponseInterface
      */

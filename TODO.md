@@ -16,8 +16,8 @@
 ## Client
 
 - [x] Authentication strategy
-- [ ] Design `YouTrackClient` | `YouTrackConnection`
-- [ ] Design `YouTrackResponse` | `YouTrackGateway` object
+- [ ] Design `YouTrackClient`
+- [ ] Design `YouTrackResponse` | `YouTrackGateway` object (Gateway Design Pattern)
 - [ ] (?) `YouTrackClient` should has `Endpoints` entity
 - [ ] (?) Ignore `Guzzle` exceptions to cleanup code? What if guzzle will be initialized with exceptions flag?
 - [ ] (?) Do we need to `YouTrackRestResponse` contract extend `Psr\Http\Message\ResponseInterface`
