@@ -63,7 +63,7 @@ $ composer require cybercog/youtrack-rest-php
 Be sure to include the autoloader in your project:
 
 ```php
-require_once '/path/to/your-project/vendor/autoload.php';
+require_once('/path/to/your-project/vendor/autoload.php');
 ```
 
 ### Laravel integration
