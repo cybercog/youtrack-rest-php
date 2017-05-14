@@ -15,7 +15,6 @@ namespace Cog\YouTrack\Services;
 
 use Cog\YouTrack\Authenticators\NullAuthenticator;
 use Cog\YouTrack\Contracts\RestAuthenticator as RestAuthenticatorContract;
-use Cog\YouTrack\Contracts\RestAuthenticator;
 use Cog\YouTrack\Contracts\YouTrackClient as YouTrackClientContract;
 use Cog\YouTrack\Contracts\YouTrackRestResponse as YouTrackRestResponseContract;
 use Cog\YouTrack\Responses\YouTrackRestResponse;
@@ -39,7 +38,6 @@ class YouTrackClient implements YouTrackClientContract
      * @var \Cog\YouTrack\Contracts\RestAuthenticator
      */
     private $authenticator;
-
 
     /**
      * YouTrackClient constructor.
