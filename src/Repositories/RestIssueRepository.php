@@ -16,6 +16,7 @@ namespace Cog\YouTrack\Repositories;
 use Cog\YouTrack\Contracts\IssueRepository as IssueRepositoryContract;
 use Cog\YouTrack\Contracts\ApiClient as ApiClientContract;
 use Cog\YouTrack\Entity\Issue\Issue;
+use Cog\YouTrack\Mappers\IssueResponseMapper;
 
 /**
  * Class RestIssueRepository.
@@ -49,10 +50,9 @@ class RestIssueRepository implements IssueRepositoryContract
     {
         $response = $this->youTrack->get('/rest/issue/' . $id);
 
-        $issue = new Issue();
-        $issue->fill($response->toArray());
+        $mapper = new IssueResponseMapper(new Issue());
 
-        return $issue;
+        return $mapper->item($response);
     }
 
     /**
