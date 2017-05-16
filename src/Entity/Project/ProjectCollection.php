@@ -139,7 +139,7 @@ class ProjectCollection implements ProjectCollectionContract
                 function ($v) use ($key) {
                     return $v !== $key;
                 });
-        } else if (isset($this->items[$key])) {
+        } elseif (isset($this->items[$key])) {
             unset($this->items[$key]);
         }
     }
@@ -163,7 +163,7 @@ class ProjectCollection implements ProjectCollectionContract
      *
      * @link http://php.net/manual/en/arrayaccess.offsetexists.php
      * @param mixed $key An offset to check for.
-     * @return boolean true on success or false on failure.
+     * @return bool true on success or false on failure.
      */
     public function offsetExists($key): bool
     {

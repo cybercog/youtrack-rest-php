@@ -24,7 +24,7 @@ abstract class AbstractEntity
         }
 
         $mutator = 'set' . ucfirst(strtolower($name));
-        if (method_exists($this, $mutator) && is_callable(array($this, $mutator))) {
+        if (method_exists($this, $mutator) && is_callable([$this, $mutator])) {
             $this->$mutator($value);
         } else {
             $this->$field = $value;
@@ -49,7 +49,7 @@ abstract class AbstractEntity
         }
 
         $accessor = 'get' . ucfirst(strtolower($name));
-        return (method_exists($this, $accessor) && is_callable(array($this, $accessor))) ? $this->$accessor() : $this->field;
+        return (method_exists($this, $accessor) && is_callable([$this, $accessor])) ? $this->$accessor() : $this->field;
     }
 
     /**

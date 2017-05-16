@@ -14,7 +14,6 @@ declare(strict_types=1);
 namespace Cog\YouTrack\Mappers;
 
 use Cog\YouTrack\Contracts\ApiResponse as ApiResponseContract;
-use Cog\YouTrack\Entity\Project\Project;
 
 /**
  * Class Mapper.

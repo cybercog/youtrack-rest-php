@@ -60,7 +60,6 @@ class ProjectCollectionTest extends TestCase
 
         $collection->remove($project);
 
-
         $this->assertAttributeEmpty('items', $collection);
     }
 
@@ -77,7 +76,6 @@ class ProjectCollectionTest extends TestCase
 
         $assertProject2 = $collection->get(1);
 
-
         $this->assertSame($project2, $assertProject2);
     }
 
@@ -92,7 +90,6 @@ class ProjectCollectionTest extends TestCase
         ]);
 
         $isExists = $collection->has($project2);
-
 
         $this->assertTrue($isExists);
     }
@@ -110,7 +107,6 @@ class ProjectCollectionTest extends TestCase
 
         $isExists = $collection->has($project3);
 
-
         $this->assertFalse($isExists);
     }
 
@@ -126,7 +122,6 @@ class ProjectCollectionTest extends TestCase
         $this->setPrivateProperty($collection, 'items', $projects);
 
         $collection->clear();
-
 
         $this->assertAttributeEmpty('items', $collection);
     }

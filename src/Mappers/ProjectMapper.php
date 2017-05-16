@@ -22,7 +22,7 @@ class ProjectMapper implements ProjectMapperContract
     {
         $this->adapter->select($this->entityTable, ['id' => $id]);
         if (!$row = $this->adapter->fetch()) {
-            return null;
+            return;
         }
 
         return $this->createProject($row);
