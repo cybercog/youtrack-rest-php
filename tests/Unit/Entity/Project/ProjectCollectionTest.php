@@ -215,8 +215,7 @@ class ProjectCollectionTest extends TestCase
     }
 
     /**
-     * test
-     * @todo Test is broken because all Project properties are private.
+     * TODO: Test is broken because all Project properties are private.
      */
     public function it_can_convert_project_collection_to_json()
     {
