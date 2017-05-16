@@ -216,14 +216,14 @@ class ProjectCollectionTest extends TestCase
 
     /**
      * test
-     * TODO: Test is broken because all Project properties are private
+     * @todo Test is broken because all Project properties are private.
      */
     public function it_can_convert_project_collection_to_json()
     {
         $wantsJson = json_encode([
-            ['id' => 'TEST-1',],
-            ['id' => 'TEST-2',],
-            ['id' => 'TEST-3',],
+            ['id' => 'TEST-1'],
+            ['id' => 'TEST-2'],
+            ['id' => 'TEST-3'],
         ]);
         $collection = new ProjectCollection();
         // TODO: Use factories here
@@ -280,9 +280,9 @@ class ProjectCollectionTest extends TestCase
     public function it_can_overwrite_project_on_offset_set_in_collection()
     {
         $collection = new ProjectCollection();
-        $project1 = Project::make(['id' => 'TEST-1',]);
-        $project2 = Project::make(['id' => 'TEST-2',]);
-        $projectOverwrite = Project::make(['id' => 'TEST-3',]);
+        $project1 = Project::make(['id' => 'TEST-1']);
+        $project2 = Project::make(['id' => 'TEST-2']);
+        $projectOverwrite = Project::make(['id' => 'TEST-3']);
         $projects = [
             $project1,
             $project2,
@@ -334,8 +334,8 @@ class ProjectCollectionTest extends TestCase
     public function it_can_check_if_offset_exists_in_project_collection()
     {
         $collection = new ProjectCollection();
-        $project1 = Project::make(['id' => 'TEST-1',]);
-        $project2 = Project::make(['id' => 'TEST-2',]);
+        $project1 = Project::make(['id' => 'TEST-1']);
+        $project2 = Project::make(['id' => 'TEST-2']);
         $projects = [
             $project1,
             $project2,
@@ -351,9 +351,9 @@ class ProjectCollectionTest extends TestCase
     public function it_can_check_if_offset_not_exists_in_project_collection()
     {
         $collection = new ProjectCollection();
-        $project1 = Project::make(['id' => 'TEST-1',]);
-        $project2 = Project::make(['id' => 'TEST-2',]);
-        $project3 = Project::make(['id' => 'TEST-3',]);
+        $project1 = Project::make(['id' => 'TEST-1']);
+        $project2 = Project::make(['id' => 'TEST-2']);
+        $project3 = Project::make(['id' => 'TEST-3']);
         $projects = [
             $project1,
             $project2,
