@@ -49,11 +49,11 @@ interface ProjectCollection extends ArrayAccess, Arrayable, Countable, IteratorA
     public function add(ProjectContract $project): void;
 
     /**
-     * Remove project from the collection.
+     * Remove an item from the collection by key.
      *
      * @param \Cog\YouTrack\Contracts\Project $project
      */
-    public function remove(ProjectContract $project): void;
+    public function forget(ProjectContract $project): void;
 
     /**
      * Get an item from the collection by key.

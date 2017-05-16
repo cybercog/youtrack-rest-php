@@ -16,6 +16,8 @@ namespace Cog\YouTrack\Tests\Unit\Entity\Project;
 use Cog\YouTrack\Entity\Project\Project;
 use Cog\YouTrack\Entity\Project\ProjectCollection;
 use Cog\YouTrack\Tests\TestCase;
+use InvalidArgumentException;
+use stdClass;
 
 /**
  * Class ProjectCollectionTest.
@@ -39,6 +41,20 @@ class ProjectCollectionTest extends TestCase
     }
 
     /** @test */
+    public function it_can_throw_exception_on_collection_instantiation_with_invalid_items()
+    {
+        $projects = [
+            new Project(),
+            new stdClass(),
+            new Project(),
+        ];
+
+        $this->expectException(InvalidArgumentException::class);
+
+        new ProjectCollection($projects);
+    }
+
+    /** @test */
     public function it_can_make_collection()
     {
         $projects = [
@@ -50,6 +66,20 @@ class ProjectCollectionTest extends TestCase
         $collection = ProjectCollection::make($projects);
 
         $this->assertAttributeSame($projects, 'items', $collection);
+    }
+
+    /** @test */
+    public function it_can_throw_exception_on_make_collection_with_invalid_item()
+    {
+        $projects = [
+            new Project(),
+            new stdClass(),
+            new Project(),
+        ];
+
+        $this->expectException(InvalidArgumentException::class);
+
+        ProjectCollection::make($projects);
     }
 
     /** @test */
@@ -86,7 +116,7 @@ class ProjectCollectionTest extends TestCase
         $project = new Project();
         $this->setPrivateProperty($collection, 'items', [$project]);
 
-        $collection->remove($project);
+        $collection->forget($project);
 
         $this->assertAttributeEmpty('items', $collection);
     }
@@ -234,6 +264,16 @@ class ProjectCollectionTest extends TestCase
         $collection->offsetSet(null, new Project());
 
         $this->assertAttributeCount(2, 'items', $collection);
+    }
+
+    /** @test */
+    public function it_can_throw_exception_on_offset_set_not_a_project_in_collection()
+    {
+        $collection = new ProjectCollection();
+
+        $this->expectException(InvalidArgumentException::class);
+
+        $collection->offsetSet(null, new stdClass());
     }
 
     /** @test */

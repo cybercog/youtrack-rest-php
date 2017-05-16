@@ -42,7 +42,9 @@ class ProjectCollection implements ProjectCollectionContract
      */
     public function __construct(array $items = [])
     {
-        $this->items = $items;
+        foreach ($items as $item) {
+            $this->offsetSet(null, $item);
+        }
     }
 
     /**
@@ -77,11 +79,11 @@ class ProjectCollection implements ProjectCollectionContract
     }
 
     /**
-     * Remove project from the collection.
+     * Remove an item from the collection by key.
      *
      * @param \Cog\YouTrack\Contracts\Project $project
      */
-    public function remove(ProjectContract $project): void
+    public function forget(ProjectContract $project): void
     {
         $this->offsetUnset($project);
     }
