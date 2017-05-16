@@ -38,7 +38,7 @@ class Project implements ProjectContract
      *
      * @var string
      */
-    private $id;
+    protected $id;
 
     /**
      * Optional description of the new project.
@@ -274,5 +274,19 @@ class Project implements ProjectContract
     public function setVersionsUrl(string $versionsUrl): void
     {
         $this->versionsUrl = $versionsUrl;
+    }
+
+    /**
+     * Create and return and un-saved Project instance.
+     *
+     * @param array $attributes
+     * @return \Cog\YouTrack\Contracts\Project
+     */
+    public static function make(array $attributes = []): ProjectContract
+    {
+        $project = new static;
+        $project->fill($attributes);
+
+        return $project;
     }
 }

@@ -140,4 +140,12 @@ interface Project
      * @return void
      */
     public function setVersionsUrl(string $versionsUrl): void;
+
+    /**
+     * Create and return and un-saved Project instance.
+     *
+     * @param array $attributes
+     * @return static
+     */
+    public static function make(array $attributes = []): self;
 }

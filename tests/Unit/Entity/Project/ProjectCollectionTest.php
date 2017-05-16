@@ -37,6 +37,7 @@ class ProjectCollectionTest extends TestCase
 
         $this->assertAttributeSame($projects, 'items', $collection);
     }
+
     /** @test */
     public function it_can_make_collection()
     {
@@ -181,5 +182,146 @@ class ProjectCollectionTest extends TestCase
         $array = $collection->toArray();
 
         $this->assertEquals($projects, $array);
+    }
+
+    /**
+     * test
+     * TODO: Test is broken because all Project properties are private
+     */
+    public function it_can_convert_project_collection_to_json()
+    {
+        $wantsJson = json_encode([
+            ['id' => 'TEST-1',],
+            ['id' => 'TEST-2',],
+            ['id' => 'TEST-3',],
+        ]);
+        $collection = new ProjectCollection();
+        // TODO: Use factories here
+        $projects = [
+            Project::make(['id' => 'TEST-1']),
+            Project::make(['id' => 'TEST-2']),
+            Project::make(['id' => 'TEST-3']),
+        ];
+        $this->setPrivateProperty($collection, 'items', $projects);
+
+        $json = $collection->toJson();
+
+        $this->assertEquals($wantsJson, $json);
+    }
+
+    /** @test */
+    public function it_can_count_projects_in_collection()
+    {
+        $collection = new ProjectCollection();
+        $projects = [
+            new Project(),
+            new Project(),
+            new Project(),
+        ];
+        $this->setPrivateProperty($collection, 'items', $projects);
+
+        $projectsCount = $collection->count();
+
+        $this->assertEquals(3, $projectsCount);
+    }
+
+    /** @test */
+    public function it_can_set_project_in_collection()
+    {
+        $collection = new ProjectCollection();
+
+        $collection->offsetSet(null, new Project());
+        $collection->offsetSet(null, new Project());
+
+        $this->assertAttributeCount(2, 'items', $collection);
+    }
+
+    /** @test */
+    public function it_can_overwrite_project_on_offset_set_in_collection()
+    {
+        $collection = new ProjectCollection();
+        $project1 = Project::make(['id' => 'TEST-1',]);
+        $project2 = Project::make(['id' => 'TEST-2',]);
+        $projectOverwrite = Project::make(['id' => 'TEST-3',]);
+        $projects = [
+            $project1,
+            $project2,
+        ];
+        $assertProjects = [
+            $projectOverwrite,
+            $project2,
+        ];
+        $this->setPrivateProperty($collection, 'items', $projects);
+
+        $collection->offsetSet(0, $projectOverwrite);
+
+        $this->assertAttributeSame($assertProjects, 'items', $collection);
+    }
+
+    /** @test */
+    public function it_can_get_project_by_offset_get_key_in_project_collection()
+    {
+        $collection = new ProjectCollection();
+        $project1 = new Project();
+        $project2 = new Project();
+        $project3 = new Project();
+        $this->setPrivateProperty($collection, 'items', [
+            $project1, $project2, $project3,
+        ]);
+
+        $assertProject2 = $collection->offsetGet(1);
+
+        $this->assertSame($project2, $assertProject2);
+    }
+
+    /** @test */
+    public function it_can_get_null_project_by_trying_non_exists_offset_get_in_project_collection()
+    {
+        $collection = new ProjectCollection();
+        $project1 = new Project();
+        $project2 = new Project();
+        $project3 = new Project();
+        $this->setPrivateProperty($collection, 'items', [
+            $project1, $project2, $project3,
+        ]);
+
+        $assertProject = $collection->offsetGet('non-exist-key');
+
+        $this->assertNull($assertProject);
+    }
+
+    /** @test */
+    public function it_can_check_if_offset_exists_in_project_collection()
+    {
+        $collection = new ProjectCollection();
+        $project1 = Project::make(['id' => 'TEST-1',]);
+        $project2 = Project::make(['id' => 'TEST-2',]);
+        $projects = [
+            $project1,
+            $project2,
+        ];
+        $this->setPrivateProperty($collection, 'items', $projects);
+
+        $isExists = $collection->offsetExists($project2);
+
+        $this->assertTrue($isExists);
+    }
+
+    /** @test */
+    public function it_can_check_if_offset_not_exists_in_project_collection()
+    {
+        $collection = new ProjectCollection();
+        $project1 = Project::make(['id' => 'TEST-1',]);
+        $project2 = Project::make(['id' => 'TEST-2',]);
+        $project3 = Project::make(['id' => 'TEST-3',]);
+        $projects = [
+            $project1,
+            $project2,
+        ];
+        $this->setPrivateProperty($collection, 'items', $projects);
+
+        $isExists = $collection->offsetExists($project3);
+
+        $this->assertFalse($isExists);
     }
 }

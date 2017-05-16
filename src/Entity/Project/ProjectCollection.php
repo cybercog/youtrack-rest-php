@@ -181,6 +181,7 @@ class ProjectCollection implements ProjectCollectionContract
                 'Could not add item to the collection.'
             );
         }
+
         if (!isset($key)) {
             $this->items[] = $value;
         } else {
@@ -219,6 +220,8 @@ class ProjectCollection implements ProjectCollectionContract
         if (isset($this->items[$key])) {
             return $this->items[$key];
         }
+
+        // TODO: Maybe return NullProject here?
     }
 
     /**
