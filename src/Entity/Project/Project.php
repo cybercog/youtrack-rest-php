@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Cog\YouTrack\Entity\Project;
 
+use Cog\YouTrack\Contracts\Project as ProjectContract;
 use Cog\YouTrack\Traits\HasHydrator;
 
 /**
@@ -20,7 +21,7 @@ use Cog\YouTrack\Traits\HasHydrator;
  *
  * @package Cog\YouTrack\Entity\Project
  */
-class Project
+class Project implements ProjectContract
 {
     use HasHydrator;
 
