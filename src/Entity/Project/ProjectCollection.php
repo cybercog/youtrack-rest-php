@@ -35,36 +35,99 @@ class ProjectCollection implements ProjectCollectionContract
      */
     private $items = [];
 
+    /**
+     * Create a new collection.
+     *
+     * @param array $items
+     */
+    public function __construct(array $items = [])
+    {
+        $this->items = $items;
+    }
+
+    /**
+     * Create a new collection instance if the value isn't one already.
+     *
+     * @param mixed $items
+     * @return static
+     */
+    public static function make(array $items = []): ProjectCollectionContract
+    {
+        return new static($items);
+    }
+
+    /**
+     * Get all of the items in the collection.
+     *
+     * @return array
+     */
     public function all(): array
     {
         return $this->items;
     }
 
+    /**
+     * Add project to collection.
+     *
+     * @param \Cog\YouTrack\Contracts\Project $project
+     */
     public function add(ProjectContract $project): void
     {
         $this->offsetSet(null, $project);
     }
 
+    /**
+     * Remove project from the collection.
+     *
+     * @param \Cog\YouTrack\Contracts\Project $project
+     */
     public function remove(ProjectContract $project): void
     {
         $this->offsetUnset($project);
     }
 
-    public function get($key)
+    /**
+     * Get an item from the collection by key.
+     *
+     * @param mixed $key
+     * @param mixed $default
+     * @return mixed
+     */
+    public function get($key, $default = null)
     {
-        return $this->offsetGet($key);
+        if ($this->offsetExists($key)) {
+            return $this->offsetGet($key);
+        }
+
+        return $default;
     }
 
+    /**
+     * Determine if an item exists in the collection by key.
+     *
+     * @param mixed $key
+     * @return bool
+     */
     public function has($key): bool
     {
         return $this->offsetExists($key);
     }
 
+    /**
+     * Remove all items from the collection.
+     *
+     * @return void
+     */
     public function clear(): void
     {
         $this->items = [];
     }
 
+    /**
+     * Get the collection of items as a plain array.
+     *
+     * @return array
+     */
     public function toArray(): array
     {
         return array_map(function ($value) {

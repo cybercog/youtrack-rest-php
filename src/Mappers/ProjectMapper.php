@@ -12,7 +12,7 @@ class ProjectMapper implements ProjectMapperContract
     protected $entityTable = 'project';
     protected $collection;
 
-    public function __construct(DatabaseAdapterInterface $adapter, ProjectCollectionContract $collection)
+    public function __construct(StorageAdapterInterface $adapter, ProjectCollectionContract $collection)
     {
         $this->adapter = $adapter;
         $this->collection = $collection;

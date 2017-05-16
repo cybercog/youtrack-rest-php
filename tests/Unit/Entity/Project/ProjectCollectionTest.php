@@ -25,6 +25,33 @@ use Cog\YouTrack\Tests\TestCase;
 class ProjectCollectionTest extends TestCase
 {
     /** @test */
+    public function it_can_instantiate_collection_with_items()
+    {
+        $projects = [
+            new Project(),
+            new Project(),
+            new Project(),
+        ];
+
+        $collection = new ProjectCollection($projects);
+
+        $this->assertAttributeSame($projects, 'items', $collection);
+    }
+    /** @test */
+    public function it_can_make_collection()
+    {
+        $projects = [
+            new Project(),
+            new Project(),
+            new Project(),
+        ];
+
+        $collection = ProjectCollection::make($projects);
+
+        $this->assertAttributeSame($projects, 'items', $collection);
+    }
+
+    /** @test */
     public function it_can_get_all_projects_in_project_collection()
     {
         $collection = new ProjectCollection();
@@ -77,6 +104,20 @@ class ProjectCollectionTest extends TestCase
         $assertProject2 = $collection->get(1);
 
         $this->assertSame($project2, $assertProject2);
+    }
+
+    /** @test */
+    public function it_can_fallback_to_default_value_on_project_get_by_key_in_project_collection()
+    {
+        $collection = new ProjectCollection();
+        $project = new Project();
+        $this->setPrivateProperty($collection, 'items', [
+            $project,
+        ]);
+
+        $assertFallback = $collection->get(999, 'test-fallback');
+
+        $this->assertEquals('test-fallback', $assertFallback);
     }
 
     /** @test */
