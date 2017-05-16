@@ -136,8 +136,8 @@ class ProjectCollection implements ProjectCollectionContract
     {
         if ($key instanceof ProjectContract) {
             $this->items = array_filter($this->items,
-                function ($v) use ($key) {
-                    return $v !== $key;
+                function ($item) use ($key) {
+                    return $item !== $key;
                 });
         } elseif (isset($this->items[$key])) {
             unset($this->items[$key]);

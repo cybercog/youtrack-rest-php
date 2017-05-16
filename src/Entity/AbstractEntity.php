@@ -49,6 +49,7 @@ abstract class AbstractEntity
         }
 
         $accessor = 'get' . ucfirst(strtolower($name));
+
         return (method_exists($this, $accessor) && is_callable([$this, $accessor])) ? $this->$accessor() : $this->field;
     }
 
