@@ -153,7 +153,7 @@ class ProjectCollection implements ProjectCollectionContract
      *
      * @return array
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): array
     {
         return array_map(function ($value) {
             if ($value instanceof JsonSerializable) {
@@ -267,7 +267,7 @@ class ProjectCollection implements ProjectCollectionContract
      *
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return $this->toJson();
     }

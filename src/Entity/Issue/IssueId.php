@@ -13,12 +13,14 @@ declare(strict_types=1);
 
 namespace Cog\YouTrack\Entity\Issue;
 
+use Cog\YouTrack\Contracts\IssueId as IssueIdContract;
+
 /**
  * Class IssueId.
  *
  * @package Cog\YouTrack\Entity\Issue
  */
-class IssueId
+class IssueId implements IssueIdContract
 {
     /**
      * Numeric issue identifier within project.
@@ -50,13 +52,13 @@ class IssueId
      * Instantiate IssueId object from the string representation.
      *
      * @param string $id
-     * @return static
+     * @return \Cog\YouTrack\Contracts\IssueId
      */
-    public static function fromString(string $id): self
+    public static function fromString(string $id): IssueIdContract
     {
         $data = explode('-', $id);
 
-        return new static($data[0], (int)$data[1]);
+        return new static($data[0], (int) $data[1]);
     }
 
     /**

@@ -45,4 +45,14 @@ class IssueIdTest extends TestCase
         $this->assertAttributeSame('TEST', 'projectName', $issueId);
         $this->assertAttributeSame(1, 'id', $issueId);
     }
+
+    /** @test */
+    public function it_can_cast_to_string()
+    {
+        $issueId = new IssueId('TEST', 1);
+
+        $issueStringId = (string) $issueId;
+
+        $this->assertEquals('TEST-1', $issueStringId);
+    }
 }
