@@ -13,9 +13,12 @@ declare(strict_types=1);
 
 namespace Cog\YouTrack\Repositories;
 
+use Cog\YouTrack\Contracts\ProjectCollection as ProjectCollectionContract;
 use Cog\YouTrack\Contracts\ProjectRepository as ProjectRepositoryContract;
 use Cog\YouTrack\Contracts\ApiClient as ApiClientContract;
 use Cog\YouTrack\Entity\Project\Project;
+use Cog\YouTrack\Entity\Project\ProjectCollection;
+use Cog\YouTrack\Mappers\ProjectResponseMapper;
 
 /**
  * Class RestProjectRepository.
@@ -42,23 +45,18 @@ class RestProjectRepository implements ProjectRepositoryContract
      *
      * @see https://www.jetbrains.com/help/youtrack/standalone/2017.2/GET-Projects.html
      *
-     * @return \Cog\YouTrack\Entity\Project\Project[]
+     * @return \Cog\YouTrack\Contracts\ProjectCollection
      */
-    public function all(): array
+    public function all(): ProjectCollectionContract
     {
+        // Create QueryObject\RequestMapper
+
+        // Pass QueryObject to API Client
         $response = $this->youTrack->get('/rest/admin/project');
 
-        $projects = [];
-        $projectsData = $response->toArray();
+        $mapper = new ProjectResponseMapper(new Project());
 
-        foreach ($projectsData as $projectData) {
-            $project = new Project();
-            $project->fill($projectData);
-
-            $projects[] = $project;
-        }
-
-        return $projects;
+        return new ProjectCollection($mapper->index($response));
     }
 
     /**
@@ -73,10 +71,9 @@ class RestProjectRepository implements ProjectRepositoryContract
     {
         $response = $this->youTrack->get('/rest/admin/project/' . $id);
 
-        $project = new Project();
-        $project->fill($response->toArray());
+        $mapper = new ProjectResponseMapper(new Project());
 
-        return $project;
+        return $mapper->item($response);
     }
 
     /**

@@ -14,7 +14,7 @@ declare(strict_types=1);
 // Boot third party libraries
 require_once __DIR__ . '/../vendor/autoload.php';
 
-// Application configuration
+// Application configuration (replace with your YouTrack server values)
 $apiBaseUri = 'https://write-youtrack-domain.here';
 $apiAuthToken = 'WRITE_YOUR_TOKEN_HERE';
 

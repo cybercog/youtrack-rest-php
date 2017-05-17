@@ -253,4 +253,17 @@ class ProjectTest extends TestCase
 
         $this->assertEquals('https://cybercog.su', $versionsUrl);
     }
+
+    /** @test */
+    public function it_can_make_entity_from_attributes()
+    {
+        $project = Project::make([
+            'id' => 'TEST-1',
+            'description' => 'Test description',
+        ]);
+
+        $this->assertInstanceOf(Project::class, $project);
+        $this->assertAttributeEquals('TEST-1', 'id', $project);
+        $this->assertAttributeEquals('Test description', 'description', $project);
+    }
 }

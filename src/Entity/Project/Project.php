@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Cog\YouTrack\Entity\Project;
 
+use Cog\YouTrack\Contracts\Project as ProjectContract;
 use Cog\YouTrack\Traits\HasHydrator;
 
 /**
@@ -20,7 +21,7 @@ use Cog\YouTrack\Traits\HasHydrator;
  *
  * @package Cog\YouTrack\Entity\Project
  */
-class Project
+class Project implements ProjectContract
 {
     use HasHydrator;
 
@@ -37,7 +38,7 @@ class Project
      *
      * @var string
      */
-    private $id;
+    protected $id;
 
     /**
      * Optional description of the new project.
@@ -273,5 +274,19 @@ class Project
     public function setVersionsUrl(string $versionsUrl): void
     {
         $this->versionsUrl = $versionsUrl;
+    }
+
+    /**
+     * Create and return and un-saved Project instance.
+     *
+     * @param array $attributes
+     * @return \Cog\YouTrack\Contracts\Project
+     */
+    public static function make(array $attributes = []): ProjectContract
+    {
+        $project = new static;
+        $project->fill($attributes);
+
+        return $project;
     }
 }
