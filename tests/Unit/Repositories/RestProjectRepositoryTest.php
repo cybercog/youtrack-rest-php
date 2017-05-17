@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Cog\YouTrack\Tests\Unit\Repositories;
 
 use Cog\YouTrack\Entity\Project\Project;
+use Cog\YouTrack\Entity\Project\ProjectCollection;
 use Cog\YouTrack\Repositories\RestProjectRepository;
 use Cog\YouTrack\Tests\TestCase;
 
@@ -49,13 +50,13 @@ class RestProjectRepositoryTest extends TestCase
     {
         $projects = $this->repository->all();
 
-        $this->assertTrue(is_array($projects));
-        $this->assertGreaterThan(0, $projects);
-        $this->assertInstanceOf(Project::class, $projects[0]);
+        $this->assertInstanceOf(ProjectCollection::class, $projects);
+        $this->assertGreaterThan(0, $projects->count());
+        $this->assertInstanceOf(Project::class, $projects->get(0));
     }
 
     /** @test */
-    public function it_can_get_project()
+    public function it_can_get_project_by_id()
     {
         $projectId = $this->project;
 
@@ -66,10 +67,9 @@ class RestProjectRepositoryTest extends TestCase
     }
 
     /**
-     * test
      * TODO: Test it.
      */
-    public function it_can_create_project()
+    public function it_can_create_project_from_array()
     {
         $projectId = 'TESTPROJECT';
 
@@ -84,10 +84,9 @@ class RestProjectRepositoryTest extends TestCase
     }
 
     /**
-     * test
      * TODO: Test it.
      */
-    public function it_can_delete_project()
+    public function it_can_delete_project_by_id()
     {
         $projectId = 'TESTPROJECT';
 

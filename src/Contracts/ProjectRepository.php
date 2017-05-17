@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Cog\YouTrack\Contracts;
 
+use Cog\YouTrack\Contracts\ProjectCollection as ProjectCollectionContract;
 use Cog\YouTrack\Entity\Project\Project;
 
 /**
@@ -25,9 +26,9 @@ interface ProjectRepository
     /**
      * Get all accessible projects.
      *
-     * @return \Cog\YouTrack\Entity\Project\Project[]
+     * @return \Cog\YouTrack\Contracts\ProjectCollection
      */
-    public function all(): array;
+    public function all(): ProjectCollectionContract;
 
     /**
      * Get project by its project identifier.

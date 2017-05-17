@@ -30,7 +30,7 @@ interface ProjectCollection extends ArrayAccess, Arrayable, Countable, IteratorA
      * Create a new collection instance if the value isn't one already.
      *
      * @param mixed $items
-     * @return static
+     * @return \Cog\YouTrack\Contracts\ProjectCollection
      */
     public static function make(array $items = []): self;
 
