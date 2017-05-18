@@ -56,11 +56,8 @@
             "Cog\\YouTrack\\Rest\\Tests\\": "tests/"
         }
     },
-    "conflict": {
-        "illuminate/support": "<5.1"
-    },
     "suggest": {
-        "illuminate/support": "Required for Laravel integration."
+        "cybercog/laravel-youtrack-sdk": "Laravel integration for YouTrack SDK."
     },
     "scripts": {
         "test": "vendor/bin/phpunit"
