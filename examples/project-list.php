@@ -17,8 +17,6 @@ require_once __DIR__ . '/../vendor/autoload.php';
 // Application configuration (replace with your YouTrack server values)
 $apiBaseUri = 'https://write-youtrack-domain.here';
 $apiAuthToken = 'WRITE_YOUR_TOKEN_HERE';
-$apiBaseUri = 'http://youtrack.cybercog.su';
-$apiAuthToken = 'perm:YS5rb21hcmV2.WW91VHJhY2sgUkVTVCBQSFA=.OoKGVGG5NLYJgCYF9IHsme0Bjg21Bf';
 
 // Instantiate HTTP Client
 $http = new \GuzzleHttp\Client([
@@ -34,7 +32,7 @@ $authenticator = new \Cog\YouTrack\Rest\Authenticator\TokenAuthenticator([
 $client = new \Cog\YouTrack\Rest\Client\YouTrackClient($http, $authenticator);
 
 // Do request to the API
-$response = $client->get('/rest/admin/project');
+$response = $client->get('/admin/project');
 
 // Convert response to array
 $projects = $response->toArray();

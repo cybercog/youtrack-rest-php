@@ -22,7 +22,7 @@ This library utilizes Guzzle HTTP client to perform requests to JetBrains [YouTr
 - [Usage](#usage)
     - [Initialize API client](#initialize-api-client)
     - [API requests](#api-requests)
-    - [Get PSR HTTP response](#get-psr-http-response)
+    - [API responses](#api-responses)
 - [Change log](#change-log)
 - [Contributing](#contributing)
 - [Testing](#testing)
@@ -86,7 +86,7 @@ $authenticator = new \Cog\YouTrack\Rest\Authenticators\TokenAuthenticator([
     'token' => 'YOUTRACK_API_TOKEN',
 ]);
 
-$client = new \Cog\YouTrack\Rest\YouTrackClient($http, $authenticator);
+$youtrack = new \Cog\YouTrack\Rest\YouTrackClient($http, $authenticator);
 ```
 
 #### Cookie Authenticator
@@ -101,7 +101,7 @@ $authenticator = new \Cog\YouTrack\Rest\Authenticators\CookieAuthenticator([
     'password' => 'YOUTRACK_PASSWORD',
 ]);
 
-$client = new \Cog\YouTrack\Rest\YouTrackClient($http, $authenticator);
+$youtrack = new \Cog\YouTrack\Rest\YouTrackClient($http, $authenticator);
 ```
 
 ### API requests
@@ -110,13 +110,13 @@ $client = new \Cog\YouTrack\Rest\YouTrackClient($http, $authenticator);
 #### HTTP GET request
 
 ```php
-$response = $client->get('/issue/TEST-1');
+$response = $youtrack->get('/issue/TEST-1');
 ```
 
 #### HTTP POST request
 
 ```php
-$response = $client->post('/issue', [
+$response = $youtrack->post('/issue', [
     'project' => 'TEST',
     'summary' => 'New test issue',
     'description' => 'Test description',
@@ -126,7 +126,7 @@ $response = $client->post('/issue', [
 #### HTTP PUT request
 
 ```php
-$response = $client->put('/issue/TEST-1', [
+$response = $youtrack->put('/issue/TEST-1', [
     'summary' => 'Updated summary',
     'description' => Updated description,
 ]);
@@ -135,19 +135,49 @@ $response = $client->put('/issue/TEST-1', [
 #### HTTP DELETE request
 
 ```php
-$response = $client->delete('/issue/TEST-1');
+$response = $youtrack->delete('/issue/TEST-1');
 ```
 
-### Get PSR HTTP response
+### API responses
 
-Each successful request to the API returns instance of `\Cog\YouTrack\Rest\Response\Contracts\Response` contract.
-PSR HTTP response could be accessed by calling `getResponse` method on API response.
+Each successful request to the API returns instance of `\Cog\YouTrack\Rest\Response\Contracts\Response` contract. By default it's `\Cog\YouTrack\Rest\Response\YouTrackResponse` class.
+
+#### Get PSR HTTP response
+
+PSR HTTP response could be accessed by calling `getResponse` method on API Response.
 
 ```php
-$apiResponse = $client->get('/issue/TEST-1');
-$psrResponse = $apiResponse->getResponse();
+$youtrackResponse = $youtrack->get('/issue/TEST-1');
+$psrResponse = $youtrackResponse->getResponse();
 ```
 
+#### Get response Cookie
+
+```php
+$apiResponse = $youtrack->get('/issue/TEST-1');
+$cookieString = $apiResponse->getCookie();
+```
+
+#### Get response Location
+
+```php
+$apiResponse = $youtrack->get('/issue/TEST-1');
+$location = $apiResponse->getLocation();
+```
+
+#### Transform response to array
+
+```php
+$apiResponse = $youtrack->get('/issue/TEST-1');
+$location = $apiResponse->toArray();
+```
+
+#### Get HTTP response status code
+
+```php
+$apiResponse = $youtrack->get('/issue/TEST-1');
+$location = $apiResponse->getStatusCode();
+```
 
 ## Change log
 

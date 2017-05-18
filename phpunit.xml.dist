@@ -29,6 +29,6 @@
         <env name="YOUTRACK_TOKEN" value=""/>
         <env name="YOUTRACK_USERNAME" value=""/>
         <env name="YOUTRACK_PASSWORD" value=""/>
-        <env name="YOUTRACK_PROJECT" value="LARABOT"/>
+        <env name="YOUTRACK_PROJECT" value="TEST"/>
     </php>
 </phpunit>
