@@ -32,7 +32,7 @@ class TokenAuthenticatorTest extends FeatureTestCase
     public function it_throws_exception_on_failed_token_authentication()
     {
         $mock = new MockHandler([
-            $this->createFakeResponse(401,'unauthorized'),
+            $this->createFakeResponse(401, 'unauthorized'),
         ]);
         $handler = HandlerStack::create($mock);
         $http = new HttpClient(['handler' => $handler]);

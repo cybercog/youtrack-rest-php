@@ -14,9 +14,7 @@ declare(strict_types=1);
 namespace Cog\YouTrack\Rest\Authenticator;
 
 use Cog\YouTrack\Rest\Authenticator\Contracts\Authenticator as AuthenticatorContract;
-use Cog\YouTrack\Rest\Authenticator\Exceptions\AuthenticationException;
 use Cog\YouTrack\Rest\Client\Contracts\Client as ClientContract;
-use GuzzleHttp\Exception\ClientException;
 
 /**
  * Class CookieAuthenticator.

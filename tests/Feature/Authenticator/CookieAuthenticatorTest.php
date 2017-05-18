@@ -32,7 +32,7 @@ class CookieAuthenticatorTest extends FeatureTestCase
     public function it_throws_exception_on_failed_cookie_authentication()
     {
         $mock = new MockHandler([
-            $this->createFakeResponse(403,'incorrect-login'),
+            $this->createFakeResponse(403, 'incorrect-login'),
         ]);
         $handler = HandlerStack::create($mock);
         $http = new HttpClient(['handler' => $handler]);
@@ -50,7 +50,7 @@ class CookieAuthenticatorTest extends FeatureTestCase
     public function it_can_successfully_authenticate()
     {
         $http = new HttpClient([
-            'base_uri' => 'http://youtrack.cybercog.su'
+            'base_uri' => 'http://localhost'
         ]);
         $authenticator = new CookieAuthenticator([
             'username' => 'invalid-user',
