@@ -50,7 +50,7 @@ class CookieAuthenticatorTest extends FeatureTestCase
     public function it_can_successfully_authenticate()
     {
         $http = new HttpClient([
-            'base_uri' => 'http://localhost'
+            'base_uri' => 'http://localhost',
         ]);
         $authenticator = new CookieAuthenticator([
             'username' => 'invalid-user',

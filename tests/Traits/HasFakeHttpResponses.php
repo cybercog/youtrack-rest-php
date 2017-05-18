@@ -70,11 +70,7 @@ trait HasFakeHttpResponses
     {
         $filePath = $this->buildFakeRequestFilePath($name, 'body');
 
-        if (!file_exists($filePath)) {
-            return null;
-        }
-
-        return file_get_contents($filePath);
+        return file_exists($filePath) ? file_get_contents($filePath) : null;
     }
 
     /**
