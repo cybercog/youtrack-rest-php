@@ -11,51 +11,18 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Cog\YouTrack\Tests;
+namespace Cog\YouTrack\Rest\Tests;
 
-use Cog\YouTrack\Providers\YouTrackServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 use ReflectionClass;
 
 /**
  * Class TestCase.
  *
- * @package Cog\YouTrack\Tests
+ * @package Cog\YouTrack\Rest\Tests
  */
 abstract class TestCase extends Orchestra
 {
-    /**
-     * Actions to be performed on PHPUnit start.
-     */
-    protected function setUp()
-    {
-        parent::setUp();
-    }
-
-    /**
-     * Define environment setup.
-     *
-     * @param \Illuminate\Foundation\Application $app
-     * @return void
-     */
-    protected function getEnvironmentSetUp($app)
-    {
-        //
-    }
-
-    /**
-     * Load package service provider.
-     *
-     * @param \Illuminate\Foundation\Application $app
-     * @return array
-     */
-    protected function getPackageProviders($app)
-    {
-        return [
-            YouTrackServiceProvider::class,
-        ];
-    }
-
     /**
      * Force set private property of the object.
      *

@@ -19,10 +19,10 @@ This library utilizes Guzzle HTTP client to perform requests to JetBrains [YouTr
 - [Features](#features)
 - [Requirements](#requirements)
 - [Installation](#installation)
-    - [Laravel integration](#laravel-integration)
 - [Usage](#usage)
     - [Initialize API client](#initialize-api-client)
-    - [Repositories methods](#repositories-methods)
+    - [API requests](#api-requests)
+    - [Get PSR HTTP response](#get-psr-http-response)
 - [Change log](#change-log)
 - [Contributing](#contributing)
 - [Testing](#testing)
@@ -36,8 +36,11 @@ This library utilizes Guzzle HTTP client to perform requests to JetBrains [YouTr
 
 - Framework agnostic.
 - Using contracts to keep high customization capabilities.
-- YouTrack Entities with relationships.
 - Multiple authentication strategies: Token, Cookie.
+- Utilizes PHP Standard Recommendations:
+  - [PSR-2 (Coding Style Guide)](http://www.php-fig.org/psr/psr-2/).
+  - [PSR-4 (Autoloading Standard)](http://www.php-fig.org/psr/psr-4/).
+  - [PSR-7 (HTTP Message Interface)](http://www.php-fig.org/psr/psr-7/).
 - Covered with unit tests.
 
 ## Requirements
@@ -64,16 +67,6 @@ Be sure to include the autoloader in your project:
 
 ```php
 require_once '/path/to/your-project/vendor/autoload.php';
-```
-
-### Laravel integration
-
-Include the service provider within `app/config/app.php`:
-
-```php
-'providers' => [
-    Cog\YouTrack\Providers\YouTrackServiceProvider::class,
-],
 ```
 
 ## Usage
@@ -111,93 +104,50 @@ $authenticator = new \Cog\YouTrack\Rest\Authenticators\CookieAuthenticator([
 $client = new \Cog\YouTrack\Rest\YouTrackClient($http, $authenticator);
 ```
 
-### Project repository methods
+### API requests
 
-#### Get all accessible projects
+
+#### HTTP GET request
 
 ```php
-$repository = new \Cog\YouTrack\Repositories\RestProjectRepository($client);
-$projects = $repository->all();
+$response = $client->get('/issue/TEST-1');
 ```
 
-#### Get project by its project identifier
+#### HTTP POST request
 
 ```php
-$projectId = 'TEST';
-$repository = new \Cog\YouTrack\Repositories\RestProjectRepository($client);
-$projects = $repository->find($projectId);
-```
-
-#### Create new project
-
-```php
-$projectId = 'TEST';
-$repository = new \Cog\YouTrack\Repositories\RestProjectRepository($client);
-$repository->create($projectId, [
-   'projectName' => 'Test project',
-   'startingNumber' => 4,
-   'projectLeadLogin' => 'admin',
-   
-   // Optional
-   'description' => 'Test description',
-]);
-```
-
-#### Delete specified project
-
-```php
-$projectId = 'TEST';
-$repository = new \Cog\YouTrack\Repositories\RestProjectRepository($client);
-$repository->delete($projectId);
-```
-
-### Issue repository methods
-
-#### Get issue by id
-
-```php
-$issueId = 'TEST-1';
-$repository = new \Cog\YouTrack\Repositories\RestIssueRepository($client);
-$issue = $repository->find($issueId);
-```
-
-#### Report a new issue
-
-```php
-$repository = new \Cog\YouTrack\Repositories\RestIssueRepository($client);
-$repository->create([
+$response = $client->post('/issue', [
     'project' => 'TEST',
-    'summary' => 'New summary',
-    'description' => 'New description',
+    'summary' => 'New test issue',
+    'description' => 'Test description',
 ]);
 ```
 
-#### Update summary and description for an issue
+#### HTTP PUT request
 
 ```php
-$issueId = 'TEST-1';
-$repository = new \Cog\YouTrack\Repositories\RestIssueRepository($client);
-$repository->update($issueId, [
-    'summary' => 'New summary',
-    'description' => 'New description',
+$response = $client->put('/issue/TEST-1', [
+    'summary' => 'Updated summary',
+    'description' => Updated description,
 ]);
 ```
 
-#### Delete specified issue
+#### HTTP DELETE request
 
 ```php
-$issueId = 'TEST-1';
-$repository = new \Cog\YouTrack\Repositories\RestIssueRepository($client);
-$repository->delete($issueId);
+$response = $client->delete('/issue/TEST-1');
 ```
 
-#### Check that an issue exists
+### Get PSR HTTP response
+
+Each successful request to the API returns instance of `\Cog\YouTrack\Rest\Response\Contracts\Response` contract.
+PSR HTTP response could be accessed by calling `getResponse` method on API response.
 
 ```php
-$issueId = 'TEST-1';
-$repository = new \Cog\YouTrack\Repositories\RestIssueRepository($client);
-$isIssueExists = $repository->exists($issueId);
+$apiResponse = $client->get('/issue/TEST-1');
+$psrResponse = $apiResponse->getResponse();
 ```
+
 
 ## Change log
 
