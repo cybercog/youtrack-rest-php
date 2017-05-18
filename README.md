@@ -22,7 +22,7 @@ This library utilizes Guzzle HTTP client to perform requests to JetBrains [YouTr
     - [Laravel integration](#laravel-integration)
 - [Usage](#usage)
     - [Initialize API client](#initialize-api-client)
-    - [Repositories methods](#repositories-methods)
+    - [API requests](#api-requests)
 - [Change log](#change-log)
 - [Contributing](#contributing)
 - [Testing](#testing)
@@ -36,7 +36,6 @@ This library utilizes Guzzle HTTP client to perform requests to JetBrains [YouTr
 
 - Framework agnostic.
 - Using contracts to keep high customization capabilities.
-- YouTrack Entities with relationships.
 - Multiple authentication strategies: Token, Cookie.
 - Covered with unit tests.
 
@@ -72,7 +71,7 @@ Include the service provider within `app/config/app.php`:
 
 ```php
 'providers' => [
-    Cog\YouTrack\Providers\YouTrackServiceProvider::class,
+    Cog\YouTrack\Rest\Providers\YouTrackServiceProvider::class,
 ],
 ```
 
@@ -111,92 +110,38 @@ $authenticator = new \Cog\YouTrack\Rest\Authenticators\CookieAuthenticator([
 $client = new \Cog\YouTrack\Rest\YouTrackClient($http, $authenticator);
 ```
 
-### Project repository methods
+### API requests
 
-#### Get all accessible projects
+
+#### HTTP GET request
 
 ```php
-$repository = new \Cog\YouTrack\Repositories\RestProjectRepository($client);
-$projects = $repository->all();
+$response = $client->get('/issue/TEST-1');
 ```
 
-#### Get project by its project identifier
+#### HTTP POST request
 
 ```php
-$projectId = 'TEST';
-$repository = new \Cog\YouTrack\Repositories\RestProjectRepository($client);
-$projects = $repository->find($projectId);
-```
-
-#### Create new project
-
-```php
-$projectId = 'TEST';
-$repository = new \Cog\YouTrack\Repositories\RestProjectRepository($client);
-$repository->create($projectId, [
-   'projectName' => 'Test project',
-   'startingNumber' => 4,
-   'projectLeadLogin' => 'admin',
-   
-   // Optional
-   'description' => 'Test description',
-]);
-```
-
-#### Delete specified project
-
-```php
-$projectId = 'TEST';
-$repository = new \Cog\YouTrack\Repositories\RestProjectRepository($client);
-$repository->delete($projectId);
-```
-
-### Issue repository methods
-
-#### Get issue by id
-
-```php
-$issueId = 'TEST-1';
-$repository = new \Cog\YouTrack\Repositories\RestIssueRepository($client);
-$issue = $repository->find($issueId);
-```
-
-#### Report a new issue
-
-```php
-$repository = new \Cog\YouTrack\Repositories\RestIssueRepository($client);
-$repository->create([
+$response = $client->post('/issue', [
     'project' => 'TEST',
-    'summary' => 'New summary',
-    'description' => 'New description',
+    'summary' => 'New test issue',
+    'description' => 'Test description',
 ]);
 ```
 
-#### Update summary and description for an issue
+#### HTTP PUT request
 
 ```php
-$issueId = 'TEST-1';
-$repository = new \Cog\YouTrack\Repositories\RestIssueRepository($client);
-$repository->update($issueId, [
-    'summary' => 'New summary',
-    'description' => 'New description',
+$client->put('/issue/TEST-1', [
+    'summary' => 'Updated summary',
+    'description' => Updated description,
 ]);
 ```
 
-#### Delete specified issue
+#### HTTP DELETE request
 
 ```php
-$issueId = 'TEST-1';
-$repository = new \Cog\YouTrack\Repositories\RestIssueRepository($client);
-$repository->delete($issueId);
-```
-
-#### Check that an issue exists
-
-```php
-$issueId = 'TEST-1';
-$repository = new \Cog\YouTrack\Repositories\RestIssueRepository($client);
-$isIssueExists = $repository->exists($issueId);
+$client->delete('/issue/TEST-1');
 ```
 
 ## Change log

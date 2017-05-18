@@ -48,12 +48,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Cog\\YouTrack\\": "src/"
+            "Cog\\YouTrack\\Rest\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Cog\\YouTrack\\Tests\\": "tests/"
+            "Cog\\YouTrack\\Rest\\Tests\\": "tests/"
         }
     },
     "conflict": {
