@@ -19,10 +19,10 @@ This library utilizes Guzzle HTTP client to perform requests to JetBrains [YouTr
 - [Features](#features)
 - [Requirements](#requirements)
 - [Installation](#installation)
-    - [Laravel integration](#laravel-integration)
 - [Usage](#usage)
     - [Initialize API client](#initialize-api-client)
     - [API requests](#api-requests)
+    - [Get PSR HTTP response](#get-psr-http-response)
 - [Change log](#change-log)
 - [Contributing](#contributing)
 - [Testing](#testing)
@@ -37,6 +37,10 @@ This library utilizes Guzzle HTTP client to perform requests to JetBrains [YouTr
 - Framework agnostic.
 - Using contracts to keep high customization capabilities.
 - Multiple authentication strategies: Token, Cookie.
+- Utilizes PHP Standard Recommendations:
+  - [PSR-2 (Coding Style Guide)](http://www.php-fig.org/psr/psr-2/).
+  - [PSR-4 (Autoloading Standard)](http://www.php-fig.org/psr/psr-4/).
+  - [PSR-7 (HTTP Message Interface)](http://www.php-fig.org/psr/psr-7/).
 - Covered with unit tests.
 
 ## Requirements
@@ -63,16 +67,6 @@ Be sure to include the autoloader in your project:
 
 ```php
 require_once '/path/to/your-project/vendor/autoload.php';
-```
-
-### Laravel integration
-
-Include the service provider within `app/config/app.php`:
-
-```php
-'providers' => [
-    Cog\YouTrack\Rest\Providers\YouTrackServiceProvider::class,
-],
 ```
 
 ## Usage
@@ -132,7 +126,7 @@ $response = $client->post('/issue', [
 #### HTTP PUT request
 
 ```php
-$client->put('/issue/TEST-1', [
+$response = $client->put('/issue/TEST-1', [
     'summary' => 'Updated summary',
     'description' => Updated description,
 ]);
@@ -141,8 +135,19 @@ $client->put('/issue/TEST-1', [
 #### HTTP DELETE request
 
 ```php
-$client->delete('/issue/TEST-1');
+$response = $client->delete('/issue/TEST-1');
 ```
+
+### Get PSR HTTP response
+
+Each successful request to the API returns instance of `\Cog\YouTrack\Rest\Response\Contracts\Response` contract.
+PSR HTTP response could be accessed by calling `getResponse` method on API response.
+
+```php
+$apiResponse = $client->get('/issue/TEST-1');
+$psrResponse = $apiResponse->getResponse();
+```
+
 
 ## Change log
 
