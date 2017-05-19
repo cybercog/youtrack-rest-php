@@ -57,7 +57,7 @@
         }
     },
     "suggest": {
-        "cybercog/laravel-youtrack-sdk": "Laravel integration for YouTrack SDK."
+        "cybercog/laravel-youtrack-sdk": "Laravel integration for YouTrack PHP SDK."
     },
     "scripts": {
         "test": "vendor/bin/phpunit"
