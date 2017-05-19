@@ -13,9 +13,9 @@ declare(strict_types=1);
 
 namespace Cog\YouTrack\Rest\Client;
 
-use Cog\YouTrack\Rest\Authenticator\Contracts\Authenticator as AuthenticatorContract;
-use Cog\YouTrack\Rest\Authenticator\Exceptions\AuthenticationException;
-use Cog\YouTrack\Rest\Authenticator\Exceptions\InvalidTokenException;
+use Cog\YouTrack\Rest\Authorizer\Contracts\Authorizer as AuthorizerContract;
+use Cog\YouTrack\Rest\Authorizer\Exceptions\AuthenticationException;
+use Cog\YouTrack\Rest\Authorizer\Exceptions\InvalidTokenException;
 use Cog\YouTrack\Rest\Client\Contracts\Client as RestClientContract;
 use Cog\YouTrack\Rest\Response\Contracts\Response as ResponseContract;
 use Cog\YouTrack\Rest\Response\YouTrackResponse;
@@ -42,9 +42,9 @@ class YouTrackClient implements RestClientContract
     private $http;
 
     /**
-     * @var \Cog\YouTrack\Rest\Authenticator\Contracts\Authenticator
+     * @var \Cog\YouTrack\Rest\Authorizer\Contracts\Authorizer
      */
-    private $authenticator;
+    private $authorizer;
 
     /**
      * @todo make configurable
@@ -58,34 +58,34 @@ class YouTrackClient implements RestClientContract
      * YouTrackClient constructor.
      *
      * @param \GuzzleHttp\ClientInterface $http
-     * @param \Cog\YouTrack\Rest\Authenticator\Contracts\Authenticator $authenticator
+     * @param \Cog\YouTrack\Rest\Authorizer\Contracts\Authorizer $authorizer
      */
-    public function __construct(GuzzleClientContract $http, AuthenticatorContract $authenticator)
+    public function __construct(GuzzleClientContract $http, AuthorizerContract $authorizer)
     {
         $this->http = $http;
-        $this->setAuthenticator($authenticator);
-        $this->authenticator->authenticate($this);
+        $this->setAuthorizer($authorizer);
+        $this->authorizer->authenticate($this);
     }
 
     /**
-     * Set authentication strategy.
+     * Set authorization strategy.
      *
-     * @param \Cog\YouTrack\Rest\Authenticator\Contracts\Authenticator $authenticator
+     * @param \Cog\YouTrack\Rest\Authorizer\Contracts\Authorizer $authorizer
      * @return void
      */
-    public function setAuthenticator(AuthenticatorContract $authenticator): void
+    public function setAuthorizer(AuthorizerContract $authorizer): void
     {
-        $this->authenticator = $authenticator;
+        $this->authorizer = $authorizer;
     }
 
     /**
-     * Get authentication strategy.
+     * Get authorization strategy.
      *
-     * @return \Cog\YouTrack\Rest\Authenticator\Contracts\Authenticator
+     * @return \Cog\YouTrack\Rest\Authorizer\Contracts\Authorizer
      */
-    public function getAuthenticator(): AuthenticatorContract
+    public function getAuthorizer(): AuthorizerContract
     {
-        return $this->authenticator;
+        return $this->authorizer;
     }
 
     /**
@@ -96,8 +96,8 @@ class YouTrackClient implements RestClientContract
      * @param array $formData
      * @return \Cog\YouTrack\Rest\Response\Contracts\Response
      *
-     * @throws \Cog\YouTrack\Rest\Authenticator\Exceptions\AuthenticationException
-     * @throws \Cog\YouTrack\Rest\Authenticator\Exceptions\InvalidTokenException
+     * @throws \Cog\YouTrack\Rest\Authorizer\Exceptions\AuthenticationException
+     * @throws \Cog\YouTrack\Rest\Authorizer\Exceptions\InvalidTokenException
      */
     public function request(string $method, string $uri, array $formData = []) : ResponseContract
     {
@@ -198,6 +198,6 @@ class YouTrackClient implements RestClientContract
         return array_merge([
             'User-Agent' => 'Cog-YouTrack-REST-PHP/' . self::CLIENT_VERSION,
             'Accept' => 'application/json',
-        ], $this->authenticator->getHeaders(), $headers);
+        ], $this->authorizer->getHeaders(), $headers);
     }
 }

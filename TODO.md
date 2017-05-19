@@ -6,12 +6,12 @@
 
 ## Client
 
-- [x] Authentication strategy
+- [x] Authorization strategy
 - [x] Design `YouTrackClient`
 - [ ] (?) `YouTrackClient` should has `Endpoints` entity
 - [ ] (?) Ignore `Guzzle` exceptions to cleanup code? What if guzzle will be initialized with exceptions flag?
 - [ ] Move `authenticate()` method out from the constructor. It should be called before each request, but prevent authentication call recursion.
-- [ ] `authenticate()` or `authorize()`?
+- [ ] (?) Remove `authenticate()` method from the Authorizer contract? 
 
 ## Response
 
