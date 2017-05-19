@@ -18,7 +18,8 @@ YouTrack REST API PHP Client uses [PSR-7 (HTTP Message Interface)](http://www.ph
 
 - [Features](#features)
 - [Requirements](#requirements)
-- [Frameworks integration](#frameworks-integration)
+- [Related packages](#related-packages)
+- [Frameworks support](#frameworks-support)
 - [Installation](#installation)
 - [Usage](#usage)
     - [Initialize API client](#initialize-api-client)
@@ -54,15 +55,17 @@ YouTrack REST API PHP Client uses [PSR-7 (HTTP Message Interface)](http://www.ph
 
 - [YouTrack PHP SDK](https://github.com/cybercog/youtrack-php-sdk#readme) maintained by [Anton Komarev](https://github.com/a-komarev)
 
-## Frameworks integration
+**Share your packages! [We are open](CONTRIBUTING.md) for Pull Requests!**
 
-YouTrack REST PHP Client is framework agnostic package and could be easily used in any PHP framework you want.
+## Frameworks support
+
+YouTrack REST PHP is framework agnostic package and could be easily used in any PHP framework you want.
 
 ### Framework integrations list
 
 - [Laravel YouTrack SDK](https://github.com/cybercog/laravel-youtrack-sdk#readme) maintained by [Anton Komarev](https://github.com/a-komarev)
 
-**Haven't found your favorite framework in the list? We are open for Pull Requests!**
+**Haven't found your favorite framework in the list? [We are open](CONTRIBUTING.md) for Pull Requests!**
 
 ## Installation
 
