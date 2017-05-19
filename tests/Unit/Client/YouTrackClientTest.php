@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Cog\YouTrack\Rest\Tests\Unit\Client;
 
-use Cog\YouTrack\Rest\Authenticator\Contracts\Authenticator as AuthenticatorContract;
+use Cog\YouTrack\Rest\Authorizer\Contracts\Authorizer as AuthorizerContract;
 use Cog\YouTrack\Rest\Client\YouTrackClient;
 use Cog\YouTrack\Rest\Tests\TestCase;
 use GuzzleHttp\Client as HttpClient;
@@ -26,30 +26,30 @@ use GuzzleHttp\Client as HttpClient;
 class YouTrackClientTest extends TestCase
 {
     /** @test */
-    public function it_can_get_authenticator()
+    public function it_can_get_authorizer()
     {
         $http = new HttpClient();
-        /** @var \Cog\YouTrack\Rest\Authenticator\Contracts\Authenticator $authenticator */
-        $authenticator = $this->createMock(AuthenticatorContract::class);
-        $client = new YouTrackClient($http, $authenticator);
+        /** @var \Cog\YouTrack\Rest\Authorizer\Contracts\Authorizer $authorizer */
+        $authorizer = $this->createMock(AuthorizerContract::class);
+        $client = new YouTrackClient($http, $authorizer);
 
-        $actualAuthenticator = $client->getAuthenticator();
+        $actualAuthorizer = $client->getAuthorizer();
 
-        $this->assertInstanceOf(get_class($authenticator), $actualAuthenticator);
+        $this->assertInstanceOf(get_class($authorizer), $actualAuthorizer);
     }
 
     /** @test */
-    public function it_can_set_authenticator()
+    public function it_can_set_authorizer()
     {
         $http = new HttpClient();
-        /** @var \Cog\YouTrack\Rest\Authenticator\Contracts\Authenticator $authenticator */
-        $authenticator = $this->createMock(AuthenticatorContract::class);
-        /** @var \Cog\YouTrack\Rest\Authenticator\Contracts\Authenticator $newAuthenticator */
-        $newAuthenticator = $this->createMock(AuthenticatorContract::class);
-        $client = new YouTrackClient($http, $authenticator);
+        /** @var \Cog\YouTrack\Rest\Authorizer\Contracts\Authorizer $authorizer */
+        $authorizer = $this->createMock(AuthorizerContract::class);
+        /** @var \Cog\YouTrack\Rest\Authorizer\Contracts\Authorizer $newAuthorizer */
+        $newAuthorizer = $this->createMock(AuthorizerContract::class);
+        $client = new YouTrackClient($http, $authorizer);
 
-        $client->setAuthenticator($newAuthenticator);
+        $client->setAuthorizer($newAuthorizer);
 
-        $this->assertAttributeSame($newAuthenticator, 'authenticator', $client);
+        $this->assertAttributeSame($newAuthorizer, 'authorizer', $client);
     }
 }

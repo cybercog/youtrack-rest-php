@@ -11,27 +11,35 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Cog\YouTrack\Rest\Authenticator;
+namespace Cog\YouTrack\Rest\Authorizer;
 
-use Cog\YouTrack\Rest\Authenticator\Contracts\Authenticator as AuthenticatorContract;
+use Cog\YouTrack\Rest\Authorizer\Contracts\Authorizer as AuthorizerContract;
 use Cog\YouTrack\Rest\Client\Contracts\Client as ClientContract;
 
 /**
- * Class TokenAuthenticator.
+ * Class CookieAuthorizer.
  *
- * @see https://www.jetbrains.com/help/youtrack/standalone/2017.2/Log-in-to-YouTrack.html.
- *
- * @package Cog\YouTrack\Rest\Authenticator
+ * @package Cog\YouTrack\Rest\Authorizer
  */
-class TokenAuthenticator implements AuthenticatorContract
+class CookieAuthorizer implements AuthorizerContract
 {
     /**
      * @var string
      */
-    private $token;
+    private $cookie;
 
     /**
-     * TokenAuthenticator constructor.
+     * @var string
+     */
+    private $username;
+
+    /**
+     * @var string
+     */
+    private $password;
+
+    /**
+     * CookieAuthorizer constructor.
      *
      * @param array $options
      */
@@ -41,36 +49,45 @@ class TokenAuthenticator implements AuthenticatorContract
     }
 
     /**
-     * Get authentication headers.
+     * Returns authorization headers.
      *
      * @return array
      */
     public function getHeaders(): array
     {
         return [
-            'Authorization' => "Bearer {$this->token}",
+            'Cookie' => $this->cookie,
         ];
     }
 
     /**
      * Authenticate API Client.
+     * Stores cookie on success login.
      *
      * @param \Cog\YouTrack\Rest\Client\Contracts\Client $client
      * @return void
+     *
+     * @throws \Cog\YouTrack\Rest\Authorizer\Exceptions\AuthenticationException
      */
     public function authenticate(ClientContract $client): void
     {
-        // Nothing to do
+        $response = $client->post('/user/login', [
+            'login' => $this->username,
+            'password' => $this->password,
+        ]);
+
+        $this->cookie = $response->getCookie();
     }
 
     /**
-     * Set authentication credentials.
+     * Set authorization credentials.
      *
      * @param array $credentials
      * @return void
      */
     protected function setCredentials(array $credentials): void
     {
-        $this->token = $credentials['token'];
+        $this->username = $credentials['username'];
+        $this->password = $credentials['password'];
     }
 }

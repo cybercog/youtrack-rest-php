@@ -11,10 +11,10 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Cog\YouTrack\Rest\Tests\Feature\Authenticator;
+namespace Cog\YouTrack\Rest\Tests\Feature\Authorizer;
 
-use Cog\YouTrack\Rest\Authenticator\CookieAuthenticator;
-use Cog\YouTrack\Rest\Authenticator\Exceptions\AuthenticationException;
+use Cog\YouTrack\Rest\Authorizer\CookieAuthorizer;
+use Cog\YouTrack\Rest\Authorizer\Exceptions\AuthenticationException;
 use Cog\YouTrack\Rest\Client\YouTrackClient;
 use Cog\YouTrack\Rest\Tests\FeatureTestCase;
 use GuzzleHttp\Client as HttpClient;
@@ -22,11 +22,11 @@ use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 
 /**
- * Class CookieAuthenticatorTest.
+ * Class CookieAuthorizerTest.
  *
- * @package Cog\YouTrack\Tests\Feature\Authenticator
+ * @package Cog\YouTrack\Tests\Feature\Authorizer
  */
-class CookieAuthenticatorTest extends FeatureTestCase
+class CookieAuthorizerTest extends FeatureTestCase
 {
     /** @test */
     public function it_throws_exception_on_failed_cookie_authentication()
@@ -36,14 +36,14 @@ class CookieAuthenticatorTest extends FeatureTestCase
         ]);
         $handler = HandlerStack::create($mock);
         $http = new HttpClient(['handler' => $handler]);
-        $authenticator = new CookieAuthenticator([
+        $authorizer = new CookieAuthorizer([
             'username' => 'invalid-user',
             'password' => 'invalid-pass',
         ]);
 
         $this->expectException(AuthenticationException::class);
 
-        new YouTrackClient($http, $authenticator);
+        new YouTrackClient($http, $authorizer);
     }
 
     /** @todo test */
@@ -52,13 +52,13 @@ class CookieAuthenticatorTest extends FeatureTestCase
         $http = new HttpClient([
             'base_uri' => 'http://localhost',
         ]);
-        $authenticator = new CookieAuthenticator([
+        $authorizer = new CookieAuthorizer([
             'username' => 'invalid-user',
             'password' => 'invalid-pass',
         ]);
 
         $this->expectException(AuthenticationException::class);
 
-        new YouTrackClient($http, $authenticator);
+        new YouTrackClient($http, $authorizer);
     }
 }

@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Cog\YouTrack\Rest\Client\Contracts;
 
-use Cog\YouTrack\Rest\Authenticator\Contracts\Authenticator as AuthenticatorContract;
+use Cog\YouTrack\Rest\Authorizer\Contracts\Authorizer as AuthorizerContract;
 use Cog\YouTrack\Rest\Response\Contracts\Response as ResponseContract;
 
 /**
@@ -24,19 +24,19 @@ use Cog\YouTrack\Rest\Response\Contracts\Response as ResponseContract;
 interface Client
 {
     /**
-     * Set authentication strategy.
+     * Set authorization strategy.
      *
-     * @param \Cog\YouTrack\Rest\Authenticator\Contracts\Authenticator $authenticator
+     * @param \Cog\YouTrack\Rest\Authorizer\Contracts\Authorizer $authorizer
      * @return void
      */
-    public function setAuthenticator(AuthenticatorContract $authenticator): void;
+    public function setAuthorizer(AuthorizerContract $authorizer): void;
 
     /**
-     * Get authentication strategy.
+     * Get authorization strategy.
      *
-     * @return \Cog\YouTrack\Rest\Authenticator\Contracts\Authenticator
+     * @return \Cog\YouTrack\Rest\Authorizer\Contracts\Authorizer
      */
-    public function getAuthenticator(): AuthenticatorContract;
+    public function getAuthorizer(): AuthorizerContract;
 
     /**
      * Create and send an HTTP request.
@@ -46,8 +46,8 @@ interface Client
      * @param array $formData
      * @return \Cog\YouTrack\Rest\Response\Contracts\Response
      *
-     * @throws \Cog\YouTrack\Rest\Authenticator\Exceptions\AuthenticationException
-     * @throws \Cog\YouTrack\Rest\Authenticator\Exceptions\InvalidTokenException
+     * @throws \Cog\YouTrack\Rest\Authorizer\Exceptions\AuthenticationException
+     * @throws \Cog\YouTrack\Rest\Authorizer\Exceptions\InvalidTokenException
      */
     public function request(string $method, string $uri, array $formData = []) : ResponseContract;
 

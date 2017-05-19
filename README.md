@@ -37,7 +37,7 @@ This library utilizes Guzzle HTTP client to perform requests to JetBrains [YouTr
 
 - Framework agnostic.
 - Using contracts to keep high customization capabilities.
-- Multiple authentication strategies: Token, Cookie.
+- Multiple authorization strategies: Token, Cookie.
 - Utilizes PHP Standard Recommendations:
   - [PSR-2 (Coding Style Guide)](http://www.php-fig.org/psr/psr-2/).
   - [PSR-4 (Autoloading Standard)](http://www.php-fig.org/psr/psr-4/).
@@ -84,7 +84,7 @@ require_once '/path/to/your-project/vendor/autoload.php';
 
 ### Initialize API client
 
-#### Token Authenticator
+#### Token Authorizer
 
 Starting with YouTrack 2017.1 release [authorization based on permanent tokens](https://www.jetbrains.com/help/youtrack/standalone/2017.2/Manage-Permanent-Token.html) is recommended as the main approach for the authorization in your REST API calls. 
 
@@ -93,26 +93,26 @@ $http = new \GuzzleHttp\Client([
     'base_uri' => 'https://example.com',
 ]);
 
-$authenticator = new \Cog\YouTrack\Rest\Authenticators\TokenAuthenticator([
+$authorizer = new \Cog\YouTrack\Rest\Authorizer\TokenAuthorizer([
     'token' => 'YOUTRACK_API_TOKEN',
 ]);
 
-$youtrack = new \Cog\YouTrack\Rest\YouTrackClient($http, $authenticator);
+$youtrack = new \Cog\YouTrack\Rest\YouTrackClient($http, $authorizer);
 ```
 
-#### Cookie Authenticator
+#### Cookie Authorizer
 
 ```php
 $http = new \GuzzleHttp\Client([
     'base_uri' => 'https://example.com',
 ]);
 
-$authenticator = new \Cog\YouTrack\Rest\Authenticators\CookieAuthenticator([
+$authorizer = new \Cog\YouTrack\Rest\Authorizer\CookieAuthorizer([
     'username' => 'YOUTRACK_USERNAME',
     'password' => 'YOUTRACK_PASSWORD',
 ]);
 
-$youtrack = new \Cog\YouTrack\Rest\YouTrackClient($http, $authenticator);
+$youtrack = new \Cog\YouTrack\Rest\YouTrackClient($http, $authorizer);
 ```
 
 ### API requests

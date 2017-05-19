@@ -11,10 +11,10 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Cog\YouTrack\Rest\Tests\Feature\Authenticator;
+namespace Cog\YouTrack\Rest\Tests\Feature\Authorizer;
 
-use Cog\YouTrack\Rest\Authenticator\Exceptions\InvalidTokenException;
-use Cog\YouTrack\Rest\Authenticator\TokenAuthenticator;
+use Cog\YouTrack\Rest\Authorizer\Exceptions\InvalidTokenException;
+use Cog\YouTrack\Rest\Authorizer\TokenAuthorizer;
 use Cog\YouTrack\Rest\Client\YouTrackClient;
 use Cog\YouTrack\Rest\Tests\FeatureTestCase;
 use GuzzleHttp\Client as HttpClient;
@@ -22,27 +22,27 @@ use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 
 /**
- * Class TokenAuthenticatorTest.
+ * Class TokenAuthorizerTest.
  *
- * @package Cog\YouTrack\Tests\Feature\Authenticator
+ * @package Cog\YouTrack\Tests\Feature\Authorizer
  */
-class TokenAuthenticatorTest extends FeatureTestCase
+class TokenAuthorizerTest extends FeatureTestCase
 {
     /** @test */
-    public function it_throws_exception_on_failed_token_authentication()
+    public function it_throws_exception_on_failed_token_authorization()
     {
         $mock = new MockHandler([
             $this->createFakeResponse(401, 'unauthorized'),
         ]);
         $handler = HandlerStack::create($mock);
         $http = new HttpClient(['handler' => $handler]);
-        $authenticator = new TokenAuthenticator([
+        $authorizer = new TokenAuthorizer([
             'token' => 'invalid-token',
         ]);
 
         $this->expectException(InvalidTokenException::class);
 
-        $client = new YouTrackClient($http, $authenticator);
+        $client = new YouTrackClient($http, $authorizer);
         $client->get('/admin/project');
     }
 }
