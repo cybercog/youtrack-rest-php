@@ -30,13 +30,6 @@ interface Response
     public function getResponse(): ResponseInterface;
 
     /**
-     * Transform response body to array.
-     *
-     * @return array
-     */
-    public function toArray(): array;
-
-    /**
      * Gets the response status code.
      *
      * The status code is a 3-digit integer result code of the server's attempt
@@ -59,4 +52,11 @@ interface Response
      * @return string
      */
     public function getLocation(): string;
+
+    /**
+     * Transform response body to array.
+     *
+     * @return array
+     */
+    public function toArray(): array;
 }

@@ -51,16 +51,6 @@ class YouTrackResponse implements ResponseContract
     }
 
     /**
-     * Transform response body to array.
-     *
-     * @return array
-     */
-    public function toArray(): array
-    {
-        return json_decode($this->response->getBody()->getContents(), true);
-    }
-
-    /**
      * Gets the response status code.
      *
      * The status code is a 3-digit integer result code of the server's attempt
@@ -91,5 +81,15 @@ class YouTrackResponse implements ResponseContract
     public function getLocation(): string
     {
         return $this->response->getHeaderLine('Location');
+    }
+
+    /**
+     * Transform response body to array.
+     *
+     * @return array
+     */
+    public function toArray(): array
+    {
+        return json_decode($this->response->getBody()->getContents(), true);
     }
 }
