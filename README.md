@@ -227,6 +227,10 @@ If you discover any security related issues, please email oss@cybercog.su instea
 
 - [JetBrains/youtrack-rest-python-library](https://github.com/JetBrains/youtrack-rest-python-library)
 
+### .NET
+
+- [JetBrains/YouTrackSharp](https://github.com/JetBrains/YouTrackSharp)
+
 ### Java
 
 - [byte-imagination/ytapi](https://github.com/byte-imagination/ytapi)
