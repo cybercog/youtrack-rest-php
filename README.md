@@ -52,7 +52,7 @@ This library utilizes Guzzle HTTP client to perform requests to JetBrains [YouTr
 
 ## Related packages
 
-- [YouTrack PHP SDK](https://github.com/cybercog/youtrack-php-sdk)
+- [YouTrack PHP SDK](https://github.com/cybercog/youtrack-php-sdk#readme)
 
 ## Frameworks integration
 
@@ -60,7 +60,7 @@ YouTrack REST PHP Client is framework agnostic package and could be easily used 
 
 ### Framework integrations list
 
-- [Laravel YouTrack SDK](https://github.com/cybercog/laravel-youtrack-sdk) maintained by [Anton Komarev](https://github.com/a-komarev)
+- [Laravel YouTrack SDK](https://github.com/cybercog/laravel-youtrack-sdk#readme) maintained by [Anton Komarev](https://github.com/a-komarev)
 
 **Haven't found your favorite framework in the list? We are open for Pull Requests!**
 
@@ -223,21 +223,21 @@ If you discover any security related issues, please email oss@cybercog.su instea
 
 ### PHP
 
-- [samson/youtrack](https://github.com/SamsonIT/YouTrack)
-- [jsto/youtrack_api_client_php](https://github.com/jsto/youtrack_api_client_php)
-- [nepda/youtrack-client](https://github.com/nepda/youtrack-client)
+- [samson/youtrack](https://github.com/SamsonIT/YouTrack#readme)
+- [jsto/youtrack_api_client_php](https://github.com/jsto/youtrack_api_client_php#readme)
+- [nepda/youtrack-client](https://github.com/nepda/youtrack-client#readme)
 
 ### Python
 
-- [JetBrains/youtrack-rest-python-library](https://github.com/JetBrains/youtrack-rest-python-library)
+- [JetBrains/youtrack-rest-python-library](https://github.com/JetBrains/youtrack-rest-python-library#readme)
 
 ### .NET
 
-- [JetBrains/YouTrackSharp](https://github.com/JetBrains/YouTrackSharp)
+- [JetBrains/YouTrackSharp](https://github.com/JetBrains/YouTrackSharp#readme)
 
 ### Java
 
-- [byte-imagination/ytapi](https://github.com/byte-imagination/ytapi)
+- [byte-imagination/ytapi](https://github.com/byte-imagination/ytapi#readme)
 
 *Feel free to add more alternatives as Pull Request.*
 
