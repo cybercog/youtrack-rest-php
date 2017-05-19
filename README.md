@@ -50,11 +50,15 @@ This library utilizes Guzzle HTTP client to perform requests to JetBrains [YouTr
 - PHP >= 7.1
 - Guzzle HTTP Client >= 6.2
 
+## Related packages
+
+- [YouTrack PHP SDK](https://github.com/cybercog/youtrack-php-sdk)
+
 ## Frameworks integration
 
 YouTrack REST PHP Client is framework agnostic package and could be easily used in any PHP framework you want.
 
-Framework integrations list:
+### Framework integrations list
 
 - [Laravel YouTrack SDK](https://github.com/cybercog/laravel-youtrack-sdk) maintained by [Anton Komarev](https://github.com/a-komarev)
 
@@ -245,4 +249,4 @@ If you discover any security related issues, please email oss@cybercog.su instea
 
 [CyberCog](http://www.cybercog.ru) is a Social Unity of enthusiasts. Research best solutions in product & software development is our passion.
 
-![cybercog-logo](https://cloud.githubusercontent.com/assets/1849174/18418932/e9edb390-7860-11e6-8a43-aa3fad524664.png)
+<a href="http://cybercog.ru"><img src="https://cloud.githubusercontent.com/assets/1849174/18418932/e9edb390-7860-11e6-8a43-aa3fad524664.png" alt="CyberCog"></a>
