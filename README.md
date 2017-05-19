@@ -46,7 +46,7 @@ This library utilizes Guzzle HTTP client to perform requests to JetBrains [YouTr
 
 ## Requirements
 
-- YouTrack >= 2017.1 with REST-API enabled (always enabled, by default)
+- YouTrack >= 3.0 with REST-API enabled (always enabled, by default)
 - PHP >= 7.1
 - Guzzle HTTP Client >= 6.2
 
