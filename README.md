@@ -12,7 +12,7 @@
 
 ## Introduction
 
-This library utilizes Guzzle HTTP client to perform requests to JetBrains [YouTrack REST API](https://www.jetbrains.com/help/youtrack/standalone/2017.2/Resources-for-Developers.html).
+YouTrack REST API PHP Client uses [PSR-7 (HTTP Message Interface)](http://www.php-fig.org/psr/psr-7/) to connect with [JetBrains YouTrack REST API](https://www.jetbrains.com/help/youtrack/standalone/2017.2/Resources-for-Developers.html).
 
 ## Contents
 
@@ -52,7 +52,7 @@ This library utilizes Guzzle HTTP client to perform requests to JetBrains [YouTr
 
 ## Related packages
 
-- [YouTrack PHP SDK](https://github.com/cybercog/youtrack-php-sdk#readme)
+- [YouTrack PHP SDK](https://github.com/cybercog/youtrack-php-sdk#readme) maintained by [Anton Komarev](https://github.com/a-komarev)
 
 ## Frameworks integration
 
