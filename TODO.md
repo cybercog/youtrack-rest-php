@@ -19,6 +19,12 @@
     - `getLocation()`, `getStatusCode()`, `getCookie()`, `getResponse()`
     - `location()`, `statusCode()`, `cookie()`, `response()`
 
+## Response
+
+- [ ] (?) What API to leave:
+    - `getLocation()`, `getStatusCode()`, `getCookie()`, `getResponse()`
+    - `location()`, `statusCode()`, `cookie()`, `response()`
+
 ## Testing
 
 - [x] Snapshot\Mock\Stub\Fake testing for API calls
