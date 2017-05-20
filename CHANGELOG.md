@@ -15,6 +15,7 @@ All notable changes to `youtrack-rest-php` will be documented in this file.
 - `Authorizer` delegates authentication to `Authenticator`.
 - Changed namespace of `AuthenticationException`.
 - `getHeaders` method was dropped from `Authorizer` contract.
+- `Response` interface methods `getResponse`, `getStatusCode`, `getCookie`, `getLocation` were renamed to `httpResponse`, `statusCode`, `cookie`, `location` respectively.
 
 ## [2.0.1] - 2017-05-21
 

@@ -23,35 +23,35 @@ use Psr\Http\Message\ResponseInterface;
 interface Response
 {
     /**
-     * Get original HTTP client response.
+     * Returns original HTTP client response.
      *
      * @return \Psr\Http\Message\ResponseInterface
      */
-    public function getResponse(): ResponseInterface;
+    public function httpResponse(): ResponseInterface;
 
     /**
-     * Gets the response status code.
+     * Returns the response status code.
      *
      * The status code is a 3-digit integer result code of the server's attempt
      * to understand and satisfy the request.
      *
      * @return int
      */
-    public function getStatusCode(): int;
+    public function statusCode(): int;
 
     /**
      * Transform response cookie headers to string.
      *
      * @return string
      */
-    public function getCookie(): string;
+    public function cookie(): string;
 
     /**
-     * Gets the response Location header.
+     * Returns the response Location header.
      *
      * @return string
      */
-    public function getLocation(): string;
+    public function location(): string;
 
     /**
      * Transform response body to array.

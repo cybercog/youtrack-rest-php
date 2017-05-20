@@ -75,8 +75,8 @@ class CookieAuthenticator implements AuthenticatorContract
             ]);
             $this->isAuthenticating = false;
 
-            if ($response->getStatusCode() === 200) {
-                $this->cookie = $response->getCookie();
+            if ($response->statusCode() === 200) {
+                $this->cookie = $response->cookie();
             }
         }
 

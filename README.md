@@ -168,25 +168,25 @@ Each successful request to the API returns instance of `\Cog\YouTrack\Rest\Respo
 
 #### Get PSR HTTP response
 
-PSR HTTP response could be accessed by calling `getResponse` method on API Response.
+PSR HTTP response could be accessed by calling `httpResponse` method on API Response.
 
 ```php
 $youtrackResponse = $youtrack->get('/issue/TEST-1');
-$psrResponse = $youtrackResponse->getResponse();
+$psrResponse = $youtrackResponse->httpResponse();
 ```
 
 #### Get response Cookie
 
 ```php
 $apiResponse = $youtrack->get('/issue/TEST-1');
-$cookieString = $apiResponse->getCookie();
+$cookieString = $apiResponse->cookie();
 ```
 
 #### Get response Location
 
 ```php
 $apiResponse = $youtrack->get('/issue/TEST-1');
-$location = $apiResponse->getLocation();
+$location = $apiResponse->location();
 ```
 
 #### Transform response to array
@@ -200,7 +200,7 @@ $location = $apiResponse->toArray();
 
 ```php
 $apiResponse = $youtrack->get('/issue/TEST-1');
-$location = $apiResponse->getStatusCode();
+$location = $apiResponse->statusCode();
 ```
 
 ## Change log
