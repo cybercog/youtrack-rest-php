@@ -13,8 +13,8 @@ declare(strict_types=1);
 
 namespace Cog\YouTrack\Rest\Client;
 
+use Cog\YouTrack\Rest\Authenticator\Exceptions\AuthenticationException;
 use Cog\YouTrack\Rest\Authorizer\Contracts\Authorizer as AuthorizerContract;
-use Cog\YouTrack\Rest\Authorizer\Exceptions\AuthenticationException;
 use Cog\YouTrack\Rest\Authorizer\Exceptions\InvalidTokenException;
 use Cog\YouTrack\Rest\Client\Contracts\Client as RestClientContract;
 use Cog\YouTrack\Rest\Response\Contracts\Response as ResponseContract;
@@ -25,7 +25,7 @@ use GuzzleHttp\Exception\ClientException;
 /**
  * Class YouTrackRestClient.
  *
- * @see https://www.jetbrains.com/help/youtrack/standalone/2017.2/YouTrack-REST-API-Reference.html *
+ * @see https://www.jetbrains.com/help/youtrack/standalone/2017.2/YouTrack-REST-API-Reference.html
  *
  * @package Cog\YouTrack\Rest\Client
  */
@@ -34,7 +34,7 @@ class YouTrackClient implements RestClientContract
     /**
      * Version of YouTrack REST PHP client.
      */
-    const CLIENT_VERSION = '1.0.0';
+    const CLIENT_VERSION = '3.0.0';
 
     /**
      * @var \GuzzleHttp\ClientInterface
@@ -64,7 +64,6 @@ class YouTrackClient implements RestClientContract
     {
         $this->http = $http;
         $this->authorizer = $authorizer;
-        $this->authorizer->authenticate($this);
     }
 
     /**
@@ -75,7 +74,7 @@ class YouTrackClient implements RestClientContract
      * @param array $formData
      * @return \Cog\YouTrack\Rest\Response\Contracts\Response
      *
-     * @throws \Cog\YouTrack\Rest\Authorizer\Exceptions\AuthenticationException
+     * @throws \Cog\YouTrack\Rest\Authenticator\Exceptions\AuthenticationException
      * @throws \Cog\YouTrack\Rest\Authorizer\Exceptions\InvalidTokenException
      */
     public function request(string $method, string $uri, array $formData = []) : ResponseContract
@@ -177,6 +176,6 @@ class YouTrackClient implements RestClientContract
         return array_merge([
             'User-Agent' => 'Cog-YouTrack-REST-PHP/' . self::CLIENT_VERSION,
             'Accept' => 'application/json',
-        ], $this->authorizer->getHeaders(), $headers);
+        ], $this->authorizer->getHeaders($this), $headers);
     }
 }

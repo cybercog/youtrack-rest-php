@@ -11,12 +11,14 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Cog\YouTrack\Rest\Authorizer\Exceptions;
+namespace Cog\YouTrack\Rest\Authenticator\Exceptions;
+
+use Cog\YouTrack\Rest\Authorizer\Exceptions\AuthorizationException;
 
 /**
  * Class AuthenticationException.
  *
- * @package Cog\YouTrack\Rest\Authorizer\Exceptions
+ * @package Cog\YouTrack\Rest\Authenticator\Exceptions
  */
 class AuthenticationException extends AuthorizationException
 {

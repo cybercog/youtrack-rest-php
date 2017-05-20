@@ -11,22 +11,29 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Cog\YouTrack\Rest\Authorizer\Contracts;
+namespace Cog\YouTrack\Rest\Authenticator\Contracts;
 
 use Cog\YouTrack\Rest\Client\Contracts\Client as ClientContract;
 
 /**
  * Interface Authorizer.
  *
- * @package Cog\YouTrack\Rest\Authorizer\Contracts
+ * @package Cog\YouTrack\Rest\Authenticator\Contracts
  */
-interface Authorizer
+interface Authenticator
 {
     /**
-     * Returns authorization headers.
+     * Authenticate API Client.
      *
      * @param \Cog\YouTrack\Rest\Client\Contracts\Client $client
-     * @return array
+     * @return void
      */
-    public function getHeaders(ClientContract $client): array;
+    public function authenticate(ClientContract $client): void;
+
+    /**
+     * Returns authenticated cookie.
+     *
+     * @return string
+     */
+    public function getCookie(): string;
 }
