@@ -80,7 +80,7 @@ class CookieAuthorizer implements AuthorizerContract
     }
 
     /**
-     * Set authorization credentials.
+     * Set authentication credentials.
      *
      * @param array $credentials
      * @return void

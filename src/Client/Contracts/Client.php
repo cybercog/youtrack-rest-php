@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace Cog\YouTrack\Rest\Client\Contracts;
 
-use Cog\YouTrack\Rest\Authorizer\Contracts\Authorizer as AuthorizerContract;
 use Cog\YouTrack\Rest\Response\Contracts\Response as ResponseContract;
 
 /**
@@ -23,21 +22,6 @@ use Cog\YouTrack\Rest\Response\Contracts\Response as ResponseContract;
  */
 interface Client
 {
-    /**
-     * Set authorization strategy.
-     *
-     * @param \Cog\YouTrack\Rest\Authorizer\Contracts\Authorizer $authorizer
-     * @return void
-     */
-    public function setAuthorizer(AuthorizerContract $authorizer): void;
-
-    /**
-     * Get authorization strategy.
-     *
-     * @return \Cog\YouTrack\Rest\Authorizer\Contracts\Authorizer
-     */
-    public function getAuthorizer(): AuthorizerContract;
-
     /**
      * Create and send an HTTP request.
      *

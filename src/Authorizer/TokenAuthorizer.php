@@ -37,7 +37,7 @@ class TokenAuthorizer implements AuthorizerContract
      */
     public function __construct(array $options)
     {
-        $this->setCredentials($options);
+        $this->setToken($options);
     }
 
     /**
@@ -64,12 +64,12 @@ class TokenAuthorizer implements AuthorizerContract
     }
 
     /**
-     * Set authorization credentials.
+     * Set authorization token.
      *
      * @param array $credentials
      * @return void
      */
-    protected function setCredentials(array $credentials): void
+    protected function setToken(array $credentials): void
     {
         $this->token = $credentials['token'];
     }

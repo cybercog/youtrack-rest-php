@@ -63,29 +63,8 @@ class YouTrackClient implements RestClientContract
     public function __construct(GuzzleClientContract $http, AuthorizerContract $authorizer)
     {
         $this->http = $http;
-        $this->setAuthorizer($authorizer);
-        $this->authorizer->authenticate($this);
-    }
-
-    /**
-     * Set authorization strategy.
-     *
-     * @param \Cog\YouTrack\Rest\Authorizer\Contracts\Authorizer $authorizer
-     * @return void
-     */
-    public function setAuthorizer(AuthorizerContract $authorizer): void
-    {
         $this->authorizer = $authorizer;
-    }
-
-    /**
-     * Get authorization strategy.
-     *
-     * @return \Cog\YouTrack\Rest\Authorizer\Contracts\Authorizer
-     */
-    public function getAuthorizer(): AuthorizerContract
-    {
-        return $this->authorizer;
+        $this->authorizer->authenticate($this);
     }
 
     /**
