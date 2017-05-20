@@ -43,14 +43,12 @@ class CookieAuthorizer implements AuthorizerContract
      * Returns authorization headers.
      *
      * @param \Cog\YouTrack\Rest\Client\Contracts\Client $client
-     * @return array
+     * @return void
      */
-    public function getHeaders(ClientContract $client): array
+    public function appendHeadersTo(ClientContract $client): void
     {
         $this->authenticator->authenticate($client);
 
-        return [
-            'Cookie' => $this->authenticator->getCookie(),
-        ];
+        $client->putHeader('Cookie', $this->authenticator->getCookie());
     }
 }

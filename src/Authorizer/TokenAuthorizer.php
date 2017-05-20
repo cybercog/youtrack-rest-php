@@ -44,12 +44,10 @@ class TokenAuthorizer implements AuthorizerContract
      * Returns authorization headers.
      *
      * @param \Cog\YouTrack\Rest\Client\Contracts\Client $client
-     * @return array
+     * @return void
      */
-    public function getHeaders(ClientContract $client): array
+    public function appendHeadersTo(ClientContract $client): void
     {
-        return [
-            'Authorization' => "Bearer {$this->token}",
-        ];
+        $client->putHeader('Authorization', "Bearer {$this->token}");
     }
 }

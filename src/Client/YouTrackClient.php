@@ -37,22 +37,35 @@ class YouTrackClient implements RestClientContract
     const CLIENT_VERSION = '3.0.0';
 
     /**
+     * HTTP Client.
+     *
      * @var \GuzzleHttp\ClientInterface
      */
     private $http;
 
     /**
+     * Authorization driver.
+     *
      * @var \Cog\YouTrack\Rest\Authorizer\Contracts\Authorizer
      */
     private $authorizer;
 
     /**
+     * Endpoint path prefix.
+     *
      * @todo make configurable
      * @todo test it
      * @todo choose good name
      * @var string
      */
     private $endpointPathPrefix = '/rest';
+
+    /**
+     * Request headers.
+     *
+     * @var array
+     */
+    private $headers = [];
 
     /**
      * YouTrackClient constructor.
@@ -147,6 +160,19 @@ class YouTrackClient implements RestClientContract
     }
 
     /**
+     * Write header value.
+     *
+     * @param string $key
+     * @param string $value
+     */
+    public function putHeader(string $key, string $value): void
+    {
+        $this->headers[$key] = $value;
+    }
+
+    /**
+     * Build endpoint URI.
+     *
      * @param string $uri
      * @return string
      */
@@ -156,6 +182,8 @@ class YouTrackClient implements RestClientContract
     }
 
     /**
+     * Build request options.
+     *
      * @param array $formData
      * @return array
      */
@@ -168,14 +196,20 @@ class YouTrackClient implements RestClientContract
     }
 
     /**
+     * Build request headers.
+     *
      * @param array $headers
      * @return array
      */
     protected function buildHeaders(array $headers = []): array
     {
-        return array_merge([
+        $this->headers = [
             'User-Agent' => 'Cog-YouTrack-REST-PHP/' . self::CLIENT_VERSION,
             'Accept' => 'application/json',
-        ], $this->authorizer->getHeaders($this), $headers);
+        ];
+
+        $this->authorizer->appendHeadersTo($this);
+
+        return array_merge($this->headers, $headers);
     }
 }

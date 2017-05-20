@@ -26,7 +26,7 @@ interface Authorizer
      * Returns authorization headers.
      *
      * @param \Cog\YouTrack\Rest\Client\Contracts\Client $client
-     * @return array
+     * @return void
      */
-    public function getHeaders(ClientContract $client): array;
+    public function appendHeadersTo(ClientContract $client): void;
 }
