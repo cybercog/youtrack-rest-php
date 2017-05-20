@@ -34,7 +34,7 @@ class YouTrackClient implements RestClientContract
     /**
      * Version of YouTrack REST PHP client.
      */
-    const CLIENT_VERSION = '1.0.0';
+    const CLIENT_VERSION = '2.0.1';
 
     /**
      * @var \GuzzleHttp\ClientInterface
