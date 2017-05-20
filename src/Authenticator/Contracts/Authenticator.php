@@ -29,11 +29,4 @@ interface Authenticator
      * @return void
      */
     public function authenticate(ClientContract $client): void;
-
-    /**
-     * Returns authenticated cookie.
-     *
-     * @return string
-     */
-    public function getCookie(): string;
 }

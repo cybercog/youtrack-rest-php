@@ -48,7 +48,5 @@ class CookieAuthorizer implements AuthorizerContract
     public function appendHeadersTo(ClientContract $client): void
     {
         $this->authenticator->authenticate($client);
-
-        $client->putHeader('Cookie', $this->authenticator->getCookie());
     }
 }

@@ -39,13 +39,6 @@ class CookieAuthenticator implements AuthenticatorContract
     private $cookie = '';
 
     /**
-     * Determine is authenticated successfully.
-     *
-     * @var bool
-     */
-    private $isAuthenticated = false;
-
-    /**
      * Determine is trying to authenticate.
      *
      * @var bool
@@ -74,30 +67,19 @@ class CookieAuthenticator implements AuthenticatorContract
      */
     public function authenticate(ClientContract $client): void
     {
-        if ($this->isAuthenticated || $this->isAuthenticating) {
-            return;
+        if ($this->cookie === '' && !$this->isAuthenticating) {
+            $this->isAuthenticating = true;
+            $response = $client->post('/user/login', [
+                'login' => $this->username,
+                'password' => $this->password,
+            ]);
+            $this->isAuthenticating = false;
+
+            if ($response->getStatusCode() === 200) {
+                $this->cookie = $response->getCookie();
+            }
         }
 
-        $this->isAuthenticating = true;
-        $response = $client->post('/user/login', [
-            'login' => $this->username,
-            'password' => $this->password,
-        ]);
-        $this->isAuthenticating = false;
-
-        if ($response->getStatusCode() === 200) {
-            $this->cookie = $response->getCookie();
-            $this->isAuthenticated = true;
-        }
-    }
-
-    /**
-     * Returns authenticated cookie.
-     *
-     * @return string
-     */
-    public function getCookie(): string
-    {
-        return $this->cookie;
+        $client->putHeader('Cookie', $this->cookie);
     }
 }
