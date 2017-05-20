@@ -36,13 +36,11 @@ class TokenAuthorizerTest extends FeatureTestCase
         ]);
         $handler = HandlerStack::create($mock);
         $http = new HttpClient(['handler' => $handler]);
-        $authorizer = new TokenAuthorizer([
-            'token' => 'invalid-token',
-        ]);
+        $authorizer = new TokenAuthorizer('invalid-token');
+        $client = new YouTrackClient($http, $authorizer);
 
         $this->expectException(InvalidTokenException::class);
 
-        $client = new YouTrackClient($http, $authorizer);
         $client->get('/admin/project');
     }
 }
