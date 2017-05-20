@@ -14,6 +14,8 @@
 
 YouTrack REST API PHP Client uses [PSR-7 (HTTP Message Interface)](http://www.php-fig.org/psr/psr-7/) to connect with [JetBrains YouTrack REST API](https://www.jetbrains.com/help/youtrack/standalone/2017.2/Resources-for-Developers.html).
 
+Part of the [YouTrack PHP SDK](https://github.com/cybercog/youtrack-php-sdk#readme). 
+
 ## Contents
 
 - [Features](#features)
