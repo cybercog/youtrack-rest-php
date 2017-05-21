@@ -42,6 +42,7 @@ Part of the [YouTrack PHP SDK](https://github.com/cybercog/youtrack-php-sdk#read
 - Using contracts to keep high customization capabilities.
 - Multiple authorization strategies: Token, Cookie.
 - Following PHP Standard Recommendations:
+  - [PSR-1 (Basic Coding Standard)](http://www.php-fig.org/psr/psr-1/).
   - [PSR-2 (Coding Style Guide)](http://www.php-fig.org/psr/psr-2/).
   - [PSR-4 (Autoloading Standard)](http://www.php-fig.org/psr/psr-4/).
   - [PSR-7 (HTTP Message Interface)](http://www.php-fig.org/psr/psr-7/).
