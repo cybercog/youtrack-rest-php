@@ -7,6 +7,7 @@ All notable changes to `youtrack-rest-php` will be documented in this file.
 ### Added
 
 - `Authenticator` contract and `CookieAuthenticator` implementation.
+- `isStatusCode` assert in `Response` contract.
 
 ### Updated
 
