@@ -33,44 +33,21 @@ class TokenAuthorizer implements AuthorizerContract
     /**
      * TokenAuthorizer constructor.
      *
-     * @param array $options
+     * @param string $token
      */
-    public function __construct(array $options)
+    public function __construct(string $token)
     {
-        $this->setToken($options);
+        $this->token = $token;
     }
 
     /**
      * Returns authorization headers.
      *
-     * @return array
-     */
-    public function getHeaders(): array
-    {
-        return [
-            'Authorization' => "Bearer {$this->token}",
-        ];
-    }
-
-    /**
-     * Authenticate API Client.
-     *
      * @param \Cog\YouTrack\Rest\Client\Contracts\Client $client
      * @return void
      */
-    public function authenticate(ClientContract $client): void
+    public function appendHeadersTo(ClientContract $client): void
     {
-        // Nothing to do
-    }
-
-    /**
-     * Set authorization token.
-     *
-     * @param array $credentials
-     * @return void
-     */
-    protected function setToken(array $credentials): void
-    {
-        $this->token = $credentials['token'];
+        $client->putHeader('Authorization', "Bearer {$this->token}");
     }
 }

@@ -30,7 +30,7 @@ interface Client
      * @param array $formData
      * @return \Cog\YouTrack\Rest\Response\Contracts\Response
      *
-     * @throws \Cog\YouTrack\Rest\Authorizer\Exceptions\AuthenticationException
+     * @throws \Cog\YouTrack\Rest\Authenticator\Exceptions\AuthenticationException
      * @throws \Cog\YouTrack\Rest\Authorizer\Exceptions\InvalidTokenException
      */
     public function request(string $method, string $uri, array $formData = []) : ResponseContract;
@@ -70,4 +70,12 @@ interface Client
      * @return \Cog\YouTrack\Rest\Response\Contracts\Response
      */
     public function delete(string $uri, array $formData = []): ResponseContract;
+
+    /**
+     * Write header value.
+     *
+     * @param string $key
+     * @param string $value
+     */
+    public function putHeader(string $key, string $value): void;
 }

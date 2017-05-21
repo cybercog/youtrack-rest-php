@@ -23,10 +23,8 @@ $http = new \GuzzleHttp\Client([
     'base_uri' => $apiBaseUri,
 ]);
 
-// Instantiate YouTrack API Authorizer
-$authorizer = new \Cog\YouTrack\Rest\Authorizer\TokenAuthorizer([
-    'token' => $apiAuthToken,
-]);
+// Instantiate YouTrack API Token Authorizer
+$authorizer = new \Cog\YouTrack\Rest\Authorizer\TokenAuthorizer($apiAuthToken);
 
 // Instantiate YouTrack API Client
 $client = new \Cog\YouTrack\Rest\Client\YouTrackClient($http, $authorizer);

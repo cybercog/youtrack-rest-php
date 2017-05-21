@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Cog\YouTrack\Rest\Authorizer;
 
+use Cog\YouTrack\Rest\Authenticator\Contracts\Authenticator as AuthenticatorContract;
 use Cog\YouTrack\Rest\Authorizer\Contracts\Authorizer as AuthorizerContract;
 use Cog\YouTrack\Rest\Client\Contracts\Client as ClientContract;
 
@@ -24,70 +25,28 @@ use Cog\YouTrack\Rest\Client\Contracts\Client as ClientContract;
 class CookieAuthorizer implements AuthorizerContract
 {
     /**
-     * @var string
+     * @var \Cog\YouTrack\Rest\Authenticator\Contracts\Authenticator
      */
-    private $cookie;
-
-    /**
-     * @var string
-     */
-    private $username;
-
-    /**
-     * @var string
-     */
-    private $password;
+    private $authenticator;
 
     /**
      * CookieAuthorizer constructor.
      *
-     * @param array $options
+     * @param \Cog\YouTrack\Rest\Authenticator\Contracts\Authenticator $authenticator
      */
-    public function __construct(array $options)
+    public function __construct(AuthenticatorContract $authenticator)
     {
-        $this->setCredentials($options);
+        $this->authenticator = $authenticator;
     }
 
     /**
      * Returns authorization headers.
      *
-     * @return array
-     */
-    public function getHeaders(): array
-    {
-        return [
-            'Cookie' => $this->cookie,
-        ];
-    }
-
-    /**
-     * Authenticate API Client.
-     * Stores cookie on success login.
-     *
      * @param \Cog\YouTrack\Rest\Client\Contracts\Client $client
      * @return void
-     *
-     * @throws \Cog\YouTrack\Rest\Authorizer\Exceptions\AuthenticationException
      */
-    public function authenticate(ClientContract $client): void
+    public function appendHeadersTo(ClientContract $client): void
     {
-        $response = $client->post('/user/login', [
-            'login' => $this->username,
-            'password' => $this->password,
-        ]);
-
-        $this->cookie = $response->getCookie();
-    }
-
-    /**
-     * Set authentication credentials.
-     *
-     * @param array $credentials
-     * @return void
-     */
-    protected function setCredentials(array $credentials): void
-    {
-        $this->username = $credentials['username'];
-        $this->password = $credentials['password'];
+        $this->authenticator->authenticate($client);
     }
 }

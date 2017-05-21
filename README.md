@@ -42,6 +42,7 @@ Part of the [YouTrack PHP SDK](https://github.com/cybercog/youtrack-php-sdk#read
 - Using contracts to keep high customization capabilities.
 - Multiple authorization strategies: Token, Cookie.
 - Following PHP Standard Recommendations:
+  - [PSR-1 (Basic Coding Standard)](http://www.php-fig.org/psr/psr-1/).
   - [PSR-2 (Coding Style Guide)](http://www.php-fig.org/psr/psr-2/).
   - [PSR-4 (Autoloading Standard)](http://www.php-fig.org/psr/psr-4/).
   - [PSR-7 (HTTP Message Interface)](http://www.php-fig.org/psr/psr-7/).
@@ -98,29 +99,33 @@ require_once '/path/to/your-project/vendor/autoload.php';
 Starting with YouTrack 2017.1 release [authorization based on permanent tokens](https://www.jetbrains.com/help/youtrack/standalone/2017.2/Manage-Permanent-Token.html) is recommended as the main approach for the authorization in your REST API calls. 
 
 ```php
+// Instantiate HTTP Client
 $http = new \GuzzleHttp\Client([
     'base_uri' => 'https://example.com',
 ]);
 
-$authorizer = new \Cog\YouTrack\Rest\Authorizer\TokenAuthorizer([
-    'token' => 'YOUTRACK_API_TOKEN',
-]);
+// Instantiate YouTrack API Token Authorizer
+$authorizer = new \Cog\YouTrack\Rest\Authorizer\TokenAuthorizer('YOUTRACK_API_TOKEN');
 
+// Instantiate YouTrack API Client
 $youtrack = new \Cog\YouTrack\Rest\YouTrackClient($http, $authorizer);
 ```
 
 #### Cookie Authorizer
 
 ```php
+// Instantiate HTTP Client
 $http = new \GuzzleHttp\Client([
     'base_uri' => 'https://example.com',
 ]);
 
-$authorizer = new \Cog\YouTrack\Rest\Authorizer\CookieAuthorizer([
-    'username' => 'YOUTRACK_USERNAME',
-    'password' => 'YOUTRACK_PASSWORD',
-]);
+// Instantiate YouTrack API Cookie Authenticator
+$authenticator = new \Cog\YouTrack\Rest\Authenticator\CookieAuthenticator('YOUTRACK_USERNAME', 'YOUTRACK_PASSWORD');
 
+// Instantiate YouTrack API Cookie Authorizer
+$authorizer = new \Cog\YouTrack\Rest\Authorizer\CookieAuthorizer($authenticator);
+
+// Instantiate YouTrack API Client
 $youtrack = new \Cog\YouTrack\Rest\YouTrackClient($http, $authorizer);
 ```
 
@@ -164,25 +169,25 @@ Each successful request to the API returns instance of `\Cog\YouTrack\Rest\Respo
 
 #### Get PSR HTTP response
 
-PSR HTTP response could be accessed by calling `getResponse` method on API Response.
+PSR HTTP response could be accessed by calling `httpResponse` method on API Response.
 
 ```php
 $youtrackResponse = $youtrack->get('/issue/TEST-1');
-$psrResponse = $youtrackResponse->getResponse();
+$psrResponse = $youtrackResponse->httpResponse();
 ```
 
 #### Get response Cookie
 
 ```php
 $apiResponse = $youtrack->get('/issue/TEST-1');
-$cookieString = $apiResponse->getCookie();
+$cookieString = $apiResponse->cookie();
 ```
 
 #### Get response Location
 
 ```php
 $apiResponse = $youtrack->get('/issue/TEST-1');
-$location = $apiResponse->getLocation();
+$location = $apiResponse->location();
 ```
 
 #### Transform response to array
@@ -196,7 +201,7 @@ $location = $apiResponse->toArray();
 
 ```php
 $apiResponse = $youtrack->get('/issue/TEST-1');
-$location = $apiResponse->getStatusCode();
+$location = $apiResponse->statusCode();
 ```
 
 ## Change log

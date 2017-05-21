@@ -13,8 +13,8 @@ declare(strict_types=1);
 
 namespace Cog\YouTrack\Rest\Client;
 
+use Cog\YouTrack\Rest\Authenticator\Exceptions\AuthenticationException;
 use Cog\YouTrack\Rest\Authorizer\Contracts\Authorizer as AuthorizerContract;
-use Cog\YouTrack\Rest\Authorizer\Exceptions\AuthenticationException;
 use Cog\YouTrack\Rest\Authorizer\Exceptions\InvalidTokenException;
 use Cog\YouTrack\Rest\Client\Contracts\Client as RestClientContract;
 use Cog\YouTrack\Rest\Response\Contracts\Response as ResponseContract;
@@ -25,7 +25,7 @@ use GuzzleHttp\Exception\ClientException;
 /**
  * Class YouTrackRestClient.
  *
- * @see https://www.jetbrains.com/help/youtrack/standalone/2017.2/YouTrack-REST-API-Reference.html *
+ * @see https://www.jetbrains.com/help/youtrack/standalone/2017.2/YouTrack-REST-API-Reference.html
  *
  * @package Cog\YouTrack\Rest\Client
  */
@@ -34,25 +34,38 @@ class YouTrackClient implements RestClientContract
     /**
      * Version of YouTrack REST PHP client.
      */
-    const CLIENT_VERSION = '2.0.1';
+    const CLIENT_VERSION = '3.0.0';
 
     /**
+     * HTTP Client.
+     *
      * @var \GuzzleHttp\ClientInterface
      */
     private $http;
 
     /**
+     * Authorization driver.
+     *
      * @var \Cog\YouTrack\Rest\Authorizer\Contracts\Authorizer
      */
     private $authorizer;
 
     /**
+     * Endpoint path prefix.
+     *
      * @todo make configurable
      * @todo test it
      * @todo choose good name
      * @var string
      */
     private $endpointPathPrefix = '/rest';
+
+    /**
+     * Request headers.
+     *
+     * @var array
+     */
+    private $headers = [];
 
     /**
      * YouTrackClient constructor.
@@ -64,7 +77,6 @@ class YouTrackClient implements RestClientContract
     {
         $this->http = $http;
         $this->authorizer = $authorizer;
-        $this->authorizer->authenticate($this);
     }
 
     /**
@@ -75,7 +87,7 @@ class YouTrackClient implements RestClientContract
      * @param array $formData
      * @return \Cog\YouTrack\Rest\Response\Contracts\Response
      *
-     * @throws \Cog\YouTrack\Rest\Authorizer\Exceptions\AuthenticationException
+     * @throws \Cog\YouTrack\Rest\Authenticator\Exceptions\AuthenticationException
      * @throws \Cog\YouTrack\Rest\Authorizer\Exceptions\InvalidTokenException
      */
     public function request(string $method, string $uri, array $formData = []) : ResponseContract
@@ -148,6 +160,19 @@ class YouTrackClient implements RestClientContract
     }
 
     /**
+     * Write header value.
+     *
+     * @param string $key
+     * @param string $value
+     */
+    public function putHeader(string $key, string $value): void
+    {
+        $this->headers[$key] = $value;
+    }
+
+    /**
+     * Build endpoint URI.
+     *
      * @param string $uri
      * @return string
      */
@@ -157,6 +182,8 @@ class YouTrackClient implements RestClientContract
     }
 
     /**
+     * Build request options.
+     *
      * @param array $formData
      * @return array
      */
@@ -169,14 +196,20 @@ class YouTrackClient implements RestClientContract
     }
 
     /**
+     * Build request headers.
+     *
      * @param array $headers
      * @return array
      */
     protected function buildHeaders(array $headers = []): array
     {
-        return array_merge([
+        $this->headers = [
             'User-Agent' => 'Cog-YouTrack-REST-PHP/' . self::CLIENT_VERSION,
             'Accept' => 'application/json',
-        ], $this->authorizer->getHeaders(), $headers);
+        ];
+
+        $this->authorizer->appendHeadersTo($this);
+
+        return array_merge($this->headers, $headers);
     }
 }
