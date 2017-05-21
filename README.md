@@ -94,7 +94,7 @@ require_once '/path/to/your-project/vendor/autoload.php';
 
 ### Initialize API client
 
-#### Token Authorizer
+#### Token authorization
 
 Starting with YouTrack 2017.1 release [authorization based on permanent tokens](https://www.jetbrains.com/help/youtrack/standalone/2017.2/Manage-Permanent-Token.html) is recommended as the main approach for the authorization in your REST API calls. 
 
@@ -111,7 +111,7 @@ $authorizer = new \Cog\YouTrack\Rest\Authorizer\TokenAuthorizer('YOUTRACK_API_TO
 $youtrack = new \Cog\YouTrack\Rest\YouTrackClient($http, $authorizer);
 ```
 
-#### Cookie Authorizer
+#### Cookie authorization
 
 ```php
 // Instantiate HTTP Client
