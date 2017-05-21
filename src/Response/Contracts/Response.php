@@ -59,4 +59,12 @@ interface Response
      * @return array
      */
     public function toArray(): array;
+
+    /**
+     * Assert the status code of the response.
+     *
+     * @param int $code
+     * @return bool
+     */
+    public function isStatusCode(int $code): bool;
 }

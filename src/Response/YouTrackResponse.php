@@ -92,4 +92,15 @@ class YouTrackResponse implements ResponseContract
     {
         return json_decode($this->response->getBody()->getContents(), true);
     }
+
+    /**
+     * Assert the status code of the response.
+     *
+     * @param int $code
+     * @return bool
+     */
+    public function isStatusCode(int $code): bool
+    {
+        return $this->response->getStatusCode() === $code;
+    }
 }
