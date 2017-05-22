@@ -105,7 +105,7 @@ $psrHttpClient = new \GuzzleHttp\Client([
 ]);
 
 // Instantiate YouTrack API HTTP Client
-$httpClient = new Rest\HttpClient\GuzzleHttpClient($psrHttpClient);
+$httpClient = new \Cog\YouTrack\Rest\HttpClient\GuzzleHttpClient($psrHttpClient);
 
 // Instantiate YouTrack API Token Authorizer
 $authorizer = new \Cog\YouTrack\Rest\Authorizer\TokenAuthorizer('YOUTRACK_API_TOKEN');
@@ -123,7 +123,7 @@ $psrHttpClient = new \GuzzleHttp\Client([
 ]);
 
 // Instantiate YouTrack API HTTP Client
-$httpClient = new Rest\HttpClient\GuzzleHttpClient($psrHttpClient);
+$httpClient = new \Cog\YouTrack\Rest\HttpClient\GuzzleHttpClient($psrHttpClient);
 
 // Instantiate YouTrack API Cookie Authenticator
 $authenticator = new \Cog\YouTrack\Rest\Authenticator\CookieAuthenticator('YOUTRACK_USERNAME', 'YOUTRACK_PASSWORD');
