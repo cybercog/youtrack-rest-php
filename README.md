@@ -159,7 +159,7 @@ $response = $youtrack->post('/issue', [
 ```php
 $response = $youtrack->put('/issue/TEST-1', [
     'summary' => 'Updated summary',
-    'description' => Updated description,
+    'description' => 'Updated description',
 ]);
 ```
 
