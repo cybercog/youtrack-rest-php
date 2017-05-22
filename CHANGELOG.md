@@ -7,6 +7,7 @@ All notable changes to `youtrack-rest-php` will be documented in this file.
 ### Added
 
 - `Authenticator` contract and `CookieAuthenticator` implementation.
+- `HttpClient` contract and `GuzzleHttpClient` implementation.
 - `isStatusCode` assert in `Response` contract.
 
 ### Updated
@@ -14,9 +15,12 @@ All notable changes to `youtrack-rest-php` will be documented in this file.
 - `CookieAuthorizer` constructor accepts `Authenticator` instead of credentials.
 - `TokenAuthorizer` constructor accepts string token instead of array.
 - `Authorizer` delegates authentication to `Authenticator`.
+- `Client` delegates HTTP requests to `HttpClient`.
 - Changed namespace of `AuthenticationException`.
 - `getHeaders` method was dropped from `Authorizer` contract.
 - `Response` interface methods `getResponse`, `getStatusCode`, `getCookie`, `getLocation` were renamed to `httpResponse`, `statusCode`, `cookie`, `location` respectively.
+- `User-Agent` header is more verbose.
+- REST Client version is defined in `Client` contract instead of each concrete implementation.
 
 ## [2.0.1] - 2017-05-21
 

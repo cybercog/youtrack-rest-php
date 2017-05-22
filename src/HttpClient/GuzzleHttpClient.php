@@ -60,14 +60,13 @@ class GuzzleHttpClient implements HttpClientContract
         try {
             return $this->httpClient->request($method, $uri, $this->buildOptions($options));
         } catch (BadResponseException $e) {
-            throw new HttpClientException($e->getResponse()->getBody(), $e->getCode(), $e);
+            throw new HttpClientException($e->getResponse()->getBody()->getContents(), $e->getCode(), $e);
         } catch (RequestException $e) {
             $rawResponse = $e->getResponse();
             if (!$rawResponse instanceof ResponseInterface) {
-                throw new HttpClientException($e->getMessage(), $e->getCode());
+                throw new HttpClientException($e->getMessage(), $e->getCode(), $e);
             }
-
-            throw new HttpClientException($rawResponse->getBody(), $e->getCode());
+            throw new HttpClientException($rawResponse->getBody()->getContents(), $e->getCode(), $e);
         } catch (Throwable $e) {
             throw new HttpClientException($e->getMessage(), $e->getCode(), $e);
         }
