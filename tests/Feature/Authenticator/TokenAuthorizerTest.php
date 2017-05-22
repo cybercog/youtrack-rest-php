@@ -16,6 +16,7 @@ namespace Cog\YouTrack\Rest\Tests\Feature\Authorizer;
 use Cog\YouTrack\Rest\Authorizer\Exceptions\InvalidTokenException;
 use Cog\YouTrack\Rest\Authorizer\TokenAuthorizer;
 use Cog\YouTrack\Rest\Client\YouTrackClient;
+use Cog\YouTrack\Rest\HttpClient\GuzzleHttpClient;
 use Cog\YouTrack\Rest\Tests\FeatureTestCase;
 use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\Handler\MockHandler;
@@ -35,9 +36,9 @@ class TokenAuthorizerTest extends FeatureTestCase
             $this->createFakeResponse(401, 'unauthorized'),
         ]);
         $handler = HandlerStack::create($mock);
-        $http = new HttpClient(['handler' => $handler]);
+        $httpClient = new GuzzleHttpClient(new HttpClient(['handler' => $handler]));
         $authorizer = new TokenAuthorizer('invalid-token');
-        $client = new YouTrackClient($http, $authorizer);
+        $client = new YouTrackClient($httpClient, $authorizer);
 
         $this->expectException(InvalidTokenException::class);
 

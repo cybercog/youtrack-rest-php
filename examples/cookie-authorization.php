@@ -14,24 +14,30 @@ declare(strict_types=1);
 // Boot third party libraries
 require_once __DIR__ . '/../vendor/autoload.php';
 
+use Cog\YouTrack\Rest;
+
 // Application configuration (replace with your YouTrack server values)
 $apiBaseUri = 'https://write-youtrack-domain.here';
-$apiUsername = 'YOUR_USERNAME';
-$apiPassword = 'YOUR_PASSWORD';
+$apiUsername = 'YOUTRACK_USERNAME';
+$apiPassword = 'YOUTRACK_PASSWORD';
 
-// Instantiate HTTP Client
-$http = new \GuzzleHttp\Client([
+// Instantiate PSR-7 HTTP Client
+$psrHttpClient = new \GuzzleHttp\Client([
     'base_uri' => $apiBaseUri,
+    'debug' => true,
 ]);
 
+// Instantiate YouTrack API HTTP Client
+$httpClient = new Rest\HttpClient\GuzzleHttpClient($psrHttpClient);
+
 // Instantiate YouTrack API Cookie Authenticator
-$authenticator = new \Cog\YouTrack\Rest\Authenticator\CookieAuthenticator($apiUsername, $apiPassword);
+$authenticator = new Rest\Authenticator\CookieAuthenticator($apiUsername, $apiPassword);
 
 // Instantiate YouTrack API Cookie Authorizer
-$authorizer = new \Cog\YouTrack\Rest\Authorizer\CookieAuthorizer($authenticator);
+$authorizer = new Rest\Authorizer\CookieAuthorizer($authenticator);
 
 // Instantiate YouTrack API Client
-$client = new \Cog\YouTrack\Rest\Client\YouTrackClient($http, $authorizer);
+$client = new Rest\Client\YouTrackClient($httpClient, $authorizer);
 
 // Do request to the API
 $response = $client->get('/admin/project');
