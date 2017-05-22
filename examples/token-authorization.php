@@ -20,11 +20,14 @@ use Cog\YouTrack\Rest;
 $apiBaseUri = 'https://write-youtrack-domain.here';
 $apiToken = 'YOUTRACK_PERMANENT_TOKEN';
 
-// Instantiate HTTP Client
-$httpClient = new Rest\HttpClient\GuzzleHttpClient(new \GuzzleHttp\Client([
+// Instantiate PSR-7 HTTP Client
+$psrHttpClient = new \GuzzleHttp\Client([
     'base_uri' => $apiBaseUri,
     'debug' => true,
-]));
+]);
+
+// Instantiate YouTrack API HTTP Client
+$httpClient = new Rest\HttpClient\GuzzleHttpClient($psrHttpClient);
 
 // Instantiate YouTrack API Token Authorizer
 $authorizer = new Rest\Authorizer\TokenAuthorizer($apiToken);

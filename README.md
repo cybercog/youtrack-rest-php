@@ -99,25 +99,31 @@ require_once '/path/to/your-project/vendor/autoload.php';
 Starting with YouTrack 2017.1 release [authorization based on permanent tokens](https://www.jetbrains.com/help/youtrack/standalone/2017.2/Manage-Permanent-Token.html) is recommended as the main approach for the authorization in your REST API calls. 
 
 ```php
-// Instantiate HTTP Client
-$http = new \GuzzleHttp\Client([
+// Instantiate PSR-7 HTTP Client
+$psrHttpClient = new \GuzzleHttp\Client([
     'base_uri' => 'https://example.com',
 ]);
+
+// Instantiate YouTrack API HTTP Client
+$httpClient = new Rest\HttpClient\GuzzleHttpClient($psrHttpClient);
 
 // Instantiate YouTrack API Token Authorizer
 $authorizer = new \Cog\YouTrack\Rest\Authorizer\TokenAuthorizer('YOUTRACK_API_TOKEN');
 
 // Instantiate YouTrack API Client
-$youtrack = new \Cog\YouTrack\Rest\YouTrackClient($http, $authorizer);
+$youtrack = new \Cog\YouTrack\Rest\YouTrackClient($httpClient, $authorizer);
 ```
 
 #### Cookie authorization
 
 ```php
-// Instantiate HTTP Client
-$http = new \GuzzleHttp\Client([
+// Instantiate PSR-7 HTTP Client
+$psrHttpClient = new \GuzzleHttp\Client([
     'base_uri' => 'https://example.com',
 ]);
+
+// Instantiate YouTrack API HTTP Client
+$httpClient = new Rest\HttpClient\GuzzleHttpClient($psrHttpClient);
 
 // Instantiate YouTrack API Cookie Authenticator
 $authenticator = new \Cog\YouTrack\Rest\Authenticator\CookieAuthenticator('YOUTRACK_USERNAME', 'YOUTRACK_PASSWORD');
@@ -126,7 +132,7 @@ $authenticator = new \Cog\YouTrack\Rest\Authenticator\CookieAuthenticator('YOUTR
 $authorizer = new \Cog\YouTrack\Rest\Authorizer\CookieAuthorizer($authenticator);
 
 // Instantiate YouTrack API Client
-$youtrack = new \Cog\YouTrack\Rest\YouTrackClient($http, $authorizer);
+$youtrack = new \Cog\YouTrack\Rest\YouTrackClient($httpClient, $authorizer);
 ```
 
 ### API requests

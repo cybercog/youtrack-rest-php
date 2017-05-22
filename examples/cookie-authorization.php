@@ -21,11 +21,14 @@ $apiBaseUri = 'https://write-youtrack-domain.here';
 $apiUsername = 'YOUTRACK_USERNAME';
 $apiPassword = 'YOUTRACK_PASSWORD';
 
-// Instantiate HTTP Client
-$httpClient = new Rest\HttpClient\GuzzleHttpClient(new \GuzzleHttp\Client([
+// Instantiate PSR-7 HTTP Client
+$psrHttpClient = new \GuzzleHttp\Client([
     'base_uri' => $apiBaseUri,
     'debug' => true,
-]));
+]);
+
+// Instantiate YouTrack API HTTP Client
+$httpClient = new Rest\HttpClient\GuzzleHttpClient($psrHttpClient);
 
 // Instantiate YouTrack API Cookie Authenticator
 $authenticator = new Rest\Authenticator\CookieAuthenticator($apiUsername, $apiPassword);
