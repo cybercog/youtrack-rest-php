@@ -33,70 +33,70 @@ interface Client
      * @param string $method
      * @param string $uri
      * @param array $formData
-     * @param array $headers
+     * @param array $options
      * @return \Cog\YouTrack\Rest\Response\Contracts\Response
      *
      * @throws \Cog\YouTrack\Rest\Authenticator\Exceptions\AuthenticationException
      * @throws \Cog\YouTrack\Rest\Authorizer\Exceptions\InvalidTokenException
      * @throws \Cog\YouTrack\Rest\Client\Exceptions\ClientException
      */
-    public function request(string $method, string $uri, array $formData = [], array $headers = []): ResponseContract;
+    public function request(string $method, string $uri, array $formData = [], array $options = []): ResponseContract;
 
     /**
      * Create and send an GET HTTP request.
      *
      * @param string $uri
      * @param array $formData
-     * @param array $headers
+     * @param array $options
      * @return \Cog\YouTrack\Rest\Response\Contracts\Response
      *
      * @throws \Cog\YouTrack\Rest\Authenticator\Exceptions\AuthenticationException
      * @throws \Cog\YouTrack\Rest\Authorizer\Exceptions\InvalidTokenException
      * @throws \Cog\YouTrack\Rest\Client\Exceptions\ClientException
      */
-    public function get(string $uri, array $formData = [], array $headers = []): ResponseContract;
+    public function get(string $uri, array $formData = [], array $options = []): ResponseContract;
 
     /**
      * Create and send an POST HTTP request.
      *
      * @param string $uri
      * @param array $formData
-     * @param array $headers
+     * @param array $options
      * @return \Cog\YouTrack\Rest\Response\Contracts\Response
      *
      * @throws \Cog\YouTrack\Rest\Authenticator\Exceptions\AuthenticationException
      * @throws \Cog\YouTrack\Rest\Authorizer\Exceptions\InvalidTokenException
      * @throws \Cog\YouTrack\Rest\Client\Exceptions\ClientException
      */
-    public function post(string $uri, array $formData = [], array $headers = []): ResponseContract;
+    public function post(string $uri, array $formData = [], array $options = []): ResponseContract;
 
     /**
      * Create and send an PUT HTTP request.
      *
      * @param string $uri
      * @param array $formData
-     * @param array $headers
+     * @param array $options
      * @return \Cog\YouTrack\Rest\Response\Contracts\Response
      *
      * @throws \Cog\YouTrack\Rest\Authenticator\Exceptions\AuthenticationException
      * @throws \Cog\YouTrack\Rest\Authorizer\Exceptions\InvalidTokenException
      * @throws \Cog\YouTrack\Rest\Client\Exceptions\ClientException
      */
-    public function put(string $uri, array $formData = [], array $headers = []): ResponseContract;
+    public function put(string $uri, array $formData = [], array $options = []): ResponseContract;
 
     /**
      * Create and send an DELETE HTTP request.
      *
      * @param string $uri
      * @param array $formData
-     * @param array $headers
+     * @param array $options
      * @return \Cog\YouTrack\Rest\Response\Contracts\Response
      *
      * @throws \Cog\YouTrack\Rest\Authenticator\Exceptions\AuthenticationException
      * @throws \Cog\YouTrack\Rest\Authorizer\Exceptions\InvalidTokenException
      * @throws \Cog\YouTrack\Rest\Client\Exceptions\ClientException
      */
-    public function delete(string $uri, array $formData = [], array $headers = []): ResponseContract;
+    public function delete(string $uri, array $formData = [], array $options = []): ResponseContract;
 
     /**
      * Write header value.
