@@ -137,7 +137,6 @@ $youtrack = new \Cog\YouTrack\Rest\YouTrackClient($httpClient, $authorizer);
 
 ### API requests
 
-
 #### HTTP GET request
 
 ```php
