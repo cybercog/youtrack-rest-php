@@ -21,6 +21,7 @@ All notable changes to `youtrack-rest-php` will be documented in this file.
 - `Response` interface methods `getResponse`, `getStatusCode`, `getCookie`, `getLocation` were renamed to `httpResponse`, `statusCode`, `cookie`, `location` respectively.
 - `User-Agent` header is more verbose.
 - REST Client version is defined in `Client` contract instead of each concrete implementation.
+- Additional param `$options` was added to `Client` methods: `request`, `get`, `post`, `put`, `delete`.
 
 ## [2.0.1] - 2017-05-21
 

@@ -140,8 +140,26 @@ $youtrack = new \Cog\YouTrack\Rest\YouTrackClient($httpClient, $authorizer);
 #### HTTP request
 
 ```php
-$method = 'GET'; // POST, PUT, DELETE, PATCH or any custom ones
-$response = $youtrack->request($method, '/issue/TEST-1');
+$method = 'POST'; // GET, POST, PUT, DELETE, PATCH or any custom ones
+$response = $youtrack->request($method, '/issue', [
+    'project' => 'TEST',
+    'summary' => 'New test issue',
+    'description' => 'Test description',
+]);
+```
+
+You can [customize requests created and transferred by a client using request options](http://docs.guzzlephp.org/en/latest/request-options.html). Request options control various aspects of a request including, headers, query string parameters, timeout settings, the body of a request, and much more.
+
+```php
+$options = [
+    'debug' => true,
+    'sink' => '/path/to/dump/file',
+];
+$response = $youtrack->request('POST', '/issue', [
+    'project' => 'TEST',
+    'summary' => 'New test issue',
+    'description' => 'Test description',
+], $options);
 ```
 
 #### HTTP GET request
