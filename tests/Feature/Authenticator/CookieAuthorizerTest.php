@@ -17,6 +17,7 @@ use Cog\YouTrack\Rest\Authenticator\CookieAuthenticator;
 use Cog\YouTrack\Rest\Authenticator\Exceptions\AuthenticationException;
 use Cog\YouTrack\Rest\Authorizer\CookieAuthorizer;
 use Cog\YouTrack\Rest\Client\YouTrackClient;
+use Cog\YouTrack\Rest\HttpClient\GuzzleHttpClient;
 use Cog\YouTrack\Rest\Tests\FeatureTestCase;
 use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\Handler\MockHandler;
@@ -36,10 +37,10 @@ class CookieAuthorizerTest extends FeatureTestCase
             $this->createFakeResponse(403, 'incorrect-login'),
         ]);
         $handler = HandlerStack::create($mock);
-        $http = new HttpClient(['handler' => $handler]);
+        $httpClient = new GuzzleHttpClient(new HttpClient(['handler' => $handler]));
         $authenticator = new CookieAuthenticator('invalid-user', 'invalid-pass');
         $authorizer = new CookieAuthorizer($authenticator);
-        $client = new YouTrackClient($http, $authorizer);
+        $client = new YouTrackClient($httpClient, $authorizer);
 
         $this->expectException(AuthenticationException::class);
 
@@ -49,9 +50,9 @@ class CookieAuthorizerTest extends FeatureTestCase
     /** @todo test */
     public function it_can_successfully_authenticate()
     {
-        $http = new HttpClient([
+        $http = new GuzzleHttpClient(new HttpClient([
             'base_uri' => 'http://localhost',
-        ]);
+        ]));
         $authenticator = new CookieAuthenticator('valid-user', 'valid-pass');
         $authorizer = new CookieAuthorizer($authenticator);
 

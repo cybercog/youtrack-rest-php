@@ -13,14 +13,14 @@ declare(strict_types=1);
 
 namespace Cog\YouTrack\Rest\Authenticator\Exceptions;
 
-use Cog\YouTrack\Rest\Authorizer\Exceptions\AuthorizationException;
+use Cog\YouTrack\Rest\Client\Exceptions\ClientException;
 
 /**
  * Class AuthenticationException.
  *
  * @package Cog\YouTrack\Rest\Authenticator\Exceptions
  */
-class AuthenticationException extends AuthorizationException
+class AuthenticationException extends ClientException
 {
     //
 }
