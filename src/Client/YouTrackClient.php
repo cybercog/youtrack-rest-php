@@ -80,17 +80,18 @@ class YouTrackClient implements RestClientContract
      *
      * @param string $method
      * @param string $uri
-     * @param array $options
+     * @param array $formData
+     * @param array $headers
      * @return \Cog\YouTrack\Rest\Response\Contracts\Response
      *
      * @throws \Cog\YouTrack\Rest\Authenticator\Exceptions\AuthenticationException
      * @throws \Cog\YouTrack\Rest\Authorizer\Exceptions\InvalidTokenException
      * @throws \Cog\YouTrack\Rest\Client\Exceptions\ClientException
      */
-    public function request(string $method, string $uri, array $options = []) : ResponseContract
+    public function request(string $method, string $uri, array $formData = [], array $headers = []) : ResponseContract
     {
         try {
-            $response = $this->httpClient->request($method, $this->buildUri($uri), $this->buildOptions($options));
+            $response = $this->httpClient->request($method, $this->buildUri($uri), $this->buildOptions($formData, $headers));
         } catch (HttpClientException $e) {
             switch ($e->getCode()) {
                 case 401:
@@ -112,64 +113,68 @@ class YouTrackClient implements RestClientContract
      * Create and send an GET HTTP request.
      *
      * @param string $uri
-     * @param array $options
+     * @param array $formData
+     * @param array $headers
      * @return \Cog\YouTrack\Rest\Response\Contracts\Response
      *
      * @throws \Cog\YouTrack\Rest\Authenticator\Exceptions\AuthenticationException
      * @throws \Cog\YouTrack\Rest\Authorizer\Exceptions\InvalidTokenException
      * @throws \Cog\YouTrack\Rest\Client\Exceptions\ClientException
      */
-    public function get(string $uri, array $options = []): ResponseContract
+    public function get(string $uri, array $formData = [], array $headers = []): ResponseContract
     {
-        return $this->request('GET', $uri, $options);
+        return $this->request('GET', $uri, $formData, $headers);
     }
 
     /**
      * Create and send an POST HTTP request.
      *
      * @param string $uri
-     * @param array $options
+     * @param array $formData
+     * @param array $headers
      * @return \Cog\YouTrack\Rest\Response\Contracts\Response
      *
      * @throws \Cog\YouTrack\Rest\Authenticator\Exceptions\AuthenticationException
      * @throws \Cog\YouTrack\Rest\Authorizer\Exceptions\InvalidTokenException
      * @throws \Cog\YouTrack\Rest\Client\Exceptions\ClientException
      */
-    public function post(string $uri, array $options = []): ResponseContract
+    public function post(string $uri, array $formData = [], array $headers = []): ResponseContract
     {
-        return $this->request('POST', $uri, $options);
+        return $this->request('POST', $uri, $formData, $headers);
     }
 
     /**
      * Create and send an PUT HTTP request.
      *
      * @param string $uri
-     * @param array $options
+     * @param array $formData
+     * @param array $headers
      * @return \Cog\YouTrack\Rest\Response\Contracts\Response
      *
      * @throws \Cog\YouTrack\Rest\Authenticator\Exceptions\AuthenticationException
      * @throws \Cog\YouTrack\Rest\Authorizer\Exceptions\InvalidTokenException
      * @throws \Cog\YouTrack\Rest\Client\Exceptions\ClientException
      */
-    public function put(string $uri, array $options = []): ResponseContract
+    public function put(string $uri, array $formData = [], array $headers = []): ResponseContract
     {
-        return $this->request('PUT', $uri, $options);
+        return $this->request('PUT', $uri, $formData, $headers);
     }
 
     /**
      * Create and send an DELETE HTTP request.
      *
      * @param string $uri
-     * @param array $options
+     * @param array $formData
+     * @param array $headers
      * @return \Cog\YouTrack\Rest\Response\Contracts\Response
      *
      * @throws \Cog\YouTrack\Rest\Authenticator\Exceptions\AuthenticationException
      * @throws \Cog\YouTrack\Rest\Authorizer\Exceptions\InvalidTokenException
      * @throws \Cog\YouTrack\Rest\Client\Exceptions\ClientException
      */
-    public function delete(string $uri, array $options = []): ResponseContract
+    public function delete(string $uri, array $formData = [], array $headers = []): ResponseContract
     {
-        return $this->request('DELETE', $uri, $options);
+        return $this->request('DELETE', $uri, $formData, $headers);
     }
 
     /**
@@ -198,23 +203,24 @@ class YouTrackClient implements RestClientContract
      * Build request options.
      *
      * @param array $formData
+     * @param array $headers
      * @return array
      */
-    protected function buildOptions(array $formData = []): array
+    protected function buildOptions(array $formData = [], $headers = []): array
     {
         return [
             'form_params' => $formData,
-            'headers' => $this->buildHeaders(),
+            'headers' => $this->buildHeaders($headers),
         ];
     }
 
     /**
      * Build request headers.
      *
-     * @param array $options
+     * @param array $headers
      * @return array
      */
-    protected function buildHeaders(array $options = []): array
+    protected function buildHeaders(array $headers = []): array
     {
         $this->headers = [
             'User-Agent' => 'Cog-YouTrack-REST-PHP/' . self::VERSION,
@@ -223,10 +229,6 @@ class YouTrackClient implements RestClientContract
 
         $this->authorizer->appendHeadersTo($this);
 
-        if (isset($options['headers'])) {
-            $this->headers = array_merge($this->headers, $options['headers']);
-        }
-
-        return $this->headers;
+        return array_merge($this->headers, $headers);
     }
 }
