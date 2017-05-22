@@ -137,6 +137,13 @@ $youtrack = new \Cog\YouTrack\Rest\YouTrackClient($httpClient, $authorizer);
 
 ### API requests
 
+#### HTTP request
+
+```php
+$method = 'GET'; // POST, PUT, DELETE, PATCH or any custom ones
+$response = $youtrack->request($method, '/issue/TEST-1');
+```
+
 #### HTTP GET request
 
 ```php
@@ -183,12 +190,16 @@ $psrResponse = $youtrackResponse->httpResponse();
 
 #### Get response Cookie
 
+Returns `Set-Cookie` headers as string from the HTTP response.
+
 ```php
 $apiResponse = $youtrack->get('/issue/TEST-1');
 $cookieString = $apiResponse->cookie();
 ```
 
 #### Get response Location
+
+Returns `Location` header from the HTTP response.
 
 ```php
 $apiResponse = $youtrack->get('/issue/TEST-1');
