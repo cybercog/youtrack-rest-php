@@ -5,8 +5,10 @@ namespace Cog\YouTrack\Rest\HttpClient;
 use Cog\YouTrack\Rest\HttpClient\Contracts\HttpClient as HttpClientContract;
 use Cog\YouTrack\Rest\HttpClient\Exceptions\HttpClientException;
 use GuzzleHttp\Client;
-use Psr\Http\Message\StreamInterface;
+use GuzzleHttp\Exception\BadResponseException;
+use GuzzleHttp\Exception\RequestException;
 use Psr\Http\Message\ResponseInterface;
+use Throwable;
 
 /**
  * Class GuzzleHttpClient.
@@ -46,36 +48,23 @@ class GuzzleHttpClient implements HttpClientContract
     {
         try {
             return $this->httpClient->request($method, $uri, $this->buildOptions($options));
-        } catch (\Throwable $e) {
+        } catch (BadResponseException $e) {
+            throw new HttpClientException($e->getResponse()->getBody(), $e->getCode(), $e);
+        } catch (RequestException $e) {
+            $rawResponse = $e->getResponse();
+            if (!$rawResponse instanceof ResponseInterface) {
+                throw new HttpClientException($e->getMessage(), $e->getCode());
+            }
+
+            throw new HttpClientException($rawResponse->getBody(), $e->getCode());
+        } catch (Throwable $e) {
             throw new HttpClientException($e->getMessage(), $e->getCode(), $e);
         }
     }
 
     /**
-     * Get the Response Body.
+     * Build Http Client Request options.
      *
-     * @param string|\Psr\Http\Message\ResponseInterface $response Response object
-     *
-     * @return string
-     */
-    private function getResponseBody($response)
-    {
-        //Response must be string
-        $body = $response;
-
-        if ($response instanceof ResponseInterface) {
-            //Fetch the body
-            $body = $response->getBody();
-        }
-
-        if ($body instanceof StreamInterface) {
-            $body = $body->getContents();
-        }
-
-        return (string)$body;
-    }
-
-    /**
      * @param array $options
      * @return array
      */
@@ -85,6 +74,8 @@ class GuzzleHttpClient implements HttpClientContract
     }
 
     /**
+     * Append User-Agent header to Request options.
+     *
      * @param array $options
      * @return array
      */
