@@ -64,23 +64,34 @@ class YouTrackResponse implements ResponseContract
     }
 
     /**
+     * Retrieves a comma-separated string of the values for a single header.
+     *
+     * @param string $header
+     * @return string
+     */
+    function header(string $header): string
+    {
+        return $this->response->getHeaderLine($header);
+    }
+
+    /**
      * Transform response cookie headers to string.
      *
      * @return string
      */
     public function cookie(): string
     {
-        return $this->response->getHeaderLine('Set-Cookie');
+        return $this->header('Set-Cookie');
     }
 
     /**
-     * Returns the response Location header.
+     * Returns body of the response.
      *
      * @return string
      */
-    public function location(): string
+    public function body(): string
     {
-        return $this->response->getHeaderLine('Location');
+        return (string) $this->response->getBody();
     }
 
     /**
@@ -90,7 +101,7 @@ class YouTrackResponse implements ResponseContract
      */
     public function toArray(): array
     {
-        return json_decode($this->response->getBody()->getContents(), true);
+        return json_decode($this->response->getBody(), true);
     }
 
     /**
@@ -102,5 +113,25 @@ class YouTrackResponse implements ResponseContract
     public function isStatusCode(int $code): bool
     {
         return $this->response->getStatusCode() === $code;
+    }
+
+    /**
+     * Determine if request has successful status code.
+     *
+     * @return bool
+     */
+    function isSuccess(): bool
+    {
+        return in_array($this->statusCode(), array_merge(range(200, 208), [226]));
+    }
+
+    /**
+     * Determine if request has redirect status code.
+     *
+     * @return bool
+     */
+    function isRedirect(): bool
+    {
+        return in_array($this->statusCode(), range(300, 308));
     }
 }

@@ -40,6 +40,14 @@ interface Response
     public function statusCode(): int;
 
     /**
+     * Retrieves a comma-separated string of the values for a single header.
+     *
+     * @param string $header
+     * @return string
+     */
+    function header(string $header): string;
+
+    /**
      * Transform response cookie headers to string.
      *
      * @return string
@@ -47,11 +55,11 @@ interface Response
     public function cookie(): string;
 
     /**
-     * Returns the response Location header.
+     * Returns body of the response.
      *
      * @return string
      */
-    public function location(): string;
+    public function body(): string;
 
     /**
      * Transform response body to array.
@@ -67,4 +75,18 @@ interface Response
      * @return bool
      */
     public function isStatusCode(int $code): bool;
+
+    /**
+     * Determine if request has successful status code.
+     *
+     * @return bool
+     */
+    function isSuccess(): bool;
+
+    /**
+     * Determine if request has redirect status code.
+     *
+     * @return bool
+     */
+    function isRedirect(): bool;
 }
