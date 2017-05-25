@@ -45,7 +45,7 @@ interface Response
      * @param string $header
      * @return string
      */
-    function header(string $header): string;
+    public function header(string $header): string;
 
     /**
      * Transform response cookie headers to string.
@@ -81,12 +81,12 @@ interface Response
      *
      * @return bool
      */
-    function isSuccess(): bool;
+    public function isSuccess(): bool;
 
     /**
      * Determine if request has redirect status code.
      *
      * @return bool
      */
-    function isRedirect(): bool;
+    public function isRedirect(): bool;
 }

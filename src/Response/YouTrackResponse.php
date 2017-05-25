@@ -69,7 +69,7 @@ class YouTrackResponse implements ResponseContract
      * @param string $header
      * @return string
      */
-    function header(string $header): string
+    public function header(string $header): string
     {
         return $this->response->getHeaderLine($header);
     }
@@ -120,7 +120,7 @@ class YouTrackResponse implements ResponseContract
      *
      * @return bool
      */
-    function isSuccess(): bool
+    public function isSuccess(): bool
     {
         return in_array($this->statusCode(), array_merge(range(200, 208), [226]));
     }
@@ -130,7 +130,7 @@ class YouTrackResponse implements ResponseContract
      *
      * @return bool
      */
-    function isRedirect(): bool
+    public function isRedirect(): bool
     {
         return in_array($this->statusCode(), range(300, 308));
     }
