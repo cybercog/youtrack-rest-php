@@ -2,6 +2,13 @@
 
 All notable changes to `youtrack-rest-php` will be documented in this file.
 
+## [3.1.0] - 2017-05-25
+
+### Added
+
+- `isSuccess` & `isReponse` asserts in `Response` contract.
+- `header` & `body` methods to `Response` contract.
+
 ## [3.0.0] - 2017-05-22
 
 ### Added
@@ -31,5 +38,6 @@ All notable changes to `youtrack-rest-php` will be documented in this file.
 
 - Initial release.
 
+[3.1.0]: https://github.com/cybercog/youtrack-rest-php/compare/3.0.0...3.1.0
 [3.0.0]: https://github.com/cybercog/youtrack-rest-php/compare/2.0.1...3.0.0
 [2.0.1]: https://github.com/cybercog/youtrack-rest-php/compare/1.0.0...2.0.1

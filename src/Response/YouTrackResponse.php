@@ -85,6 +85,16 @@ class YouTrackResponse implements ResponseContract
     }
 
     /**
+     * Returns response location header.
+     *
+     * @return string
+     */
+    public function location(): string
+    {
+        return $this->header('Location');
+    }
+
+    /**
      * Returns body of the response.
      *
      * @return string

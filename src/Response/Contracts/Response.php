@@ -55,6 +55,13 @@ interface Response
     public function cookie(): string;
 
     /**
+     * Returns response location header.
+     *
+     * @return string
+     */
+    public function location(): string;
+
+    /**
      * Returns body of the response.
      *
      * @return string

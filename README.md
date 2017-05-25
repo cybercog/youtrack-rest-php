@@ -206,6 +206,15 @@ $youtrackResponse = $youtrack->get('/issue/TEST-1');
 $psrResponse = $youtrackResponse->httpResponse();
 ```
 
+#### Get response headers
+
+Returns headers as string from the HTTP response.
+
+```php
+$apiResponse = $youtrack->get('/issue/TEST-1');
+$headerString = $apiResponse->header('Any-Header-You-Want');
+```
+
 #### Get response Cookie
 
 Returns `Set-Cookie` headers as string from the HTTP response.
@@ -228,7 +237,14 @@ $location = $apiResponse->location();
 
 ```php
 $apiResponse = $youtrack->get('/issue/TEST-1');
-$location = $apiResponse->toArray();
+$responseArray = $apiResponse->toArray();
+```
+
+#### Returns body of the response.
+
+```php
+$apiResponse = $youtrack->get('/issue/TEST-1');
+$body = $apiResponse->body();
 ```
 
 #### Get HTTP response status code
@@ -236,6 +252,20 @@ $location = $apiResponse->toArray();
 ```php
 $apiResponse = $youtrack->get('/issue/TEST-1');
 $location = $apiResponse->statusCode();
+```
+
+#### Determine if HTTP response status is 2xx
+
+```php
+$apiResponse = $youtrack->get('/issue/TEST-1');
+$isSuccess = $apiResponse->isSuccess();
+```
+
+#### Determine if HTTP response status is 3xx
+
+```php
+$apiResponse = $youtrack->get('/issue/TEST-1');
+$isRedirect = $apiResponse->isRedirect();
 ```
 
 ## Change log
