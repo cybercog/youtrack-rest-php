@@ -84,16 +84,30 @@ interface Response
     public function isStatusCode(int $code): bool;
 
     /**
-     * Determine if request has successful status code.
+     * Determine if response has successful status code.
      *
      * @return bool
      */
     public function isSuccess(): bool;
 
     /**
-     * Determine if request has redirect status code.
+     * Determine if response has redirect status code.
      *
      * @return bool
      */
     public function isRedirect(): bool;
+
+    /**
+     * Determine if response has client error status code.
+     *
+     * @return bool
+     */
+    public function isClientError(): bool;
+
+    /**
+     * Determine if response has server error status code.
+     *
+     * @return bool
+     */
+    public function isServerError(): bool;
 }
