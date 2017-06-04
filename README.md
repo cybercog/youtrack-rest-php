@@ -104,7 +104,7 @@ $psrHttpClient = new \GuzzleHttp\Client([
     'base_uri' => 'https://example.com',
 ]);
 
-// Instantiate YouTrack API HTTP Client
+// Instantiate YouTrack API HTTP Client Adapter
 $httpClient = new \Cog\YouTrack\Rest\HttpClient\GuzzleHttpClient($psrHttpClient);
 
 // Instantiate YouTrack API Token Authorizer
@@ -122,7 +122,7 @@ $psrHttpClient = new \GuzzleHttp\Client([
     'base_uri' => 'https://example.com',
 ]);
 
-// Instantiate YouTrack API HTTP Client
+// Instantiate YouTrack API HTTP Client Adapter
 $httpClient = new \Cog\YouTrack\Rest\HttpClient\GuzzleHttpClient($psrHttpClient);
 
 // Instantiate YouTrack API Cookie Authenticator
