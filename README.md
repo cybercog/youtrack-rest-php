@@ -51,7 +51,7 @@ Part of the [YouTrack PHP SDK](https://github.com/cybercog/youtrack-php-sdk#read
 ## Requirements
 
 - YouTrack >= 3.0 with REST-API enabled (always enabled, by default)
-- PHP >= 7.1
+- PHP >= 7.0
 - Guzzle HTTP Client >= 6.2
 
 ## Related packages
