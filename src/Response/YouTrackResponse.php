@@ -162,6 +162,6 @@ class YouTrackResponse implements ResponseContract
      */
     public function isServerError(): bool
     {
-        return $this->statusCode() >= 500 && $this->statusCode() < 600;
+        return $this->statusCode() >= 500;
     }
 }

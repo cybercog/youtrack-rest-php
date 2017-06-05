@@ -193,6 +193,23 @@ $response = $youtrack->put('/issue/TEST-1', [
 $response = $youtrack->delete('/issue/TEST-1');
 ```
 
+#### Make request with custom header
+
+```php
+$youtrack->withHeader('Cookie', 'Overriden cookie');
+$response = $youtrack->get('/issue/TEST-1');
+```
+
+#### Make request with multiple custom headers
+
+```php
+$youtrack->withHeaders([
+    'Cookie' => 'Overriden cookie',
+    'foo' => 'bar',
+]);
+$response = $youtrack->get('/issue/TEST-1');
+```
+
 ### API responses
 
 Each successful request to the API returns instance of `\Cog\YouTrack\Rest\Response\Contracts\Response` contract. By default it's `\Cog\YouTrack\Rest\Response\YouTrackResponse` class.
@@ -233,18 +250,25 @@ $apiResponse = $youtrack->get('/issue/TEST-1');
 $location = $apiResponse->location();
 ```
 
-#### Transform response to array
+#### Transform body of the response to array
 
 ```php
 $apiResponse = $youtrack->get('/issue/TEST-1');
 $responseArray = $apiResponse->toArray();
 ```
 
-#### Returns body of the response.
+#### Returns body of the response
 
 ```php
 $apiResponse = $youtrack->get('/issue/TEST-1');
 $body = $apiResponse->body();
+```
+
+#### Assert HTTP response status code
+
+```php
+$apiResponse = $youtrack->get('/issue/TEST-1');
+$isSuccess = $apiResponse->isStatusCode(200);
 ```
 
 #### Get HTTP response status code
@@ -266,6 +290,20 @@ $isSuccess = $apiResponse->isSuccess();
 ```php
 $apiResponse = $youtrack->get('/issue/TEST-1');
 $isRedirect = $apiResponse->isRedirect();
+```
+
+#### Determine if HTTP response status is 4xx
+
+```php
+$apiResponse = $youtrack->get('/issue/TEST-1');
+$isRedirect = $apiResponse->isClientError();
+```
+
+#### Determine if HTTP response status is 5xx
+
+```php
+$apiResponse = $youtrack->get('/issue/TEST-1');
+$isRedirect = $apiResponse->isServerError();
 ```
 
 ## Change log
