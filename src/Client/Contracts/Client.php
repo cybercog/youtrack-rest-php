@@ -25,7 +25,7 @@ interface Client
     /**
      * Version of YouTrack REST PHP client.
      */
-    const VERSION = '3.0.0';
+    const VERSION = '3.1.1';
 
     /**
      * Create and send an HTTP request.
