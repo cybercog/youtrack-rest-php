@@ -48,6 +48,6 @@ class TokenAuthorizer implements AuthorizerContract
      */
     public function appendHeadersTo(ClientContract $client): void
     {
-        $client->putHeader('Authorization', "Bearer {$this->token}");
+        $client->withHeader('Authorization', "Bearer {$this->token}");
     }
 }

@@ -126,22 +126,42 @@ class YouTrackResponse implements ResponseContract
     }
 
     /**
-     * Determine if request has successful status code.
+     * Determine if response has successful status code.
      *
      * @return bool
      */
     public function isSuccess(): bool
     {
-        return in_array($this->statusCode(), array_merge(range(200, 208), [226]));
+        return $this->statusCode() >= 200 && $this->statusCode() < 300;
     }
 
     /**
-     * Determine if request has redirect status code.
+     * Determine if response has redirect status code.
      *
      * @return bool
      */
     public function isRedirect(): bool
     {
-        return in_array($this->statusCode(), range(300, 308));
+        return $this->statusCode() >= 300 && $this->statusCode() < 400;
+    }
+
+    /**
+     * Determine if response has client error status code.
+     *
+     * @return bool
+     */
+    public function isClientError(): bool
+    {
+        return $this->statusCode() >= 400 && $this->statusCode() < 500;
+    }
+
+    /**
+     * Determine if response has server error status code.
+     *
+     * @return bool
+     */
+    public function isServerError(): bool
+    {
+        return $this->statusCode() >= 500;
     }
 }

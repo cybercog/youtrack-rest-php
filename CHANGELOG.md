@@ -2,11 +2,22 @@
 
 All notable changes to `youtrack-rest-php` will be documented in this file.
 
+## [3.2.0] - 2017-07-29
+
+### Added
+
+- `withHeader`, `withHeaders` methods to `Client` contract.
+- `isClientError` & `isServerError` asserts in `Response` contract.
+
+### Updated
+
+- `putHeader` method marked as deprecated to keep naming consistency and aliased to `withHeader`.
+
 ## [3.1.0] - 2017-05-25
 
 ### Added
 
-- `isSuccess` & `isReponse` asserts in `Response` contract.
+- `isSuccess` & `isReponse` asserts to `Response` contract.
 - `header` & `body` methods to `Response` contract.
 
 ## [3.0.0] - 2017-05-22
@@ -15,7 +26,7 @@ All notable changes to `youtrack-rest-php` will be documented in this file.
 
 - `Authenticator` contract and `CookieAuthenticator` implementation.
 - `HttpClient` contract and `GuzzleHttpClient` implementation.
-- `isStatusCode` assert in `Response` contract.
+- `isStatusCode` assert to `Response` contract.
 
 ### Updated
 

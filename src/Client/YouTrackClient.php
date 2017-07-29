@@ -80,7 +80,7 @@ class YouTrackClient implements RestClientContract
      *
      * @param string $method
      * @param string $uri
-     * @param array $formData
+     * @param array $params
      * @param array $options
      * @return \Cog\YouTrack\Rest\Response\Contracts\Response
      *
@@ -88,10 +88,10 @@ class YouTrackClient implements RestClientContract
      * @throws \Cog\YouTrack\Rest\Authorizer\Exceptions\InvalidTokenException
      * @throws \Cog\YouTrack\Rest\Client\Exceptions\ClientException
      */
-    public function request(string $method, string $uri, array $formData = [], array $options = []) : ResponseContract
+    public function request(string $method, string $uri, array $params = [], array $options = []) : ResponseContract
     {
         try {
-            $response = $this->httpClient->request($method, $this->buildUri($uri), $this->buildOptions($formData, $options));
+            $response = $this->httpClient->request($method, $this->buildUri($uri), $this->buildOptions($params, $options));
         } catch (HttpClientException $e) {
             switch ($e->getCode()) {
                 case 401:
@@ -113,7 +113,7 @@ class YouTrackClient implements RestClientContract
      * Create and send an GET HTTP request.
      *
      * @param string $uri
-     * @param array $formData
+     * @param array $params
      * @param array $options
      * @return \Cog\YouTrack\Rest\Response\Contracts\Response
      *
@@ -121,16 +121,16 @@ class YouTrackClient implements RestClientContract
      * @throws \Cog\YouTrack\Rest\Authorizer\Exceptions\InvalidTokenException
      * @throws \Cog\YouTrack\Rest\Client\Exceptions\ClientException
      */
-    public function get(string $uri, array $formData = [], array $options = []): ResponseContract
+    public function get(string $uri, array $params = [], array $options = []): ResponseContract
     {
-        return $this->request('GET', $uri, $formData, $options);
+        return $this->request('GET', $uri, $params, $options);
     }
 
     /**
      * Create and send an POST HTTP request.
      *
      * @param string $uri
-     * @param array $formData
+     * @param array $params
      * @param array $options
      * @return \Cog\YouTrack\Rest\Response\Contracts\Response
      *
@@ -138,16 +138,16 @@ class YouTrackClient implements RestClientContract
      * @throws \Cog\YouTrack\Rest\Authorizer\Exceptions\InvalidTokenException
      * @throws \Cog\YouTrack\Rest\Client\Exceptions\ClientException
      */
-    public function post(string $uri, array $formData = [], array $options = []): ResponseContract
+    public function post(string $uri, array $params = [], array $options = []): ResponseContract
     {
-        return $this->request('POST', $uri, $formData, $options);
+        return $this->request('POST', $uri, $params, $options);
     }
 
     /**
      * Create and send an PUT HTTP request.
      *
      * @param string $uri
-     * @param array $formData
+     * @param array $params
      * @param array $options
      * @return \Cog\YouTrack\Rest\Response\Contracts\Response
      *
@@ -155,16 +155,16 @@ class YouTrackClient implements RestClientContract
      * @throws \Cog\YouTrack\Rest\Authorizer\Exceptions\InvalidTokenException
      * @throws \Cog\YouTrack\Rest\Client\Exceptions\ClientException
      */
-    public function put(string $uri, array $formData = [], array $options = []): ResponseContract
+    public function put(string $uri, array $params = [], array $options = []): ResponseContract
     {
-        return $this->request('PUT', $uri, $formData, $options);
+        return $this->request('PUT', $uri, $params, $options);
     }
 
     /**
      * Create and send an DELETE HTTP request.
      *
      * @param string $uri
-     * @param array $formData
+     * @param array $params
      * @param array $options
      * @return \Cog\YouTrack\Rest\Response\Contracts\Response
      *
@@ -172,9 +172,9 @@ class YouTrackClient implements RestClientContract
      * @throws \Cog\YouTrack\Rest\Authorizer\Exceptions\InvalidTokenException
      * @throws \Cog\YouTrack\Rest\Client\Exceptions\ClientException
      */
-    public function delete(string $uri, array $formData = [], array $options = []): ResponseContract
+    public function delete(string $uri, array $params = [], array $options = []): ResponseContract
     {
-        return $this->request('DELETE', $uri, $formData, $options);
+        return $this->request('DELETE', $uri, $params, $options);
     }
 
     /**
@@ -182,10 +182,37 @@ class YouTrackClient implements RestClientContract
      *
      * @param string $key
      * @param string $value
+     * @return void
+     */
+    public function withHeader(string $key, string $value): void
+    {
+        $this->headers[$key] = $value;
+    }
+
+    /**
+     * Write header values.
+     *
+     * @param array $headers
+     * @return void
+     */
+    public function withHeaders(array $headers): void
+    {
+        $this->headers = array_merge_recursive($this->headers, $headers);
+    }
+
+    /**
+     * Write header value.
+     *
+     * @deprecated 3.2.0
+     * @see withHeader
+     *
+     * @param string $key
+     * @param string $value
+     * @return void
      */
     public function putHeader(string $key, string $value): void
     {
-        $this->headers[$key] = $value;
+        $this->withHeader($key, $value);
     }
 
     /**
@@ -202,19 +229,19 @@ class YouTrackClient implements RestClientContract
     /**
      * Build request options.
      *
-     * @param array $formData
+     * @param array $params
      * @param array $options
      * @return array
      */
-    protected function buildOptions(array $formData = [], $options = []): array
+    protected function buildOptions(array $params = [], $options = []): array
     {
         $defaultOptions = [
-            'form_params' => $formData,
+            'form_params' => $params,
             'headers' => $this->buildHeaders(),
         ];
 
         if (isset($options['form_params'])) {
-            $options['form_params'] = array_merge($formData, $options['form_params']);
+            $options['form_params'] = array_merge($params, $options['form_params']);
         }
 
         if (isset($options['headers'])) {

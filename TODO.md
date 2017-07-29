@@ -10,8 +10,8 @@
 - [x] Design `YouTrackClient`
 - [ ] (?) `YouTrackClient` should has `Endpoints` entity
 - [ ] (?) Ignore `Guzzle` exceptions to cleanup code? What if guzzle will be initialized with exceptions flag?
-- [ ] Move `authenticate()` method out from the constructor. It should be called before each request, but prevent authentication call recursion.
-- [ ] (?) Remove `authenticate()` method from the Authorizer contract? 
+- [x] Move `authenticate()` method out from the constructor. It should be called before each request, but prevent authentication call recursion.
+- [x] Remove `authenticate()` method from the Authorizer contract? 
 
 ## Testing
 

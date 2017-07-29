@@ -80,6 +80,6 @@ class CookieAuthenticator implements AuthenticatorContract
             }
         }
 
-        $client->putHeader('Cookie', $this->cookie);
+        $client->withHeader('Cookie', $this->cookie);
     }
 }
