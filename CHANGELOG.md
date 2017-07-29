@@ -49,6 +49,7 @@ All notable changes to `youtrack-rest-php` will be documented in this file.
 
 - Initial release.
 
+[3.2.0]: https://github.com/cybercog/youtrack-rest-php/compare/3.1.1...3.2.0
 [3.1.0]: https://github.com/cybercog/youtrack-rest-php/compare/3.0.0...3.1.0
 [3.0.0]: https://github.com/cybercog/youtrack-rest-php/compare/2.0.1...3.0.0
 [2.0.1]: https://github.com/cybercog/youtrack-rest-php/compare/1.0.0...2.0.1
