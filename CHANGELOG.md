@@ -2,7 +2,7 @@
 
 All notable changes to `youtrack-rest-php` will be documented in this file.
 
-## [3.2.0] - 2017-06-05
+## [3.2.0] - 2017-07-29
 
 ### Added
 
