@@ -6,7 +6,7 @@ All notable changes to `youtrack-rest-php` will be documented in this file.
 
 ### Changed
 
-- Contracts extracted to `Cog\Contracts\YouTrack` package.
+- Contracts extracted to `Cog\Contracts\YouTrack` package #32.
 
 ## [3.2.0] - 2017-07-29
 
@@ -55,6 +55,7 @@ All notable changes to `youtrack-rest-php` will be documented in this file.
 
 - Initial release.
 
+[4.0.0]: https://github.com/cybercog/youtrack-rest-php/compare/3.2.0...4.0.0
 [3.2.0]: https://github.com/cybercog/youtrack-rest-php/compare/3.1.1...3.2.0
 [3.1.0]: https://github.com/cybercog/youtrack-rest-php/compare/3.0.0...3.1.0
 [3.0.0]: https://github.com/cybercog/youtrack-rest-php/compare/2.0.1...3.0.0
