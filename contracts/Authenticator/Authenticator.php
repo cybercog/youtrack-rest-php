@@ -11,21 +11,21 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Cog\YouTrack\Rest\Authenticator\Contracts;
+namespace Cog\Contracts\YouTrack\Rest\Authenticator;
 
-use Cog\YouTrack\Rest\Client\Contracts\Client as ClientContract;
+use Cog\Contracts\YouTrack\Rest\Client\Client as ClientContract;
 
 /**
  * Interface Authorizer.
  *
- * @package Cog\YouTrack\Rest\Authenticator\Contracts
+ * @package Cog\Contracts\YouTrack\Rest\Authenticator
  */
 interface Authenticator
 {
     /**
      * Authenticate API Client.
      *
-     * @param \Cog\YouTrack\Rest\Client\Contracts\Client $client
+     * @param \Cog\Contracts\YouTrack\Rest\Client\Client $client
      * @return void
      */
     public function authenticate(ClientContract $client): void;

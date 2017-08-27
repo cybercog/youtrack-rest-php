@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Cog\YouTrack\Rest\HttpClient;
 
-use Cog\YouTrack\Rest\HttpClient\Contracts\HttpClient as HttpClientContract;
+use Cog\Contracts\YouTrack\Rest\HttpClient\HttpClient as HttpClientContract;
 use Cog\YouTrack\Rest\HttpClient\Exceptions\HttpClientException;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\BadResponseException;

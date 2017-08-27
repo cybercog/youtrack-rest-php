@@ -2,6 +2,17 @@
 
 All notable changes to `youtrack-rest-php` will be documented in this file.
 
+## [4.0.0] - 2017-08-27
+
+### Changed
+
+- Contracts extracted to `Cog\Contracts\YouTrack` package ([#32](https://github.com/cybercog/youtrack-rest-php/pull/32)).
+  - `Cog\YouTrack\Rest\Authenticator\Contracts` moved to `Cog\Contracts\YouTrack\Rest\Authenticator`
+  - `Cog\YouTrack\Rest\Authorizer\Contracts` moved to `Cog\Contracts\YouTrack\Rest\Authorizer`
+  - `Cog\YouTrack\Rest\Client\Contracts` moved to `Cog\Contracts\YouTrack\Rest\Client`
+  - `Cog\YouTrack\Rest\Client\HttpContracts` moved to `Cog\Contracts\YouTrack\Rest\HttpClient`
+  - `Cog\YouTrack\Rest\Client\Response` moved to `Cog\Contracts\YouTrack\Rest\Response`
+
 ## [3.2.0] - 2017-07-29
 
 ### Added
@@ -49,6 +60,7 @@ All notable changes to `youtrack-rest-php` will be documented in this file.
 
 - Initial release.
 
+[4.0.0]: https://github.com/cybercog/youtrack-rest-php/compare/3.2.0...4.0.0
 [3.2.0]: https://github.com/cybercog/youtrack-rest-php/compare/3.1.1...3.2.0
 [3.1.0]: https://github.com/cybercog/youtrack-rest-php/compare/3.0.0...3.1.0
 [3.0.0]: https://github.com/cybercog/youtrack-rest-php/compare/2.0.1...3.0.0

@@ -11,14 +11,14 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Cog\YouTrack\Rest\HttpClient\Contracts;
+namespace Cog\Contracts\YouTrack\Rest\HttpClient;
 
 use Psr\Http\Message\ResponseInterface;
 
 /**
  * Interface HttpClient.
  *
- * @package Cog\YouTrack\Rest\HttpClient\Contracts
+ * @package Cog\Contracts\YouTrack\Rest\HttpClient
  */
 interface HttpClient
 {

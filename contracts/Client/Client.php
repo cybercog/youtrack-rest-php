@@ -11,21 +11,21 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Cog\YouTrack\Rest\Client\Contracts;
+namespace Cog\Contracts\YouTrack\Rest\Client;
 
-use Cog\YouTrack\Rest\Response\Contracts\Response as ResponseContract;
+use Cog\Contracts\YouTrack\Rest\Response\Response as ResponseContract;
 
 /**
  * Interface Client.
  *
- * @package Cog\YouTrack\Rest\Client\Contracts
+ * @package Cog\Contracts\YouTrack\Rest\Client
  */
 interface Client
 {
     /**
      * Version of YouTrack REST PHP client.
      */
-    const VERSION = '3.2.0';
+    const VERSION = '4.0.0';
 
     /**
      * Create and send an HTTP request.
@@ -34,7 +34,7 @@ interface Client
      * @param string $uri
      * @param array $params
      * @param array $options
-     * @return \Cog\YouTrack\Rest\Response\Contracts\Response
+     * @return \Cog\Contracts\YouTrack\Rest\Response\Response
      *
      * @throws \Cog\YouTrack\Rest\Authenticator\Exceptions\AuthenticationException
      * @throws \Cog\YouTrack\Rest\Authorizer\Exceptions\InvalidTokenException
@@ -48,7 +48,7 @@ interface Client
      * @param string $uri
      * @param array $params
      * @param array $options
-     * @return \Cog\YouTrack\Rest\Response\Contracts\Response
+     * @return \Cog\Contracts\YouTrack\Rest\Response\Response
      *
      * @throws \Cog\YouTrack\Rest\Authenticator\Exceptions\AuthenticationException
      * @throws \Cog\YouTrack\Rest\Authorizer\Exceptions\InvalidTokenException
@@ -62,7 +62,7 @@ interface Client
      * @param string $uri
      * @param array $params
      * @param array $options
-     * @return \Cog\YouTrack\Rest\Response\Contracts\Response
+     * @return \Cog\Contracts\YouTrack\Rest\Response\Response
      *
      * @throws \Cog\YouTrack\Rest\Authenticator\Exceptions\AuthenticationException
      * @throws \Cog\YouTrack\Rest\Authorizer\Exceptions\InvalidTokenException
@@ -76,7 +76,7 @@ interface Client
      * @param string $uri
      * @param array $params
      * @param array $options
-     * @return \Cog\YouTrack\Rest\Response\Contracts\Response
+     * @return \Cog\Contracts\YouTrack\Rest\Response\Response
      *
      * @throws \Cog\YouTrack\Rest\Authenticator\Exceptions\AuthenticationException
      * @throws \Cog\YouTrack\Rest\Authorizer\Exceptions\InvalidTokenException
@@ -90,7 +90,7 @@ interface Client
      * @param string $uri
      * @param array $params
      * @param array $options
-     * @return \Cog\YouTrack\Rest\Response\Contracts\Response
+     * @return \Cog\Contracts\YouTrack\Rest\Response\Response
      *
      * @throws \Cog\YouTrack\Rest\Authenticator\Exceptions\AuthenticationException
      * @throws \Cog\YouTrack\Rest\Authorizer\Exceptions\InvalidTokenException
