@@ -11,21 +11,21 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Cog\YouTrack\Rest\Authorizer\Contracts;
+namespace Cog\Contracts\YouTrack\Rest\Authorizer;
 
-use Cog\YouTrack\Rest\Client\Contracts\Client as ClientContract;
+use Cog\Contracts\YouTrack\Rest\Client\Client as ClientContract;
 
 /**
  * Interface Authorizer.
  *
- * @package Cog\YouTrack\Rest\Authorizer\Contracts
+ * @package Cog\Contracts\YouTrack\Rest\Authorizer
  */
 interface Authorizer
 {
     /**
      * Returns authorization headers.
      *
-     * @param \Cog\YouTrack\Rest\Client\Contracts\Client $client
+     * @param \Cog\Contracts\YouTrack\Rest\Client\Client $client
      * @return void
      */
     public function appendHeadersTo(ClientContract $client): void;

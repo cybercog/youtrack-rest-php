@@ -14,13 +14,13 @@ declare(strict_types=1);
 namespace Cog\YouTrack\Rest\Client;
 
 use Cog\YouTrack\Rest\Authenticator\Exceptions\AuthenticationException;
-use Cog\YouTrack\Rest\Authorizer\Contracts\Authorizer as AuthorizerContract;
+use Cog\Contracts\YouTrack\Rest\Authorizer\Authorizer as AuthorizerContract;
 use Cog\YouTrack\Rest\Authorizer\Exceptions\InvalidTokenException;
-use Cog\YouTrack\Rest\Client\Contracts\Client as RestClientContract;
+use Cog\Contracts\YouTrack\Rest\Client\Client as RestClientContract;
 use Cog\YouTrack\Rest\Client\Exceptions\ClientException;
-use Cog\YouTrack\Rest\HttpClient\Contracts\HttpClient as HttpClientContract;
+use Cog\Contracts\YouTrack\Rest\HttpClient\HttpClient as HttpClientContract;
 use Cog\YouTrack\Rest\HttpClient\Exceptions\HttpClientException;
-use Cog\YouTrack\Rest\Response\Contracts\Response as ResponseContract;
+use Cog\Contracts\YouTrack\Rest\Response\Response as ResponseContract;
 use Cog\YouTrack\Rest\Response\YouTrackResponse;
 
 /**
@@ -35,14 +35,14 @@ class YouTrackClient implements RestClientContract
     /**
      * HTTP Client.
      *
-     * @var \Cog\YouTrack\Rest\HttpClient\Contracts\HttpClient
+     * @var \Cog\Contracts\YouTrack\Rest\HttpClient\HttpClient
      */
     private $httpClient;
 
     /**
      * Authorization driver.
      *
-     * @var \Cog\YouTrack\Rest\Authorizer\Contracts\Authorizer
+     * @var \Cog\Contracts\YouTrack\Rest\Authorizer\Authorizer
      */
     private $authorizer;
 
@@ -66,8 +66,8 @@ class YouTrackClient implements RestClientContract
     /**
      * YouTrackClient constructor.
      *
-     * @param \Cog\YouTrack\Rest\HttpClient\Contracts\HttpClient $httpClient
-     * @param \Cog\YouTrack\Rest\Authorizer\Contracts\Authorizer $authorizer
+     * @param \Cog\Contracts\YouTrack\Rest\HttpClient\HttpClient $httpClient
+     * @param \Cog\Contracts\YouTrack\Rest\Authorizer\Authorizer $authorizer
      */
     public function __construct(HttpClientContract $httpClient, AuthorizerContract $authorizer)
     {
@@ -82,7 +82,7 @@ class YouTrackClient implements RestClientContract
      * @param string $uri
      * @param array $params
      * @param array $options
-     * @return \Cog\YouTrack\Rest\Response\Contracts\Response
+     * @return \Cog\Contracts\YouTrack\Rest\Response\Response
      *
      * @throws \Cog\YouTrack\Rest\Authenticator\Exceptions\AuthenticationException
      * @throws \Cog\YouTrack\Rest\Authorizer\Exceptions\InvalidTokenException
@@ -115,7 +115,7 @@ class YouTrackClient implements RestClientContract
      * @param string $uri
      * @param array $params
      * @param array $options
-     * @return \Cog\YouTrack\Rest\Response\Contracts\Response
+     * @return \Cog\Contracts\YouTrack\Rest\Response\Response
      *
      * @throws \Cog\YouTrack\Rest\Authenticator\Exceptions\AuthenticationException
      * @throws \Cog\YouTrack\Rest\Authorizer\Exceptions\InvalidTokenException
@@ -132,7 +132,7 @@ class YouTrackClient implements RestClientContract
      * @param string $uri
      * @param array $params
      * @param array $options
-     * @return \Cog\YouTrack\Rest\Response\Contracts\Response
+     * @return \Cog\Contracts\YouTrack\Rest\Response\Response
      *
      * @throws \Cog\YouTrack\Rest\Authenticator\Exceptions\AuthenticationException
      * @throws \Cog\YouTrack\Rest\Authorizer\Exceptions\InvalidTokenException
@@ -149,7 +149,7 @@ class YouTrackClient implements RestClientContract
      * @param string $uri
      * @param array $params
      * @param array $options
-     * @return \Cog\YouTrack\Rest\Response\Contracts\Response
+     * @return \Cog\Contracts\YouTrack\Rest\Response\Response
      *
      * @throws \Cog\YouTrack\Rest\Authenticator\Exceptions\AuthenticationException
      * @throws \Cog\YouTrack\Rest\Authorizer\Exceptions\InvalidTokenException
@@ -166,7 +166,7 @@ class YouTrackClient implements RestClientContract
      * @param string $uri
      * @param array $params
      * @param array $options
-     * @return \Cog\YouTrack\Rest\Response\Contracts\Response
+     * @return \Cog\Contracts\YouTrack\Rest\Response\Response
      *
      * @throws \Cog\YouTrack\Rest\Authenticator\Exceptions\AuthenticationException
      * @throws \Cog\YouTrack\Rest\Authorizer\Exceptions\InvalidTokenException

@@ -11,14 +11,14 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Cog\YouTrack\Rest\Response\Contracts;
+namespace Cog\Contracts\YouTrack\Rest\Response;
 
 use Psr\Http\Message\ResponseInterface;
 
 /**
  * Interface Response.
  *
- * @package Cog\YouTrack\Rest\Response\Contracts
+ * @package Cog\Contracts\YouTrack\Rest\Response
  */
 interface Response
 {

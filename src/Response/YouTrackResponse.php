@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Cog\YouTrack\Rest\Response;
 
-use Cog\YouTrack\Rest\Response\Contracts\Response as ResponseContract;
+use Cog\Contracts\YouTrack\Rest\Response\Response as ResponseContract;
 use Psr\Http\Message\ResponseInterface;
 
 /**

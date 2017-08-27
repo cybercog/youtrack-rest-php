@@ -13,8 +13,8 @@ declare(strict_types=1);
 
 namespace Cog\YouTrack\Rest\Authenticator;
 
-use Cog\YouTrack\Rest\Authenticator\Contracts\Authenticator as AuthenticatorContract;
-use Cog\YouTrack\Rest\Client\Contracts\Client as ClientContract;
+use Cog\Contracts\YouTrack\Rest\Authenticator\Authenticator as AuthenticatorContract;
+use Cog\Contracts\YouTrack\Rest\Client\Client as ClientContract;
 
 /**
  * Class CookieAuthenticator.
@@ -60,7 +60,7 @@ class CookieAuthenticator implements AuthenticatorContract
     /**
      * Authenticate client and returns cookie on success login.
      *
-     * @param \Cog\YouTrack\Rest\Client\Contracts\Client $client
+     * @param \Cog\Contracts\YouTrack\Rest\Client\Client $client
      * @return void
      *
      * @throws \Cog\YouTrack\Rest\Authenticator\Exceptions\AuthenticationException

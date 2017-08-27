@@ -2,6 +2,12 @@
 
 All notable changes to `youtrack-rest-php` will be documented in this file.
 
+## [4.0.0] - 2017-08-27
+
+### Changed
+
+- Contracts extracted to `Cog\Contracts\YouTrack` package.
+
 ## [3.2.0] - 2017-07-29
 
 ### Added

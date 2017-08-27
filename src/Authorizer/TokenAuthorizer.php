@@ -13,8 +13,8 @@ declare(strict_types=1);
 
 namespace Cog\YouTrack\Rest\Authorizer;
 
-use Cog\YouTrack\Rest\Authorizer\Contracts\Authorizer as AuthorizerContract;
-use Cog\YouTrack\Rest\Client\Contracts\Client as ClientContract;
+use Cog\Contracts\YouTrack\Rest\Authorizer\Authorizer as AuthorizerContract;
+use Cog\Contracts\YouTrack\Rest\Client\Client as ClientContract;
 
 /**
  * Class TokenAuthorizer.
@@ -43,7 +43,7 @@ class TokenAuthorizer implements AuthorizerContract
     /**
      * Returns authorization headers.
      *
-     * @param \Cog\YouTrack\Rest\Client\Contracts\Client $client
+     * @param \Cog\Contracts\YouTrack\Rest\Client\Client $client
      * @return void
      */
     public function appendHeadersTo(ClientContract $client): void
