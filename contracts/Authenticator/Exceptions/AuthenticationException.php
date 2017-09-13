@@ -11,14 +11,16 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Cog\YouTrack\Rest\Authorizer\Exceptions;
+namespace Cog\Contracts\YouTrack\Rest\Authenticator\Exceptions;
+
+use Cog\Contracts\YouTrack\Rest\Client\Exceptions\ClientException;
 
 /**
- * Class InvalidTokenException.
+ * Class AuthenticationException.
  *
- * @package Cog\YouTrack\Rest\Authorizer\Exceptions
+ * @package Cog\Contracts\YouTrack\Rest\Authenticator\Exceptions
  */
-class InvalidTokenException extends AuthorizationException
+class AuthenticationException extends ClientException
 {
     //
 }
