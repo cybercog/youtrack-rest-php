@@ -13,13 +13,13 @@ declare(strict_types=1);
 
 namespace Cog\YouTrack\Rest\Client;
 
-use Cog\YouTrack\Rest\Authenticator\Exceptions\AuthenticationException;
+use Cog\Contracts\YouTrack\Rest\Authenticator\Exceptions\AuthenticationException;
 use Cog\Contracts\YouTrack\Rest\Authorizer\Authorizer as AuthorizerContract;
-use Cog\YouTrack\Rest\Authorizer\Exceptions\InvalidTokenException;
+use Cog\Contracts\YouTrack\Rest\Authorizer\Exceptions\InvalidTokenException;
 use Cog\Contracts\YouTrack\Rest\Client\Client as RestClientContract;
-use Cog\YouTrack\Rest\Client\Exceptions\ClientException;
+use Cog\Contracts\YouTrack\Rest\Client\Exceptions\ClientException;
+use Cog\Contracts\YouTrack\Rest\HttpClient\Exceptions\HttpClientException;
 use Cog\Contracts\YouTrack\Rest\HttpClient\HttpClient as HttpClientContract;
-use Cog\YouTrack\Rest\HttpClient\Exceptions\HttpClientException;
 use Cog\Contracts\YouTrack\Rest\Response\Response as ResponseContract;
 use Cog\YouTrack\Rest\Response\YouTrackResponse;
 
@@ -84,9 +84,9 @@ class YouTrackClient implements RestClientContract
      * @param array $options
      * @return \Cog\Contracts\YouTrack\Rest\Response\Response
      *
-     * @throws \Cog\YouTrack\Rest\Authenticator\Exceptions\AuthenticationException
-     * @throws \Cog\YouTrack\Rest\Authorizer\Exceptions\InvalidTokenException
-     * @throws \Cog\YouTrack\Rest\Client\Exceptions\ClientException
+     * @throws \Cog\Contracts\YouTrack\Rest\Authenticator\Exceptions\AuthenticationException
+     * @throws \Cog\Contracts\YouTrack\Rest\Authorizer\Exceptions\InvalidTokenException
+     * @throws \Cog\Contracts\YouTrack\Rest\Client\Exceptions\ClientException
      */
     public function request(string $method, string $uri, array $params = [], array $options = []) : ResponseContract
     {
@@ -117,9 +117,9 @@ class YouTrackClient implements RestClientContract
      * @param array $options
      * @return \Cog\Contracts\YouTrack\Rest\Response\Response
      *
-     * @throws \Cog\YouTrack\Rest\Authenticator\Exceptions\AuthenticationException
-     * @throws \Cog\YouTrack\Rest\Authorizer\Exceptions\InvalidTokenException
-     * @throws \Cog\YouTrack\Rest\Client\Exceptions\ClientException
+     * @throws \Cog\Contracts\YouTrack\Rest\Authenticator\Exceptions\AuthenticationException
+     * @throws \Cog\Contracts\YouTrack\Rest\Authorizer\Exceptions\InvalidTokenException
+     * @throws \Cog\Contracts\YouTrack\Rest\Client\Exceptions\ClientException
      */
     public function get(string $uri, array $params = [], array $options = []): ResponseContract
     {
@@ -134,9 +134,9 @@ class YouTrackClient implements RestClientContract
      * @param array $options
      * @return \Cog\Contracts\YouTrack\Rest\Response\Response
      *
-     * @throws \Cog\YouTrack\Rest\Authenticator\Exceptions\AuthenticationException
-     * @throws \Cog\YouTrack\Rest\Authorizer\Exceptions\InvalidTokenException
-     * @throws \Cog\YouTrack\Rest\Client\Exceptions\ClientException
+     * @throws \Cog\Contracts\YouTrack\Rest\Authenticator\Exceptions\AuthenticationException
+     * @throws \Cog\Contracts\YouTrack\Rest\Authorizer\Exceptions\InvalidTokenException
+     * @throws \Cog\Contracts\YouTrack\Rest\Client\Exceptions\ClientException
      */
     public function post(string $uri, array $params = [], array $options = []): ResponseContract
     {
@@ -151,9 +151,9 @@ class YouTrackClient implements RestClientContract
      * @param array $options
      * @return \Cog\Contracts\YouTrack\Rest\Response\Response
      *
-     * @throws \Cog\YouTrack\Rest\Authenticator\Exceptions\AuthenticationException
-     * @throws \Cog\YouTrack\Rest\Authorizer\Exceptions\InvalidTokenException
-     * @throws \Cog\YouTrack\Rest\Client\Exceptions\ClientException
+     * @throws \Cog\Contracts\YouTrack\Rest\Authenticator\Exceptions\AuthenticationException
+     * @throws \Cog\Contracts\YouTrack\Rest\Authorizer\Exceptions\InvalidTokenException
+     * @throws \Cog\Contracts\YouTrack\Rest\Client\Exceptions\ClientException
      */
     public function put(string $uri, array $params = [], array $options = []): ResponseContract
     {
@@ -168,9 +168,9 @@ class YouTrackClient implements RestClientContract
      * @param array $options
      * @return \Cog\Contracts\YouTrack\Rest\Response\Response
      *
-     * @throws \Cog\YouTrack\Rest\Authenticator\Exceptions\AuthenticationException
-     * @throws \Cog\YouTrack\Rest\Authorizer\Exceptions\InvalidTokenException
-     * @throws \Cog\YouTrack\Rest\Client\Exceptions\ClientException
+     * @throws \Cog\Contracts\YouTrack\Rest\Authenticator\Exceptions\AuthenticationException
+     * @throws \Cog\Contracts\YouTrack\Rest\Authorizer\Exceptions\InvalidTokenException
+     * @throws \Cog\Contracts\YouTrack\Rest\Client\Exceptions\ClientException
      */
     public function delete(string $uri, array $params = [], array $options = []): ResponseContract
     {

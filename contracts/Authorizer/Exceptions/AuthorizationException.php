@@ -11,16 +11,16 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Cog\YouTrack\Rest\HttpClient\Exceptions;
+namespace Cog\Contracts\YouTrack\Rest\Authorizer\Exceptions;
 
-use Exception;
+use Cog\Contracts\YouTrack\Rest\Client\Exceptions\ClientException;
 
 /**
- * Class HttpClientException.
+ * Class AuthorizationException.
  *
- * @package Cog\YouTrack\Rest\HttpClient\Exceptions
+ * @package Cog\Contracts\YouTrack\Rest\Authorizer\Exceptions
  */
-class HttpClientException extends Exception
+class AuthorizationException extends ClientException
 {
     //
 }

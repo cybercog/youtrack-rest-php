@@ -30,7 +30,7 @@ interface HttpClient
      * @param array $options Additional Options
      * @return \Psr\Http\Message\ResponseInterface Raw response from the server
      *
-     * @throws \Cog\YouTrack\Rest\HttpClient\Exceptions\HttpClientException
+     * @throws \Cog\Contracts\YouTrack\Rest\HttpClient\Exceptions\HttpClientException
      */
     public function request(string $method, string $uri, array $options = []): ResponseInterface;
 }

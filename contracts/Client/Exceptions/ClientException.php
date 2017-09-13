@@ -11,16 +11,16 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Cog\YouTrack\Rest\Authenticator\Exceptions;
+namespace Cog\Contracts\YouTrack\Rest\Client\Exceptions;
 
-use Cog\YouTrack\Rest\Client\Exceptions\ClientException;
+use Exception;
 
 /**
- * Class AuthenticationException.
+ * Class ClientException.
  *
- * @package Cog\YouTrack\Rest\Authenticator\Exceptions
+ * @package Cog\Contracts\YouTrack\Rest\Client\Exceptions
  */
-class AuthenticationException extends ClientException
+class ClientException extends Exception
 {
     //
 }

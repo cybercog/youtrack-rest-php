@@ -36,9 +36,9 @@ interface Client
      * @param array $options
      * @return \Cog\Contracts\YouTrack\Rest\Response\Response
      *
-     * @throws \Cog\YouTrack\Rest\Authenticator\Exceptions\AuthenticationException
-     * @throws \Cog\YouTrack\Rest\Authorizer\Exceptions\InvalidTokenException
-     * @throws \Cog\YouTrack\Rest\Client\Exceptions\ClientException
+     * @throws \Cog\Contracts\YouTrack\Rest\Authenticator\Exceptions\AuthenticationException
+     * @throws \Cog\Contracts\YouTrack\Rest\Authorizer\Exceptions\InvalidTokenException
+     * @throws \Cog\Contracts\YouTrack\Rest\Client\Exceptions\ClientException
      */
     public function request(string $method, string $uri, array $params = [], array $options = []): ResponseContract;
 
@@ -50,9 +50,9 @@ interface Client
      * @param array $options
      * @return \Cog\Contracts\YouTrack\Rest\Response\Response
      *
-     * @throws \Cog\YouTrack\Rest\Authenticator\Exceptions\AuthenticationException
-     * @throws \Cog\YouTrack\Rest\Authorizer\Exceptions\InvalidTokenException
-     * @throws \Cog\YouTrack\Rest\Client\Exceptions\ClientException
+     * @throws \Cog\Contracts\YouTrack\Rest\Authenticator\Exceptions\AuthenticationException
+     * @throws \Cog\Contracts\YouTrack\Rest\Authorizer\Exceptions\InvalidTokenException
+     * @throws \Cog\Contracts\YouTrack\Rest\Client\Exceptions\ClientException
      */
     public function get(string $uri, array $params = [], array $options = []): ResponseContract;
 
@@ -64,9 +64,9 @@ interface Client
      * @param array $options
      * @return \Cog\Contracts\YouTrack\Rest\Response\Response
      *
-     * @throws \Cog\YouTrack\Rest\Authenticator\Exceptions\AuthenticationException
-     * @throws \Cog\YouTrack\Rest\Authorizer\Exceptions\InvalidTokenException
-     * @throws \Cog\YouTrack\Rest\Client\Exceptions\ClientException
+     * @throws \Cog\Contracts\YouTrack\Rest\Authenticator\Exceptions\AuthenticationException
+     * @throws \Cog\Contracts\YouTrack\Rest\Authorizer\Exceptions\InvalidTokenException
+     * @throws \Cog\Contracts\YouTrack\Rest\Client\Exceptions\ClientException
      */
     public function post(string $uri, array $params = [], array $options = []): ResponseContract;
 
@@ -78,9 +78,9 @@ interface Client
      * @param array $options
      * @return \Cog\Contracts\YouTrack\Rest\Response\Response
      *
-     * @throws \Cog\YouTrack\Rest\Authenticator\Exceptions\AuthenticationException
-     * @throws \Cog\YouTrack\Rest\Authorizer\Exceptions\InvalidTokenException
-     * @throws \Cog\YouTrack\Rest\Client\Exceptions\ClientException
+     * @throws \Cog\Contracts\YouTrack\Rest\Authenticator\Exceptions\AuthenticationException
+     * @throws \Cog\Contracts\YouTrack\Rest\Authorizer\Exceptions\InvalidTokenException
+     * @throws \Cog\Contracts\YouTrack\Rest\Client\Exceptions\ClientException
      */
     public function put(string $uri, array $params = [], array $options = []): ResponseContract;
 
@@ -92,9 +92,9 @@ interface Client
      * @param array $options
      * @return \Cog\Contracts\YouTrack\Rest\Response\Response
      *
-     * @throws \Cog\YouTrack\Rest\Authenticator\Exceptions\AuthenticationException
-     * @throws \Cog\YouTrack\Rest\Authorizer\Exceptions\InvalidTokenException
-     * @throws \Cog\YouTrack\Rest\Client\Exceptions\ClientException
+     * @throws \Cog\Contracts\YouTrack\Rest\Authenticator\Exceptions\AuthenticationException
+     * @throws \Cog\Contracts\YouTrack\Rest\Authorizer\Exceptions\InvalidTokenException
+     * @throws \Cog\Contracts\YouTrack\Rest\Client\Exceptions\ClientException
      */
     public function delete(string $uri, array $params = [], array $options = []): ResponseContract;
 

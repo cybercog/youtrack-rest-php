@@ -11,16 +11,16 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Cog\YouTrack\Rest\Client\Exceptions;
+namespace Cog\Contracts\YouTrack\Rest\HttpClient\Exceptions;
 
 use Exception;
 
 /**
- * Class ClientException.
+ * Class HttpClientException.
  *
- * @package Cog\YouTrack\Rest\Client\Exceptions
+ * @package Cog\Contracts\YouTrack\Rest\HttpClient\Exceptions
  */
-class ClientException extends Exception
+class HttpClientException extends Exception
 {
     //
 }
