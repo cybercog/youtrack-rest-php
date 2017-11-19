@@ -13,14 +13,13 @@ declare(strict_types=1);
 
 namespace Cog\Contracts\YouTrack\Rest\HttpClient\Exceptions;
 
-use Exception;
+use RuntimeException;
 
 /**
  * Class HttpClientException.
  *
  * @package Cog\Contracts\YouTrack\Rest\HttpClient\Exceptions
  */
-class HttpClientException extends Exception
+class HttpClientException extends RuntimeException
 {
-    //
 }

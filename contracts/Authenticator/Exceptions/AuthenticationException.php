@@ -22,5 +22,4 @@ use Cog\Contracts\YouTrack\Rest\Client\Exceptions\ClientException;
  */
 class AuthenticationException extends ClientException
 {
-    //
 }

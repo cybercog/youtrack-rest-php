@@ -44,9 +44,13 @@ class CookieAuthorizer implements AuthorizerContract
      *
      * @param \Cog\Contracts\YouTrack\Rest\Client\Client $client
      * @return void
+     *
+     * @throws \Cog\Contracts\YouTrack\Rest\Authenticator\Exceptions\AuthenticationException
      */
     public function appendHeadersTo(ClientContract $client): void
     {
         $this->authenticator->authenticate($client);
+
+        $client->withHeader('Cookie', $this->authenticator->token());
     }
 }

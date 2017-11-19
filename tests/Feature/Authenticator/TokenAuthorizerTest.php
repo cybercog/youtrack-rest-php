@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Cog\YouTrack\Rest\Tests\Feature\Authorizer;
 
-use Cog\Contracts\YouTrack\Rest\Authorizer\Exceptions\InvalidTokenException;
+use Cog\Contracts\YouTrack\Rest\Authorizer\Exceptions\InvalidAuthorizationToken;
 use Cog\YouTrack\Rest\Authorizer\TokenAuthorizer;
 use Cog\YouTrack\Rest\Client\YouTrackClient;
 use Cog\YouTrack\Rest\HttpClient\GuzzleHttpClient;
@@ -40,7 +40,7 @@ class TokenAuthorizerTest extends FeatureTestCase
         $authorizer = new TokenAuthorizer('invalid-token');
         $client = new YouTrackClient($httpClient, $authorizer);
 
-        $this->expectException(InvalidTokenException::class);
+        $this->expectException(InvalidAuthorizationToken::class);
 
         $client->get('/admin/project');
     }

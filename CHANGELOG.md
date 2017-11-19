@@ -2,6 +2,20 @@
 
 All notable changes to `youtrack-rest-php` will be documented in this file.
 
+## [6.0.0] - 2017-11-20
+
+## Changed
+
+- `Cog\YouTrack\Rest\Authorizer\CookieAuthorizer` stopped to delegate client header manipulation to `Authenticator` ([#32](https://github.com/cybercog/youtrack-rest-php/pull/37))
+- `token` method added to `Cog\Contracts\YouTrack\Rest\Authenticator\Authenticator` contract
+- `Cog\Contracts\YouTrack\Rest\Client\Exceptions\ClientException` extends `RuntimeException` instead of `Exception`
+- `Cog\Contracts\YouTrack\Rest\Client\Exceptions\HttpClientException` extends `RuntimeException` instead of `Exception`
+- `Cog\Contracts\YouTrack\Rest\Authorizer\Exceptions\InvalidTokenException` renamed to `InvalidAuthorizationToken`
+
+## Removed
+
+- Dropped `putHeader` method from `Cog\Contracts\YouTrack\Rest\Client\Client` contract
+
 ## [5.0.0] - 2017-09-13
 
 ## Changed
@@ -21,7 +35,7 @@ All notable changes to `youtrack-rest-php` will be documented in this file.
 
 ## [3.2.0] - 2017-07-29
 
-### Added
+### Changed
 
 - `withHeader`, `withHeaders` methods to `Client` contract.
 - `isClientError` & `isServerError` asserts in `Response` contract.
@@ -66,6 +80,7 @@ All notable changes to `youtrack-rest-php` will be documented in this file.
 
 - Initial release.
 
+[6.0.0]: https://github.com/cybercog/youtrack-rest-php/compare/5.0.0...6.0.0
 [5.0.0]: https://github.com/cybercog/youtrack-rest-php/compare/4.0.0...5.0.0
 [4.0.0]: https://github.com/cybercog/youtrack-rest-php/compare/3.2.0...4.0.0
 [3.2.0]: https://github.com/cybercog/youtrack-rest-php/compare/3.1.1...3.2.0

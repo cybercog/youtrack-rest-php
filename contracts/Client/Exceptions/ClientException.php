@@ -13,14 +13,13 @@ declare(strict_types=1);
 
 namespace Cog\Contracts\YouTrack\Rest\Client\Exceptions;
 
-use Exception;
+use RuntimeException;
 
 /**
  * Class ClientException.
  *
  * @package Cog\Contracts\YouTrack\Rest\Client\Exceptions
  */
-class ClientException extends Exception
+class ClientException extends RuntimeException
 {
-    //
 }
