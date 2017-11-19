@@ -15,7 +15,7 @@ namespace Cog\YouTrack\Rest\Client;
 
 use Cog\Contracts\YouTrack\Rest\Authenticator\Exceptions\AuthenticationException;
 use Cog\Contracts\YouTrack\Rest\Authorizer\Authorizer as AuthorizerContract;
-use Cog\Contracts\YouTrack\Rest\Authorizer\Exceptions\InvalidTokenException;
+use Cog\Contracts\YouTrack\Rest\Authorizer\Exceptions\InvalidAuthorizationToken;
 use Cog\Contracts\YouTrack\Rest\Client\Client as RestClientContract;
 use Cog\Contracts\YouTrack\Rest\Client\Exceptions\ClientException;
 use Cog\Contracts\YouTrack\Rest\HttpClient\Exceptions\HttpClientException;
@@ -85,7 +85,7 @@ class YouTrackClient implements RestClientContract
      * @return \Cog\Contracts\YouTrack\Rest\Response\Response
      *
      * @throws \Cog\Contracts\YouTrack\Rest\Authenticator\Exceptions\AuthenticationException
-     * @throws \Cog\Contracts\YouTrack\Rest\Authorizer\Exceptions\InvalidTokenException
+     * @throws \Cog\Contracts\YouTrack\Rest\Authorizer\Exceptions\InvalidAuthorizationToken
      * @throws \Cog\Contracts\YouTrack\Rest\Client\Exceptions\ClientException
      */
     public function request(string $method, string $uri, array $params = [], array $options = []) : ResponseContract
@@ -95,7 +95,7 @@ class YouTrackClient implements RestClientContract
         } catch (HttpClientException $e) {
             switch ($e->getCode()) {
                 case 401:
-                    throw new InvalidTokenException($e->getMessage(), $e->getCode());
+                    throw new InvalidAuthorizationToken($e->getMessage(), $e->getCode());
                     break;
                 case 403:
                     throw new AuthenticationException($e->getMessage(), $e->getCode());
@@ -118,7 +118,7 @@ class YouTrackClient implements RestClientContract
      * @return \Cog\Contracts\YouTrack\Rest\Response\Response
      *
      * @throws \Cog\Contracts\YouTrack\Rest\Authenticator\Exceptions\AuthenticationException
-     * @throws \Cog\Contracts\YouTrack\Rest\Authorizer\Exceptions\InvalidTokenException
+     * @throws \Cog\Contracts\YouTrack\Rest\Authorizer\Exceptions\InvalidAuthorizationToken
      * @throws \Cog\Contracts\YouTrack\Rest\Client\Exceptions\ClientException
      */
     public function get(string $uri, array $params = [], array $options = []): ResponseContract
@@ -135,7 +135,7 @@ class YouTrackClient implements RestClientContract
      * @return \Cog\Contracts\YouTrack\Rest\Response\Response
      *
      * @throws \Cog\Contracts\YouTrack\Rest\Authenticator\Exceptions\AuthenticationException
-     * @throws \Cog\Contracts\YouTrack\Rest\Authorizer\Exceptions\InvalidTokenException
+     * @throws \Cog\Contracts\YouTrack\Rest\Authorizer\Exceptions\InvalidAuthorizationToken
      * @throws \Cog\Contracts\YouTrack\Rest\Client\Exceptions\ClientException
      */
     public function post(string $uri, array $params = [], array $options = []): ResponseContract
@@ -152,7 +152,7 @@ class YouTrackClient implements RestClientContract
      * @return \Cog\Contracts\YouTrack\Rest\Response\Response
      *
      * @throws \Cog\Contracts\YouTrack\Rest\Authenticator\Exceptions\AuthenticationException
-     * @throws \Cog\Contracts\YouTrack\Rest\Authorizer\Exceptions\InvalidTokenException
+     * @throws \Cog\Contracts\YouTrack\Rest\Authorizer\Exceptions\InvalidAuthorizationToken
      * @throws \Cog\Contracts\YouTrack\Rest\Client\Exceptions\ClientException
      */
     public function put(string $uri, array $params = [], array $options = []): ResponseContract
@@ -169,7 +169,7 @@ class YouTrackClient implements RestClientContract
      * @return \Cog\Contracts\YouTrack\Rest\Response\Response
      *
      * @throws \Cog\Contracts\YouTrack\Rest\Authenticator\Exceptions\AuthenticationException
-     * @throws \Cog\Contracts\YouTrack\Rest\Authorizer\Exceptions\InvalidTokenException
+     * @throws \Cog\Contracts\YouTrack\Rest\Authorizer\Exceptions\InvalidAuthorizationToken
      * @throws \Cog\Contracts\YouTrack\Rest\Client\Exceptions\ClientException
      */
     public function delete(string $uri, array $params = [], array $options = []): ResponseContract
