@@ -67,19 +67,29 @@ class CookieAuthenticator implements AuthenticatorContract
      */
     public function authenticate(ClientContract $client): void
     {
-        if ($this->cookie === '' && !$this->isAuthenticating) {
-            $this->isAuthenticating = true;
-            $response = $client->request('POST', '/user/login', [
-                'login' => $this->username,
-                'password' => $this->password,
-            ]);
-            $this->isAuthenticating = false;
-
-            if ($response->isStatusCode(200)) {
-                $this->cookie = $response->cookie();
-            }
+        if ($this->cookie !== '' || $this->isAuthenticating) {
+            return;
         }
 
-        $client->withHeader('Cookie', $this->cookie);
+        $this->isAuthenticating = true;
+        $response = $client->request('POST', '/user/login', [
+            'login' => $this->username,
+            'password' => $this->password,
+        ]);
+        $this->isAuthenticating = false;
+
+        if ($response->isStatusCode(200)) {
+            $this->cookie = $response->cookie();
+        }
+    }
+
+    /**
+     * Retrieve authentication token.
+     *
+     * @return string
+     */
+    public function token(): string
+    {
+        return $this->cookie;
     }
 }
