@@ -23,7 +23,7 @@ use Cog\Contracts\YouTrack\Rest\Client\Client as ClientContract;
 interface Authorizer
 {
     /**
-     * Returns authorization headers.
+     * Append authorization headers to REST client.
      *
      * @param \Cog\Contracts\YouTrack\Rest\Client\Client $client
      * @return void

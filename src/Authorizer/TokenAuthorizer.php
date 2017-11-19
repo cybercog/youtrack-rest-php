@@ -41,7 +41,7 @@ class TokenAuthorizer implements AuthorizerContract
     }
 
     /**
-     * Returns authorization headers.
+     * Append authorization headers to REST client.
      *
      * @param \Cog\Contracts\YouTrack\Rest\Client\Client $client
      * @return void
