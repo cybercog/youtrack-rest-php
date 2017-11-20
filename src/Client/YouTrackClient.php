@@ -201,21 +201,6 @@ class YouTrackClient implements RestClientContract
     }
 
     /**
-     * Write header value.
-     *
-     * @deprecated 3.2.0
-     * @see withHeader
-     *
-     * @param string $key
-     * @param string $value
-     * @return void
-     */
-    public function putHeader(string $key, string $value): void
-    {
-        $this->withHeader($key, $value);
-    }
-
-    /**
      * Build endpoint URI.
      *
      * @param string $uri
