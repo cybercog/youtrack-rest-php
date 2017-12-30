@@ -89,7 +89,7 @@ require_once '/path/to/your-project/vendor/autoload.php';
 
 ## Usage
 
-[Usage Documentation](https://github.com/cybercog/youtrack-php-sdk/wiki/YouTrack-REST-PHP)
+[Usage Documentation](https://github.com/cybercog/youtrack-php-sdk/wiki/PHP-YouTrack-REST)
 
 ## Change log
 
