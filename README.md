@@ -1,6 +1,6 @@
 # PHP YouTrack REST
 
-![cog-php-youtrack-rest](https://user-images.githubusercontent.com/1849174/34457103-fd797b6a-edb7-11e7-94f0-02954299c33e.png)
+![cog-php-youtrack-rest](https://user-images.githubusercontent.com/1849174/34457236-ab5aa292-edbb-11e7-8555-e454255acd82.png)
 
 <p align="center">
 <a href="https://travis-ci.org/cybercog/youtrack-rest-php"><img src="https://img.shields.io/travis/cybercog/youtrack-rest-php/master.svg?style=flat-square" alt="Build Status"></a>
