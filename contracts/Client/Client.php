@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /*
- * This file is part of YouTrack REST PHP.
+ * This file is part of PHP YouTrack REST.
  *
  * (c) Anton Komarev <a.komarev@cybercog.su>
  *
@@ -23,7 +23,7 @@ use Cog\Contracts\YouTrack\Rest\Response\Response as ResponseContract;
 interface Client
 {
     /**
-     * Version of YouTrack REST PHP client.
+     * Version of PHP YouTrack REST client.
      */
     const VERSION = '6.0.0';
 

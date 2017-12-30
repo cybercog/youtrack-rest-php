@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /*
- * This file is part of YouTrack REST PHP.
+ * This file is part of PHP YouTrack REST.
  *
  * (c) Anton Komarev <a.komarev@cybercog.su>
  *

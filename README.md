@@ -1,6 +1,6 @@
-# YouTrack REST PHP
+# PHP YouTrack REST
 
-![cog-youtrack-rest-php](https://cloud.githubusercontent.com/assets/1849174/26024854/65d76766-37e3-11e7-82ba-e386c9625894.png)
+![cog-php-youtrack-rest](https://user-images.githubusercontent.com/1849174/34457103-fd797b6a-edb7-11e7-94f0-02954299c33e.png)
 
 <p align="center">
 <a href="https://travis-ci.org/cybercog/youtrack-rest-php"><img src="https://img.shields.io/travis/cybercog/youtrack-rest-php/master.svg?style=flat-square" alt="Build Status"></a>
@@ -14,7 +14,7 @@
 
 YouTrack REST API PHP Client uses [PSR-7 (HTTP Message Interface)](http://www.php-fig.org/psr/psr-7/) to connect with [JetBrains YouTrack REST API](https://www.jetbrains.com/help/youtrack/standalone/2017.2/Resources-for-Developers.html).
 
-Part of the [YouTrack PHP SDK](https://github.com/cybercog/youtrack-php-sdk#readme). 
+Part of the [PHP YouTrack SDK](https://github.com/cybercog/youtrack-php-sdk#readme). 
 
 ## Contents
 
@@ -53,13 +53,13 @@ Part of the [YouTrack PHP SDK](https://github.com/cybercog/youtrack-php-sdk#read
 
 ## Related packages
 
-- [YouTrack PHP SDK](https://github.com/cybercog/youtrack-php-sdk#readme) maintained by [Anton Komarev](https://github.com/a-komarev)
+- [PHP YouTrack SDK](https://github.com/cybercog/youtrack-php-sdk#readme) maintained by [Anton Komarev](https://github.com/a-komarev)
 
 **Share your packages! [We are open](CONTRIBUTING.md) for Pull Requests!**
 
 ## Frameworks support
 
-YouTrack REST PHP is framework agnostic package and could be easily used in any PHP framework you want.
+PHP YouTrack REST is framework agnostic package and could be easily used in any PHP framework you want.
 
 ### Framework integrations list
 
@@ -116,7 +116,7 @@ If you discover any security related issues, please email open@cybercog.su inste
 | <a href="https://github.com/a-komarev">![@a-komarev](https://avatars.githubusercontent.com/u/1849174?s=110)<br />Anton Komarev</a> |
 | :---: |
 
-[YouTrack REST PHP contributors list](../../contributors)
+[PHP YouTrack REST contributors list](../../contributors)
 
 ## Alternatives
 
@@ -142,7 +142,7 @@ If you discover any security related issues, please email open@cybercog.su inste
 
 ## License
 
-- `YouTrack REST PHP` package is open-sourced software licensed under the [MIT License](LICENSE).
+- `PHP YouTrack REST` package is open-sourced software licensed under the [MIT License](LICENSE).
 
 ## About CyberCog
 
