@@ -54,7 +54,7 @@ class YouTrackClient implements RestClientContract
      * @todo choose good name
      * @var string
      */
-    private $endpointPathPrefix = '/rest';
+    private $endpointPathPrefix = 'rest';
 
     /**
      * Request headers.
