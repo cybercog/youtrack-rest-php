@@ -2,15 +2,25 @@
 
 All notable changes to `youtrack-rest-php` will be documented in this file.
 
+## [6.1.0] - 2018-06-30
+
+### Added
+
+- ([#40](https://github.com/cybercog/youtrack-rest-php/pull/40)) Multipart requests support for attachments uploads
+
+### Changed
+
+- ([#41](https://github.com/cybercog/youtrack-rest-php/pull/41)) Add missing `array` type to `$options` argument of `buildOptions` method of `Cog\YouTrack\Rest\Client\YouTrackClient`
+
 ## [6.0.2] - 2017-01-10
 
-## Changed
+### Changed
 
 - `Cog\YouTrack\Rest\Client\YouTrackClient` endpoint prefix is relative now ([#39](https://github.com/cybercog/youtrack-rest-php/pull/39))
 
 ## [6.0.0] - 2017-11-20
 
-## Changed
+### Changed
 
 - `Cog\YouTrack\Rest\Authorizer\CookieAuthorizer` stopped to delegate client header manipulation to `Authenticator` ([#32](https://github.com/cybercog/youtrack-rest-php/pull/37))
 - `token` method added to `Cog\Contracts\YouTrack\Rest\Authenticator\Authenticator` contract
@@ -18,13 +28,13 @@ All notable changes to `youtrack-rest-php` will be documented in this file.
 - `Cog\Contracts\YouTrack\Rest\Client\Exceptions\HttpClientException` extends `RuntimeException` instead of `Exception`
 - `Cog\Contracts\YouTrack\Rest\Authorizer\Exceptions\InvalidTokenException` renamed to `InvalidAuthorizationToken`
 
-## Removed
+### Removed
 
 - Dropped `putHeader` method from `Cog\Contracts\YouTrack\Rest\Client\Client` contract
 
 ## [5.0.0] - 2017-09-13
 
-## Changed
+### Changed
 
 - Exceptions moved to `Cog\Contracts\YouTrack` namespace ([#34](https://github.com/cybercog/youtrack-rest-php/pull/34)).
 
@@ -86,6 +96,7 @@ All notable changes to `youtrack-rest-php` will be documented in this file.
 
 - Initial release.
 
+[6.1.0]: https://github.com/cybercog/youtrack-rest-php/compare/6.0.2...6.1.0
 [6.0.2]: https://github.com/cybercog/youtrack-rest-php/compare/6.0.1...6.0.2
 [6.0.0]: https://github.com/cybercog/youtrack-rest-php/compare/5.0.0...6.0.0
 [5.0.0]: https://github.com/cybercog/youtrack-rest-php/compare/4.0.0...5.0.0
