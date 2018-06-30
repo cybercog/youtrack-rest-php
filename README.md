@@ -113,7 +113,7 @@ If you discover any security related issues, please email open@cybercog.su inste
 
 ## Contributors
 
-| <a href="https://github.com/a-komarev">![@a-komarev](https://avatars.githubusercontent.com/u/1849174?s=110)<br />Anton Komarev</a> | <a href="https://github.com/adam187">![@adam187](https://avatars.githubusercontent.com/u/156628?s=110)<br />Adam Misiorny</a> | <a href="https://github.com/dmkdev">![@dmkdev](https://avatars.githubusercontent.com/u/5785726?s=110)<br />dmkdev</a> |
+| <a href="https://github.com/a-komarev">![@a-komarev](https://avatars.githubusercontent.com/u/1849174?s=110)<br />Anton Komarev</a> | <a href="https://github.com/adam187">![@adam187](https://avatars.githubusercontent.com/u/156628?s=110)<br />Adam Misiorny</a> | <a href="https://github.com/dmkdev"><br />dmkdev</a> |
 | :---: | :---: | :---: |
 
 [PHP YouTrack REST contributors list](../../contributors)
