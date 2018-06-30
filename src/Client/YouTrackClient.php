@@ -218,27 +218,29 @@ class YouTrackClient implements RestClientContract
      * @param array $options
      * @return array
      */
-    protected function buildOptions(array $params = [], $options = []): array
+    protected function buildOptions(array $params = [], array $options = []): array
     {
         $defaultOptions = [
             'form_params' => $params,
             'headers' => $this->buildHeaders(),
         ];
 
-        if (!isset($options['multipart']) && isset($options['form_params'])) {
-            $options['form_params'] = array_merge($params, $options['form_params']);
-        }
-        
         if (isset($options['multipart'])) {
             unset($defaultOptions['form_params']);
             foreach ($params as $key => $value) {
-                $options['multipart'][] = ['name' => $key, 'data' => $value];
+                $options['multipart'][] = [
+                    'name' => $key,
+                    'data' => $value,
+                ];
             }
+        } elseif (isset($options['form_params'])) {
+            $options['form_params'] = array_merge($params, $options['form_params']);
         }
 
         if (isset($options['headers'])) {
             $options['headers'] = array_merge($this->buildHeaders(), $options['headers']);
         }
+
         return array_merge($defaultOptions, $options);
     }
 

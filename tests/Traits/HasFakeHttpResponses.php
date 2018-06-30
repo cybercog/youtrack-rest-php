@@ -180,7 +180,7 @@ trait HasFakeHttpResponses
     private function buildFakeRequestDirectoryPath(string $name): string
     {
         return sprintf(
-            '%s/../stub-responses/2017.2/%s',
+            '%s/../stubs/server-responses/2017.2/%s',
             __DIR__, ltrim($name, '/')
         );
     }
