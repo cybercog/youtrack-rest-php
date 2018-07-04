@@ -53,7 +53,7 @@ Part of the [PHP YouTrack SDK](https://github.com/cybercog/youtrack-php-sdk#read
 
 ## Related packages
 
-- [PHP YouTrack SDK](https://github.com/cybercog/youtrack-php-sdk#readme) maintained by [Anton Komarev](https://github.com/a-komarev)
+- [PHP YouTrack SDK](https://github.com/cybercog/youtrack-php-sdk#readme) maintained by [Anton Komarev](https://github.com/antonkomarev)
 
 **Share your packages! [We are open](CONTRIBUTING.md) for Pull Requests!**
 
@@ -63,7 +63,7 @@ PHP YouTrack REST is framework agnostic package and could be easily used in any 
 
 ### Framework integrations list
 
-- [Laravel YouTrack SDK](https://github.com/cybercog/laravel-youtrack-sdk#readme) maintained by [Anton Komarev](https://github.com/a-komarev)
+- [Laravel YouTrack SDK](https://github.com/cybercog/laravel-youtrack-sdk#readme) maintained by [Anton Komarev](https://github.com/antonkomarev)
 
 **Haven't found your favorite framework in the list? [We are open](CONTRIBUTING.md) for Pull Requests!**
 
@@ -113,7 +113,7 @@ If you discover any security related issues, please email open@cybercog.su inste
 
 ## Contributors
 
-| <a href="https://github.com/a-komarev">![@a-komarev](https://avatars.githubusercontent.com/u/1849174?s=110)<br />Anton Komarev</a> | <a href="https://github.com/adam187">![@adam187](https://avatars.githubusercontent.com/u/156628?s=110)<br />Adam Misiorny</a> | <a href="https://github.com/dmkdev"><br />dmkdev</a> |
+| <a href="https://github.com/antonkomarev">![@antonkomarev](https://avatars.githubusercontent.com/u/1849174?s=110)<br />Anton Komarev</a> | <a href="https://github.com/adam187">![@adam187](https://avatars.githubusercontent.com/u/156628?s=110)<br />Adam Misiorny</a> | <a href="https://github.com/dmkdev"><br />dmkdev</a> |
 | :---: | :---: | :---: |
 
 [PHP YouTrack REST contributors list](../../contributors)
