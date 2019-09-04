@@ -1,28 +1,30 @@
 # Changelog
 
-All notable changes to `youtrack-rest-php` will be documented in this file.
+All notable changes to `cybercog/youtrack-rest-php` will be documented in this file.
+
+## [Unreleased]
 
 ## [6.1.0] - 2018-06-30
 
 ### Added
 
-- ([#40](https://github.com/cybercog/youtrack-rest-php/pull/40)) Multipart requests support for attachments uploads
+- ([#40]) Multipart requests support for attachments uploads
 
 ### Changed
 
-- ([#41](https://github.com/cybercog/youtrack-rest-php/pull/41)) Add missing `array` type to `$options` argument of `buildOptions` method of `Cog\YouTrack\Rest\Client\YouTrackClient`
+- ([#41]) Add missing `array` type to `$options` argument of `buildOptions` method of `Cog\YouTrack\Rest\Client\YouTrackClient`
 
 ## [6.0.2] - 2017-01-10
 
 ### Changed
 
-- `Cog\YouTrack\Rest\Client\YouTrackClient` endpoint prefix is relative now ([#39](https://github.com/cybercog/youtrack-rest-php/pull/39))
+- `Cog\YouTrack\Rest\Client\YouTrackClient` endpoint prefix is relative now ([#39])
 
 ## [6.0.0] - 2017-11-20
 
 ### Changed
 
-- `Cog\YouTrack\Rest\Authorizer\CookieAuthorizer` stopped to delegate client header manipulation to `Authenticator` ([#32](https://github.com/cybercog/youtrack-rest-php/pull/37))
+- `Cog\YouTrack\Rest\Authorizer\CookieAuthorizer` stopped to delegate client header manipulation to `Authenticator` ([#32])
 - `token` method added to `Cog\Contracts\YouTrack\Rest\Authenticator\Authenticator` contract
 - `Cog\Contracts\YouTrack\Rest\Client\Exceptions\ClientException` extends `RuntimeException` instead of `Exception`
 - `Cog\Contracts\YouTrack\Rest\Client\Exceptions\HttpClientException` extends `RuntimeException` instead of `Exception`
@@ -36,13 +38,13 @@ All notable changes to `youtrack-rest-php` will be documented in this file.
 
 ### Changed
 
-- Exceptions moved to `Cog\Contracts\YouTrack` namespace ([#34](https://github.com/cybercog/youtrack-rest-php/pull/34)).
+- Exceptions moved to `Cog\Contracts\YouTrack` namespace ([#34]).
 
 ## [4.0.0] - 2017-08-27
 
 ### Changed
 
-- Contracts extracted to `Cog\Contracts\YouTrack` package ([#32](https://github.com/cybercog/youtrack-rest-php/pull/32)).
+- Contracts extracted to `Cog\Contracts\YouTrack` package ([#32]).
   - `Cog\YouTrack\Rest\Authenticator\Contracts` moved to `Cog\Contracts\YouTrack\Rest\Authenticator`
   - `Cog\YouTrack\Rest\Authorizer\Contracts` moved to `Cog\Contracts\YouTrack\Rest\Authorizer`
   - `Cog\YouTrack\Rest\Client\Contracts` moved to `Cog\Contracts\YouTrack\Rest\Client`
@@ -96,6 +98,7 @@ All notable changes to `youtrack-rest-php` will be documented in this file.
 
 - Initial release.
 
+[Unreleased]: https://github.com/cybercog/youtrack-rest-php/compare/6.1.0...master
 [6.1.0]: https://github.com/cybercog/youtrack-rest-php/compare/6.0.2...6.1.0
 [6.0.2]: https://github.com/cybercog/youtrack-rest-php/compare/6.0.1...6.0.2
 [6.0.0]: https://github.com/cybercog/youtrack-rest-php/compare/5.0.0...6.0.0
@@ -105,3 +108,9 @@ All notable changes to `youtrack-rest-php` will be documented in this file.
 [3.1.0]: https://github.com/cybercog/youtrack-rest-php/compare/3.0.0...3.1.0
 [3.0.0]: https://github.com/cybercog/youtrack-rest-php/compare/2.0.1...3.0.0
 [2.0.1]: https://github.com/cybercog/youtrack-rest-php/compare/1.0.0...2.0.1
+
+[#41]: https://github.com/cybercog/youtrack-rest-php/pull/41
+[#40]: https://github.com/cybercog/youtrack-rest-php/pull/40
+[#39]: https://github.com/cybercog/youtrack-rest-php/pull/39
+[#34]: https://github.com/cybercog/youtrack-rest-php/pull/34
+[#32]: https://github.com/cybercog/youtrack-rest-php/pull/32
