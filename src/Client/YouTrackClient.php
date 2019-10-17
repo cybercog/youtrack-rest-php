@@ -49,12 +49,11 @@ class YouTrackClient implements RestClientContract
     /**
      * Endpoint path prefix.
      *
-     * @todo make configurable
      * @todo test it
      * @todo choose good name
      * @var string
      */
-    private $endpointPathPrefix = 'rest';
+    private $endpointPathPrefix;
 
     /**
      * Request headers.
@@ -68,11 +67,13 @@ class YouTrackClient implements RestClientContract
      *
      * @param \Cog\Contracts\YouTrack\Rest\HttpClient\HttpClient $httpClient
      * @param \Cog\Contracts\YouTrack\Rest\Authorizer\Authorizer $authorizer
+     * @param string $prefix
      */
-    public function __construct(HttpClientContract $httpClient, AuthorizerContract $authorizer)
+    public function __construct(HttpClientContract $httpClient, AuthorizerContract $authorizer, string $prefix = 'rest')
     {
         $this->httpClient = $httpClient;
         $this->authorizer = $authorizer;
+        $this->endpointPathPrefix = $prefix;
     }
 
     /**
