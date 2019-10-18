@@ -31,7 +31,7 @@ use GuzzleHttp\HandlerStack;
 class CookieAuthorizerTest extends FeatureTestCase
 {
     /** @test */
-    public function it_throws_exception_on_failed_cookie_authentication()
+    public function it_throws_exception_on_failed_cookie_authentication(): void
     {
         $mock = new MockHandler([
             $this->createFakeResponse(403, 'incorrect-login'),
@@ -48,7 +48,7 @@ class CookieAuthorizerTest extends FeatureTestCase
     }
 
     /** @todo test */
-    public function it_can_successfully_authenticate()
+    public function it_can_successfully_authenticate(): void
     {
         $http = new GuzzleHttpClient(new HttpClient([
             'base_uri' => 'http://localhost',

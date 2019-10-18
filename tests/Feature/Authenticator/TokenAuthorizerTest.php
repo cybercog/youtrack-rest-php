@@ -30,7 +30,7 @@ use GuzzleHttp\HandlerStack;
 class TokenAuthorizerTest extends FeatureTestCase
 {
     /** @test */
-    public function it_throws_exception_on_failed_token_authorization()
+    public function it_throws_exception_on_failed_token_authorization(): void
     {
         $mock = new MockHandler([
             $this->createFakeResponse(401, 'unauthorized'),

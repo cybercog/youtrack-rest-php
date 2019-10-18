@@ -38,7 +38,7 @@ abstract class FeatureTestCase extends TestCase
         return new YouTrackClient($http, $authorizer);
     }
 
-    protected function stubsPath($path): string
+    protected function stubsPath(string $path): string
     {
         return realpath(__DIR__ . '/stubs/' . $path);
     }

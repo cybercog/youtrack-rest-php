@@ -36,8 +36,9 @@
         "docs": "https://github.com/cybercog/youtrack-rest-php/wiki"
     },
     "require": {
-        "guzzlehttp/guzzle": "^6.2",
-        "php": "^7.1"
+        "php": "^7.1",
+        "ext-json": "*",
+        "guzzlehttp/guzzle": "^6.2"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^1.11",
