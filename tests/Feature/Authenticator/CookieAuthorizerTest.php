@@ -13,8 +13,8 @@ declare(strict_types=1);
 
 namespace Cog\YouTrack\Rest\Tests\Feature\Authorizer;
 
-use Cog\YouTrack\Rest\Authenticator\CookieAuthenticator;
 use Cog\Contracts\YouTrack\Rest\Authenticator\Exceptions\AuthenticationException;
+use Cog\YouTrack\Rest\Authenticator\CookieAuthenticator;
 use Cog\YouTrack\Rest\Authorizer\CookieAuthorizer;
 use Cog\YouTrack\Rest\Client\YouTrackClient;
 use Cog\YouTrack\Rest\HttpClient\GuzzleHttpClient;

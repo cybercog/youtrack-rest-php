@@ -89,7 +89,7 @@ class YouTrackClient implements RestClientContract
      * @throws \Cog\Contracts\YouTrack\Rest\Authorizer\Exceptions\InvalidAuthorizationToken
      * @throws \Cog\Contracts\YouTrack\Rest\Client\Exceptions\ClientException
      */
-    public function request(string $method, string $uri, array $params = [], array $options = []) : ResponseContract
+    public function request(string $method, string $uri, array $params = [], array $options = []): ResponseContract
     {
         try {
             $response = $this->httpClient->request($method, $this->buildUri($uri), $this->buildOptions($params, $options));
