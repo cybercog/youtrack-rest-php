@@ -8,7 +8,6 @@
          convertWarningsToExceptions="true"
          processIsolation="false"
          stopOnFailure="false"
-         syntaxCheck="false"
          verbose="true"
         >
     <testsuites>
@@ -18,17 +17,11 @@
         </testsuite>
     </testsuites>
     <php>
-        <env name="APP_ENV" value="testing"/>
-        <env name="CACHE_DRIVER" value="array"/>
-        <env name="SESSION_DRIVER" value="array"/>
-        <env name="QUEUE_DRIVER" value="sync"/>
-        <env name="DB_CONNECTION" value="sqlite"/>
-        <env name="DB_DATABASE" value=":memory:"/>
-        <env name="YOUTRACK_BASE_URI" value="https://youtrack.example.com"/>
-        <env name="YOUTRACK_AUTH" value="token"/>
-        <env name="YOUTRACK_TOKEN" value=""/>
-        <env name="YOUTRACK_USERNAME" value=""/>
-        <env name="YOUTRACK_PASSWORD" value=""/>
-        <env name="YOUTRACK_PROJECT" value="TEST"/>
+        <server name="YOUTRACK_BASE_URI" value="https://youtrack.example.com"/>
+        <server name="YOUTRACK_AUTH" value="token"/>
+        <server name="YOUTRACK_TOKEN" value=""/>
+        <server name="YOUTRACK_USERNAME" value=""/>
+        <server name="YOUTRACK_PASSWORD" value=""/>
+        <server name="YOUTRACK_PROJECT" value="TEST"/>
     </php>
 </phpunit>

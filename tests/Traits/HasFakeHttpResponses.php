@@ -16,11 +16,6 @@ namespace Cog\YouTrack\Rest\Tests\Traits;
 use GuzzleHttp\Psr7\Response;
 use Psr\Http\Message\ResponseInterface;
 
-/**
- * Trait HasFakeHttpResponses.
- *
- * @package Cog\YouTrack\Rest\Tests\Traits
- */
 trait HasFakeHttpResponses
 {
     /**

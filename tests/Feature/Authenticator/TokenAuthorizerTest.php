@@ -11,23 +11,18 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Cog\YouTrack\Rest\Tests\Feature\Authorizer;
+namespace Cog\YouTrack\Rest\Tests\Feature\Authenticator;
 
 use Cog\Contracts\YouTrack\Rest\Authorizer\Exceptions\InvalidAuthorizationToken;
 use Cog\YouTrack\Rest\Authorizer\TokenAuthorizer;
 use Cog\YouTrack\Rest\Client\YouTrackClient;
 use Cog\YouTrack\Rest\HttpClient\GuzzleHttpClient;
-use Cog\YouTrack\Rest\Tests\FeatureTestCase;
+use Cog\YouTrack\Rest\Tests\Feature\AbstractFeatureTestCase;
 use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 
-/**
- * Class TokenAuthorizerTest.
- *
- * @package Cog\YouTrack\Tests\Feature\Authorizer
- */
-class TokenAuthorizerTest extends FeatureTestCase
+final class TokenAuthorizerTest extends AbstractFeatureTestCase
 {
     /** @test */
     public function it_throws_exception_on_failed_token_authorization(): void
