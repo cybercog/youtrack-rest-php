@@ -18,6 +18,7 @@ use Cog\YouTrack\Rest\Client\YouTrackClient;
 use Cog\YouTrack\Rest\HttpClient\GuzzleHttpClient;
 use Cog\YouTrack\Rest\Tests\AbstractTestCase;
 use Cog\YouTrack\Rest\Tests\Traits\HasFakeHttpResponses;
+use Exception;
 use GuzzleHttp\Client as HttpClient;
 
 abstract class AbstractFeatureTestCase extends AbstractTestCase
@@ -34,8 +35,20 @@ abstract class AbstractFeatureTestCase extends AbstractTestCase
         return new YouTrackClient($http, $authorizer);
     }
 
+    /**
+     * @param string $path
+     * @return string
+     *
+     * @throws \Exception
+     */
     protected function stubsPath(string $path): string
     {
-        return realpath(__DIR__ . '/stubs/' . $path);
+        $path = realpath(__DIR__ . '/stubs/' . $path);
+
+        if ($path === false) {
+            throw new Exception('Invalid stubs path');
+        }
+
+        return $path;
     }
 }

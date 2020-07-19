@@ -16,6 +16,7 @@ namespace Cog\YouTrack\Rest\HttpClient;
 use Cog\Contracts\YouTrack\Rest\HttpClient\Exceptions\HttpClientException;
 use Cog\Contracts\YouTrack\Rest\HttpClient\HttpClient as HttpClientContract;
 use GuzzleHttp\Client;
+use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\BadResponseException;
 use GuzzleHttp\Exception\RequestException;
 use Psr\Http\Message\ResponseInterface;
@@ -31,16 +32,16 @@ class GuzzleHttpClient implements HttpClientContract
     /**
      * GuzzleHttp client.
      *
-     * @var \GuzzleHttp\Client
+     * @var \GuzzleHttp\ClientInterface
      */
     protected $httpClient;
 
     /**
      * Create a new GuzzleHttpClient instance.
      *
-     * @param \GuzzleHttp\Client|null $httpClient
+     * @param \GuzzleHttp\ClientInterface $httpClient
      */
-    public function __construct(Client $httpClient = null)
+    public function __construct(ClientInterface $httpClient)
     {
         $this->httpClient = $httpClient;
     }
@@ -59,9 +60,7 @@ class GuzzleHttpClient implements HttpClientContract
     {
         try {
             return $this->httpClient->request($method, $uri, $this->buildOptions($options));
-        } catch (BadResponseException $e) {
-            throw new HttpClientException($e->getResponse()->getBody()->getContents(), $e->getCode(), $e);
-        } catch (RequestException $e) {
+        } catch (BadResponseException | RequestException $e) {
             $rawResponse = $e->getResponse();
             if (!$rawResponse instanceof ResponseInterface) {
                 throw new HttpClientException($e->getMessage(), $e->getCode(), $e);

@@ -96,13 +96,10 @@ class YouTrackClient implements RestClientContract
             switch ($e->getCode()) {
                 case 401:
                     throw new InvalidAuthorizationToken($e->getMessage(), $e->getCode());
-                    break;
                 case 403:
                     throw new AuthenticationException($e->getMessage(), $e->getCode());
-                    break;
                 default:
                     throw new ClientException($e->getMessage(), $e->getCode(), $e);
-                    break;
             }
         }
 
