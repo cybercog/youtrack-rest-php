@@ -15,11 +15,6 @@ namespace Cog\Contracts\YouTrack\Rest\Authenticator;
 
 use Cog\Contracts\YouTrack\Rest\Client\Client as ClientContract;
 
-/**
- * Interface Authorizer.
- *
- * @package Cog\Contracts\YouTrack\Rest\Authenticator
- */
 interface Authenticator
 {
     /**

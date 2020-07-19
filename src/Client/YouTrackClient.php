@@ -24,11 +24,7 @@ use Cog\Contracts\YouTrack\Rest\Response\Response as ResponseContract;
 use Cog\YouTrack\Rest\Response\YouTrackResponse;
 
 /**
- * Class YouTrackRestClient.
- *
  * @see https://www.jetbrains.com/help/youtrack/standalone/2017.2/YouTrack-REST-API-Reference.html
- *
- * @package Cog\YouTrack\Rest\Client
  */
 class YouTrackClient implements RestClientContract
 {

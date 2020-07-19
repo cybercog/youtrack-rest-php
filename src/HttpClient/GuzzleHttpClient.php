@@ -22,11 +22,6 @@ use GuzzleHttp\Exception\RequestException;
 use Psr\Http\Message\ResponseInterface;
 use Throwable;
 
-/**
- * Class GuzzleHttpClient.
- *
- * @package Cog\YouTrack\Rest\HttpClient
- */
 class GuzzleHttpClient implements HttpClientContract
 {
     /**

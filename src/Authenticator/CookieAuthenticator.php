@@ -16,11 +16,6 @@ namespace Cog\YouTrack\Rest\Authenticator;
 use Cog\Contracts\YouTrack\Rest\Authenticator\Authenticator as AuthenticatorContract;
 use Cog\Contracts\YouTrack\Rest\Client\Client as ClientContract;
 
-/**
- * Class CookieAuthenticator.
- *
- * @package Cog\YouTrack\Rest\Authenticator
- */
 class CookieAuthenticator implements AuthenticatorContract
 {
     /**

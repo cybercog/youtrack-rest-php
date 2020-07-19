@@ -15,11 +15,6 @@ namespace Cog\Contracts\YouTrack\Rest\HttpClient;
 
 use Psr\Http\Message\ResponseInterface;
 
-/**
- * Interface HttpClient.
- *
- * @package Cog\Contracts\YouTrack\Rest\HttpClient
- */
 interface HttpClient
 {
     /**

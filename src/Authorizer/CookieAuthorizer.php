@@ -17,11 +17,6 @@ use Cog\Contracts\YouTrack\Rest\Authenticator\Authenticator as AuthenticatorCont
 use Cog\Contracts\YouTrack\Rest\Authorizer\Authorizer as AuthorizerContract;
 use Cog\Contracts\YouTrack\Rest\Client\Client as ClientContract;
 
-/**
- * Class CookieAuthorizer.
- *
- * @package Cog\YouTrack\Rest\Authorizer
- */
 class CookieAuthorizer implements AuthorizerContract
 {
     /**

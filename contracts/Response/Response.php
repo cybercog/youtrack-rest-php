@@ -15,11 +15,6 @@ namespace Cog\Contracts\YouTrack\Rest\Response;
 
 use Psr\Http\Message\ResponseInterface;
 
-/**
- * Interface Response.
- *
- * @package Cog\Contracts\YouTrack\Rest\Response
- */
 interface Response
 {
     /**

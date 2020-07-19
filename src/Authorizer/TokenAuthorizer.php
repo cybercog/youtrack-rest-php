@@ -17,11 +17,7 @@ use Cog\Contracts\YouTrack\Rest\Authorizer\Authorizer as AuthorizerContract;
 use Cog\Contracts\YouTrack\Rest\Client\Client as ClientContract;
 
 /**
- * Class TokenAuthorizer.
- *
  * @see https://www.jetbrains.com/help/youtrack/standalone/2017.2/Log-in-to-YouTrack.html.
- *
- * @package Cog\YouTrack\Rest\Authorizer
  */
 class TokenAuthorizer implements AuthorizerContract
 {

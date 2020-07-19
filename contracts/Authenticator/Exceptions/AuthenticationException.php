@@ -15,11 +15,6 @@ namespace Cog\Contracts\YouTrack\Rest\Authenticator\Exceptions;
 
 use Cog\Contracts\YouTrack\Rest\Client\Exceptions\ClientException;
 
-/**
- * Class AuthenticationException.
- *
- * @package Cog\Contracts\YouTrack\Rest\Authenticator\Exceptions
- */
 class AuthenticationException extends ClientException
 {
 }

@@ -15,11 +15,6 @@ namespace Cog\Contracts\YouTrack\Rest\Client;
 
 use Cog\Contracts\YouTrack\Rest\Response\Response as ResponseContract;
 
-/**
- * Interface Client.
- *
- * @package Cog\Contracts\YouTrack\Rest\Client
- */
 interface Client
 {
     /**

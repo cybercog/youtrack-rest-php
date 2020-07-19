@@ -16,11 +16,6 @@ namespace Cog\YouTrack\Rest\Response;
 use Cog\Contracts\YouTrack\Rest\Response\Response as ResponseContract;
 use Psr\Http\Message\ResponseInterface;
 
-/**
- * Class YouTrackResponse.
- *
- * @package Cog\YouTrack\Rest\Response
- */
 class YouTrackResponse implements ResponseContract
 {
     /**
