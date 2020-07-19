@@ -52,7 +52,13 @@ trait HasFakeHttpResponses
             return [];
         }
 
-        return json_decode(file_get_contents($filePath), true);
+        $file = file_get_contents($filePath);
+
+        if ($file === false) {
+            return [];
+        }
+
+        return json_decode($file, true);
     }
 
     /**
@@ -65,7 +71,17 @@ trait HasFakeHttpResponses
     {
         $filePath = $this->buildFakeRequestFilePath($name, 'body');
 
-        return file_exists($filePath) ? file_get_contents($filePath) : null;
+        if (file_exists($filePath) === false) {
+            return null;
+        }
+
+        $file = file_get_contents($filePath);
+
+        if ($file === false) {
+            return null;
+        }
+
+        return $file;
     }
 
     /**

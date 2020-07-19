@@ -33,7 +33,7 @@ class YouTrackResponse implements ResponseContract
     /**
      * YouTrackResponse constructor.
      *
-     * @param $response \Psr\Http\Message\ResponseInterface
+     * @param \Psr\Http\Message\ResponseInterface $response
      */
     public function __construct(ResponseInterface $response)
     {
