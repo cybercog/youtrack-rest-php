@@ -4,6 +4,12 @@ All notable changes to `cybercog/youtrack-rest-php` will be documented in this f
 
 ## [Unreleased]
 
+## [6.2.2] - 2020-07-19
+
+### Fixed
+
+- ([#49]) Fixes from PHPStan static analysis
+
 ## [6.2.1] - 2020-07-19
 
 ### Fixed
@@ -110,7 +116,8 @@ All notable changes to `cybercog/youtrack-rest-php` will be documented in this f
 
 - Initial release.
 
-[Unreleased]: https://github.com/cybercog/youtrack-rest-php/compare/6.2.1...master
+[Unreleased]: https://github.com/cybercog/youtrack-rest-php/compare/6.2.2...master
+[6.2.2]: https://github.com/cybercog/youtrack-rest-php/compare/6.2.1...6.2.2
 [6.2.1]: https://github.com/cybercog/youtrack-rest-php/compare/6.2.0...6.2.1
 [6.2.0]: https://github.com/cybercog/youtrack-rest-php/compare/6.1.0...6.2.0
 [6.1.0]: https://github.com/cybercog/youtrack-rest-php/compare/6.0.2...6.1.0
@@ -123,6 +130,7 @@ All notable changes to `cybercog/youtrack-rest-php` will be documented in this f
 [3.0.0]: https://github.com/cybercog/youtrack-rest-php/compare/2.0.1...3.0.0
 [2.0.1]: https://github.com/cybercog/youtrack-rest-php/compare/1.0.0...2.0.1
 
+[#49]: https://github.com/cybercog/youtrack-rest-php/pull/49
 [#48]: https://github.com/cybercog/youtrack-rest-php/pull/48
 [#43]: https://github.com/cybercog/youtrack-rest-php/pull/43
 [#41]: https://github.com/cybercog/youtrack-rest-php/pull/41
