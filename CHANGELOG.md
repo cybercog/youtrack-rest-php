@@ -6,7 +6,7 @@ All notable changes to `cybercog/youtrack-rest-php` will be documented in this f
 
 ## [6.2.1] - 2020-07-19
 
-### Fixes
+### Fixed
 
 - ([#48]) Fix $endpointPathPrefix class parameter
 
