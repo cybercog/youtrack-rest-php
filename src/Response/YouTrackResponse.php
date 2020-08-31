@@ -13,10 +13,11 @@ declare(strict_types=1);
 
 namespace Cog\YouTrack\Rest\Response;
 
-use Cog\Contracts\YouTrack\Rest\Response\Response as ResponseContract;
-use Psr\Http\Message\ResponseInterface;
+use Cog\Contracts\YouTrack\Rest\Response\Response as ResponseInterface;
+use Psr\Http\Message\ResponseInterface as PsrResponseInterface;
 
-class YouTrackResponse implements ResponseContract
+class YouTrackResponse implements
+    ResponseInterface
 {
     /**
      * Original HTTP client response.
@@ -30,7 +31,7 @@ class YouTrackResponse implements ResponseContract
      *
      * @param \Psr\Http\Message\ResponseInterface $response
      */
-    public function __construct(ResponseInterface $response)
+    public function __construct(PsrResponseInterface $response)
     {
         $this->response = $response;
     }
@@ -40,7 +41,7 @@ class YouTrackResponse implements ResponseContract
      *
      * @return \Psr\Http\Message\ResponseInterface
      */
-    public function httpResponse(): ResponseInterface
+    public function httpResponse(): PsrResponseInterface
     {
         return $this->response;
     }

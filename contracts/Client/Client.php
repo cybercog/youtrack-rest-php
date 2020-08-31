@@ -13,14 +13,14 @@ declare(strict_types=1);
 
 namespace Cog\Contracts\YouTrack\Rest\Client;
 
-use Cog\Contracts\YouTrack\Rest\Response\Response as ResponseContract;
+use Cog\Contracts\YouTrack\Rest\Response\Response as ResponseInterface;
 
 interface Client
 {
     /**
      * Version of PHP YouTrack REST client.
      */
-    const VERSION = '6.2.0';
+    public const VERSION = '6.2.3';
 
     /**
      * Create and send an HTTP request.
@@ -35,7 +35,7 @@ interface Client
      * @throws \Cog\Contracts\YouTrack\Rest\Authorizer\Exceptions\InvalidAuthorizationToken
      * @throws \Cog\Contracts\YouTrack\Rest\Client\Exceptions\ClientException
      */
-    public function request(string $method, string $uri, array $params = [], array $options = []): ResponseContract;
+    public function request(string $method, string $uri, array $params = [], array $options = []): ResponseInterface;
 
     /**
      * Create and send an GET HTTP request.
@@ -49,7 +49,7 @@ interface Client
      * @throws \Cog\Contracts\YouTrack\Rest\Authorizer\Exceptions\InvalidAuthorizationToken
      * @throws \Cog\Contracts\YouTrack\Rest\Client\Exceptions\ClientException
      */
-    public function get(string $uri, array $params = [], array $options = []): ResponseContract;
+    public function get(string $uri, array $params = [], array $options = []): ResponseInterface;
 
     /**
      * Create and send an POST HTTP request.
@@ -63,7 +63,7 @@ interface Client
      * @throws \Cog\Contracts\YouTrack\Rest\Authorizer\Exceptions\InvalidAuthorizationToken
      * @throws \Cog\Contracts\YouTrack\Rest\Client\Exceptions\ClientException
      */
-    public function post(string $uri, array $params = [], array $options = []): ResponseContract;
+    public function post(string $uri, array $params = [], array $options = []): ResponseInterface;
 
     /**
      * Create and send an PUT HTTP request.
@@ -77,7 +77,7 @@ interface Client
      * @throws \Cog\Contracts\YouTrack\Rest\Authorizer\Exceptions\InvalidAuthorizationToken
      * @throws \Cog\Contracts\YouTrack\Rest\Client\Exceptions\ClientException
      */
-    public function put(string $uri, array $params = [], array $options = []): ResponseContract;
+    public function put(string $uri, array $params = [], array $options = []): ResponseInterface;
 
     /**
      * Create and send an DELETE HTTP request.
@@ -91,7 +91,7 @@ interface Client
      * @throws \Cog\Contracts\YouTrack\Rest\Authorizer\Exceptions\InvalidAuthorizationToken
      * @throws \Cog\Contracts\YouTrack\Rest\Client\Exceptions\ClientException
      */
-    public function delete(string $uri, array $params = [], array $options = []): ResponseContract;
+    public function delete(string $uri, array $params = [], array $options = []): ResponseInterface;
 
     /**
      * Write header value.

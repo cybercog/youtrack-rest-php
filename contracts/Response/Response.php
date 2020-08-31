@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Cog\Contracts\YouTrack\Rest\Response;
 
-use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ResponseInterface as PsrResponseInterface;
 
 interface Response
 {
@@ -22,7 +22,7 @@ interface Response
      *
      * @return \Psr\Http\Message\ResponseInterface
      */
-    public function httpResponse(): ResponseInterface;
+    public function httpResponse(): PsrResponseInterface;
 
     /**
      * Returns the response status code.

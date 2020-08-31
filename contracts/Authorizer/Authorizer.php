@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Cog\Contracts\YouTrack\Rest\Authorizer;
 
-use Cog\Contracts\YouTrack\Rest\Client\Client as ClientContract;
+use Cog\Contracts\YouTrack\Rest\Client\Client as ClientInterface;
 
 interface Authorizer
 {
@@ -23,5 +23,5 @@ interface Authorizer
      * @param \Cog\Contracts\YouTrack\Rest\Client\Client $client
      * @return void
      */
-    public function appendHeadersTo(ClientContract $client): void;
+    public function appendHeadersTo(ClientInterface $client): void;
 }
