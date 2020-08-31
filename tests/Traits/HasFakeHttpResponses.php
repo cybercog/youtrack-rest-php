@@ -22,12 +22,12 @@ trait HasFakeHttpResponses
      * Instantiate fake HTTP Response.
      *
      * @param int $statusCode
-     * @param null|string $name
+     * @param string|null $name
      * @return \Psr\Http\Message\ResponseInterface
      */
     protected function createFakeResponse(int $statusCode = 200, string $name = null): ResponseInterface
     {
-        if (is_null($name)) {
+        if ($name === null) {
             return new Response($statusCode);
         }
 
@@ -65,7 +65,7 @@ trait HasFakeHttpResponses
      * Get fake HTTP Response body.
      *
      * @param string $name
-     * @return null|string
+     * @return string|null
      */
     protected function getFakeResponseBody(string $name): ?string
     {
