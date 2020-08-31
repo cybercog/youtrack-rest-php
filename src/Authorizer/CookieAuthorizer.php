@@ -14,7 +14,6 @@ declare(strict_types=1);
 namespace Cog\YouTrack\Rest\Authorizer;
 
 use Cog\Contracts\YouTrack\Rest\Authenticator\Authenticator as AuthenticatorInterface;
-use Cog\Contracts\YouTrack\Rest\Authenticator\Exceptions\AuthenticationException;
 use Cog\Contracts\YouTrack\Rest\Authorizer\Authorizer as AuthorizerInterface;
 use Cog\Contracts\YouTrack\Rest\Client\Client as ClientInterface;
 
