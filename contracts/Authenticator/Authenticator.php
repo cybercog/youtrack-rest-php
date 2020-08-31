@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Cog\Contracts\YouTrack\Rest\Authenticator;
 
-use Cog\Contracts\YouTrack\Rest\Client\Client as ClientContract;
+use Cog\Contracts\YouTrack\Rest\Client\Client as ClientInterface;
 
 interface Authenticator
 {
@@ -25,7 +25,7 @@ interface Authenticator
      *
      * @throws \Cog\Contracts\YouTrack\Rest\Authenticator\Exceptions\AuthenticationException
      */
-    public function authenticate(ClientContract $client): void;
+    public function authenticate(ClientInterface $client): void;
 
     /**
      * Retrieve authentication token.

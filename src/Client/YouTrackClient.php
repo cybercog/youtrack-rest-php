@@ -14,19 +14,20 @@ declare(strict_types=1);
 namespace Cog\YouTrack\Rest\Client;
 
 use Cog\Contracts\YouTrack\Rest\Authenticator\Exceptions\AuthenticationException;
-use Cog\Contracts\YouTrack\Rest\Authorizer\Authorizer as AuthorizerContract;
+use Cog\Contracts\YouTrack\Rest\Authorizer\Authorizer as AuthorizerInterface;
 use Cog\Contracts\YouTrack\Rest\Authorizer\Exceptions\InvalidAuthorizationToken;
-use Cog\Contracts\YouTrack\Rest\Client\Client as RestClientContract;
+use Cog\Contracts\YouTrack\Rest\Client\Client as RestClientInterface;
 use Cog\Contracts\YouTrack\Rest\Client\Exceptions\ClientException;
 use Cog\Contracts\YouTrack\Rest\HttpClient\Exceptions\HttpClientException;
-use Cog\Contracts\YouTrack\Rest\HttpClient\HttpClient as HttpClientContract;
-use Cog\Contracts\YouTrack\Rest\Response\Response as ResponseContract;
+use Cog\Contracts\YouTrack\Rest\HttpClient\HttpClient as HttpClientInterface;
+use Cog\Contracts\YouTrack\Rest\Response\Response as ResponseInterface;
 use Cog\YouTrack\Rest\Response\YouTrackResponse;
 
 /**
  * @see https://www.jetbrains.com/help/youtrack/standalone/2017.2/YouTrack-REST-API-Reference.html
  */
-class YouTrackClient implements RestClientContract
+class YouTrackClient implements
+    RestClientInterface
 {
     /**
      * HTTP Client.
@@ -64,7 +65,7 @@ class YouTrackClient implements RestClientContract
      * @param \Cog\Contracts\YouTrack\Rest\Authorizer\Authorizer $authorizer
      * @param string $endpointPathPrefix
      */
-    public function __construct(HttpClientContract $httpClient, AuthorizerContract $authorizer, string $endpointPathPrefix = null)
+    public function __construct(HttpClientInterface $httpClient, AuthorizerInterface $authorizer, string $endpointPathPrefix = null)
     {
         $this->httpClient = $httpClient;
         $this->authorizer = $authorizer;
@@ -84,7 +85,7 @@ class YouTrackClient implements RestClientContract
      * @throws \Cog\Contracts\YouTrack\Rest\Authorizer\Exceptions\InvalidAuthorizationToken
      * @throws \Cog\Contracts\YouTrack\Rest\Client\Exceptions\ClientException
      */
-    public function request(string $method, string $uri, array $params = [], array $options = []): ResponseContract
+    public function request(string $method, string $uri, array $params = [], array $options = []): ResponseInterface
     {
         try {
             $response = $this->httpClient->request($method, $this->buildUri($uri), $this->buildOptions($params, $options));
@@ -114,7 +115,7 @@ class YouTrackClient implements RestClientContract
      * @throws \Cog\Contracts\YouTrack\Rest\Authorizer\Exceptions\InvalidAuthorizationToken
      * @throws \Cog\Contracts\YouTrack\Rest\Client\Exceptions\ClientException
      */
-    public function get(string $uri, array $params = [], array $options = []): ResponseContract
+    public function get(string $uri, array $params = [], array $options = []): ResponseInterface
     {
         return $this->request('GET', $uri, $params, $options);
     }
@@ -131,7 +132,7 @@ class YouTrackClient implements RestClientContract
      * @throws \Cog\Contracts\YouTrack\Rest\Authorizer\Exceptions\InvalidAuthorizationToken
      * @throws \Cog\Contracts\YouTrack\Rest\Client\Exceptions\ClientException
      */
-    public function post(string $uri, array $params = [], array $options = []): ResponseContract
+    public function post(string $uri, array $params = [], array $options = []): ResponseInterface
     {
         return $this->request('POST', $uri, $params, $options);
     }
@@ -148,7 +149,7 @@ class YouTrackClient implements RestClientContract
      * @throws \Cog\Contracts\YouTrack\Rest\Authorizer\Exceptions\InvalidAuthorizationToken
      * @throws \Cog\Contracts\YouTrack\Rest\Client\Exceptions\ClientException
      */
-    public function put(string $uri, array $params = [], array $options = []): ResponseContract
+    public function put(string $uri, array $params = [], array $options = []): ResponseInterface
     {
         return $this->request('PUT', $uri, $params, $options);
     }
@@ -165,7 +166,7 @@ class YouTrackClient implements RestClientContract
      * @throws \Cog\Contracts\YouTrack\Rest\Authorizer\Exceptions\InvalidAuthorizationToken
      * @throws \Cog\Contracts\YouTrack\Rest\Client\Exceptions\ClientException
      */
-    public function delete(string $uri, array $params = [], array $options = []): ResponseContract
+    public function delete(string $uri, array $params = [], array $options = []): ResponseInterface
     {
         return $this->request('DELETE', $uri, $params, $options);
     }

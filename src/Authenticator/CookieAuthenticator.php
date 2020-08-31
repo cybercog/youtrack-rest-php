@@ -13,10 +13,11 @@ declare(strict_types=1);
 
 namespace Cog\YouTrack\Rest\Authenticator;
 
-use Cog\Contracts\YouTrack\Rest\Authenticator\Authenticator as AuthenticatorContract;
-use Cog\Contracts\YouTrack\Rest\Client\Client as ClientContract;
+use Cog\Contracts\YouTrack\Rest\Authenticator\Authenticator as AuthenticatorInterface;
+use Cog\Contracts\YouTrack\Rest\Client\Client as ClientInterface;
 
-class CookieAuthenticator implements AuthenticatorContract
+class CookieAuthenticator implements
+    AuthenticatorInterface
 {
     /**
      * @var string
@@ -60,7 +61,7 @@ class CookieAuthenticator implements AuthenticatorContract
      *
      * @throws \Cog\Contracts\YouTrack\Rest\Authenticator\Exceptions\AuthenticationException
      */
-    public function authenticate(ClientContract $client): void
+    public function authenticate(ClientInterface $client): void
     {
         if ($this->cookie !== '' || $this->isAuthenticating) {
             return;

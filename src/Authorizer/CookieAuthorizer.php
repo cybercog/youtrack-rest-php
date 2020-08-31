@@ -13,11 +13,12 @@ declare(strict_types=1);
 
 namespace Cog\YouTrack\Rest\Authorizer;
 
-use Cog\Contracts\YouTrack\Rest\Authenticator\Authenticator as AuthenticatorContract;
-use Cog\Contracts\YouTrack\Rest\Authorizer\Authorizer as AuthorizerContract;
-use Cog\Contracts\YouTrack\Rest\Client\Client as ClientContract;
+use Cog\Contracts\YouTrack\Rest\Authenticator\Authenticator as AuthenticatorInterface;
+use Cog\Contracts\YouTrack\Rest\Authorizer\Authorizer as AuthorizerInterface;
+use Cog\Contracts\YouTrack\Rest\Client\Client as ClientInterface;
 
-class CookieAuthorizer implements AuthorizerContract
+class CookieAuthorizer implements
+    AuthorizerInterface
 {
     /**
      * @var \Cog\Contracts\YouTrack\Rest\Authenticator\Authenticator
@@ -29,7 +30,7 @@ class CookieAuthorizer implements AuthorizerContract
      *
      * @param \Cog\Contracts\YouTrack\Rest\Authenticator\Authenticator $authenticator
      */
-    public function __construct(AuthenticatorContract $authenticator)
+    public function __construct(AuthenticatorInterface $authenticator)
     {
         $this->authenticator = $authenticator;
     }
@@ -42,7 +43,7 @@ class CookieAuthorizer implements AuthorizerContract
      *
      * @throws \Cog\Contracts\YouTrack\Rest\Authenticator\Exceptions\AuthenticationException
      */
-    public function appendHeadersTo(ClientContract $client): void
+    public function appendHeadersTo(ClientInterface $client): void
     {
         $this->authenticator->authenticate($client);
 

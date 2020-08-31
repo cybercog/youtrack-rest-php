@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace Cog\YouTrack\Rest\HttpClient;
 
 use Cog\Contracts\YouTrack\Rest\HttpClient\Exceptions\HttpClientException;
-use Cog\Contracts\YouTrack\Rest\HttpClient\HttpClient as HttpClientContract;
+use Cog\Contracts\YouTrack\Rest\HttpClient\HttpClient as HttpClientInterface;
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\BadResponseException;
@@ -22,7 +22,8 @@ use GuzzleHttp\Exception\RequestException;
 use Psr\Http\Message\ResponseInterface;
 use Throwable;
 
-class GuzzleHttpClient implements HttpClientContract
+class GuzzleHttpClient implements
+    HttpClientInterface
 {
     /**
      * GuzzleHttp client.

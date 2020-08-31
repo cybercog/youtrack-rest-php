@@ -13,13 +13,14 @@ declare(strict_types=1);
 
 namespace Cog\YouTrack\Rest\Authorizer;
 
-use Cog\Contracts\YouTrack\Rest\Authorizer\Authorizer as AuthorizerContract;
-use Cog\Contracts\YouTrack\Rest\Client\Client as ClientContract;
+use Cog\Contracts\YouTrack\Rest\Authorizer\Authorizer as AuthorizerInterface;
+use Cog\Contracts\YouTrack\Rest\Client\Client as ClientInterface;
 
 /**
  * @see https://www.jetbrains.com/help/youtrack/standalone/2017.2/Log-in-to-YouTrack.html.
  */
-class TokenAuthorizer implements AuthorizerContract
+class TokenAuthorizer implements
+    AuthorizerInterface
 {
     /**
      * @var string
@@ -42,7 +43,7 @@ class TokenAuthorizer implements AuthorizerContract
      * @param \Cog\Contracts\YouTrack\Rest\Client\Client $client
      * @return void
      */
-    public function appendHeadersTo(ClientContract $client): void
+    public function appendHeadersTo(ClientInterface $client): void
     {
         $client->withHeader('Authorization', "Bearer {$this->token}");
     }
