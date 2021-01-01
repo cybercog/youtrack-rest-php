@@ -88,7 +88,10 @@ class GuzzleHttpClient implements
     {
         $defaultAgent = 'GuzzleHttp/' . Client::VERSION;
         if (extension_loaded('curl') && function_exists('curl_version')) {
-            $defaultAgent .= ' curl/' . \curl_version()['version'];
+            $curlVersion = \curl_version();
+            if (\is_array($curlVersion)) {
+                $defaultAgent .= ' curl/' . $curlVersion['version'];
+            }
         }
         $defaultAgent .= ' PHP/' . PHP_VERSION;
 
