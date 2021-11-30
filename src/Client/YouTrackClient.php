@@ -215,7 +215,7 @@ class YouTrackClient implements
     protected function buildOptions(array $params = [], array $options = []): array
     {
         $defaultOptions = [
-            'form_params' => $params,
+            'json' => $params,
             'headers' => $this->buildHeaders(),
         ];
 
@@ -227,8 +227,8 @@ class YouTrackClient implements
                     'data' => $value,
                 ];
             }
-        } elseif (isset($options['form_params'])) {
-            $options['form_params'] = array_merge($params, $options['form_params']);
+        } elseif (isset($options['json'])) {
+            $options['json'] = array_merge($params, $options['json']);
         }
 
         if (isset($options['headers'])) {
@@ -248,6 +248,7 @@ class YouTrackClient implements
         $this->headers = [
             'User-Agent' => 'Cog-YouTrack-REST-PHP/' . self::VERSION,
             'Accept' => 'application/json',
+			'Content-Type' => 'application/json',
         ];
 
         $this->authorizer->appendHeadersTo($this);
