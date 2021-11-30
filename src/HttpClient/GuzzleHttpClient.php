@@ -35,7 +35,7 @@ class GuzzleHttpClient implements
     /**
      * Create a new GuzzleHttpClient instance.
      *
-     * @param \GuzzleHttp\ClientInterface $httpClient
+     * @param  \GuzzleHttp\ClientInterface  $httpClient
      */
     public function __construct(ClientInterface $httpClient)
     {
@@ -45,9 +45,9 @@ class GuzzleHttpClient implements
     /**
      * Send request to the server and fetch the raw response.
      *
-     * @param string $method Request Method
-     * @param string $uri URI/Endpoint to send the request to
-     * @param array $options Additional Options
+     * @param  string  $method  Request Method
+     * @param  string  $uri  URI/Endpoint to send the request to
+     * @param  array  $options  Additional Options
      * @return \Psr\Http\Message\ResponseInterface Raw response from the server
      *
      * @throws \Cog\Contracts\YouTrack\Rest\HttpClient\Exceptions\HttpClientException
@@ -70,7 +70,7 @@ class GuzzleHttpClient implements
     /**
      * Build Http Client Request options.
      *
-     * @param array $options
+     * @param  array  $options
      * @return array
      */
     private function buildOptions(array $options): array
@@ -81,7 +81,7 @@ class GuzzleHttpClient implements
     /**
      * Append User-Agent header to Request options.
      *
-     * @param array $options
+     * @param  array  $options
      * @return array
      */
     private function appendUserAgent(array $options): array
