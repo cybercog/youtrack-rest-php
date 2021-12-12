@@ -56,7 +56,7 @@ class GuzzleHttpClient implements
     {
         try {
             return $this->httpClient->request($method, $uri, $this->buildOptions($options));
-        } catch (BadResponseException|RequestException $e) {
+        } catch (BadResponseException | RequestException $e) {
             $rawResponse = $e->getResponse();
             if (!$rawResponse instanceof ResponseInterface) {
                 throw new HttpClientException($e->getMessage(), $e->getCode(), $e);
@@ -86,7 +86,7 @@ class GuzzleHttpClient implements
      */
     private function appendUserAgent(array $options): array
     {
-        $defaultAgent = 'GuzzleHttp/' . Client::V;
+        $defaultAgent = 'GuzzleHttp/' . Client::MAJOR_VERSION;
         if (extension_loaded('curl') && function_exists('curl_version')) {
             $curlVersion = \curl_version();
             if (\is_array($curlVersion)) {
