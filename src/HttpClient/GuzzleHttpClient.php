@@ -70,7 +70,7 @@ class GuzzleHttpClient implements
     /**
      * Build Http Client Request options.
      *
-     * @param  array  $options
+     * @param array $options
      * @return array
      */
     private function buildOptions(array $options): array
