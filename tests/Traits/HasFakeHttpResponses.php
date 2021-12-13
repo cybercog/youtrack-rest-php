@@ -169,6 +169,7 @@ trait HasFakeHttpResponses
      * Unset all provided headers from the HTTP Response.
      *
      * @todo Use Middleware http://docs.guzzlephp.org/en/latest/handlers-and-middleware.html#middleware
+     *
      * @param \Psr\Http\Message\ResponseInterface $response
      * @param array $headers
      * @return \Psr\Http\Message\ResponseInterface
