@@ -5,7 +5,7 @@
 <p align="center">
 <a href="https://travis-ci.org/cybercog/youtrack-rest-php"><img src="https://img.shields.io/travis/cybercog/youtrack-rest-php/master.svg?style=flat-square" alt="Build Status"></a>
 <a href="https://styleci.io/repos/91037527"><img src="https://styleci.io/repos/91037527/shield" alt="StyleCI"></a>
-<img alt="Code Climate maintainability" src="https://img.shields.io/codeclimate/maintainability/cybercog/youtrack-rest-php?style=flat-square">
+<a href="https://codeclimate.com/github/cybercog/youtrack-rest-php"><img alt="Code Climate Maintainability" src="https://img.shields.io/codeclimate/maintainability/cybercog/youtrack-rest-php?style=flat-square"></a>
 <a href="https://github.com/cybercog/youtrack-rest-php/releases"><img src="https://img.shields.io/github/release/cybercog/youtrack-rest-php.svg?style=flat-square" alt="Releases"></a>
 <a href="https://github.com/cybercog/youtrack-rest-php/blob/master/LICENSE"><img src="https://img.shields.io/github/license/cybercog/youtrack-rest-php.svg?style=flat-square" alt="License"></a>
 </p>
