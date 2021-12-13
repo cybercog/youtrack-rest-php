@@ -169,6 +169,7 @@ trait HasFakeHttpResponses
      * Unset all provided headers from the HTTP Response.
      *
      * @todo Use Middleware http://docs.guzzlephp.org/en/latest/handlers-and-middleware.html#middleware
+     *
      * @param \Psr\Http\Message\ResponseInterface $response
      * @param array $headers
      * @return \Psr\Http\Message\ResponseInterface
@@ -192,7 +193,8 @@ trait HasFakeHttpResponses
     {
         return sprintf(
             '%s/../stubs/server-responses/2017.2/%s',
-            __DIR__, ltrim($name, '/')
+            __DIR__,
+            ltrim($name, '/')
         );
     }
 
@@ -207,7 +209,8 @@ trait HasFakeHttpResponses
     {
         return sprintf(
             '%s/%s.json',
-            $this->buildFakeRequestDirectoryPath($name), $filename
+            $this->buildFakeRequestDirectoryPath($name),
+            $filename
         );
     }
 }

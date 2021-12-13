@@ -47,6 +47,7 @@ class YouTrackClient implements
      * Endpoint path prefix.
      *
      * @todo test it
+     *
      * @var string
      */
     private $endpointPathPrefix;
