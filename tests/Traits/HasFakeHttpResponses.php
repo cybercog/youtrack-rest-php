@@ -193,7 +193,8 @@ trait HasFakeHttpResponses
     {
         return sprintf(
             '%s/../stubs/server-responses/2017.2/%s',
-            __DIR__, ltrim($name, '/')
+            __DIR__,
+            ltrim($name, '/')
         );
     }
 
@@ -208,7 +209,8 @@ trait HasFakeHttpResponses
     {
         return sprintf(
             '%s/%s.json',
-            $this->buildFakeRequestDirectoryPath($name), $filename
+            $this->buildFakeRequestDirectoryPath($name),
+            $filename
         );
     }
 }
