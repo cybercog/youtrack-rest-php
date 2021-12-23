@@ -86,7 +86,7 @@ class GuzzleHttpClient implements
      */
     private function appendUserAgent(array $options): array
     {
-        $defaultAgent = 'GuzzleHttp/' . Client::VERSION;
+        $defaultAgent = 'GuzzleHttp/' . Client::MAJOR_VERSION;
         if (extension_loaded('curl') && function_exists('curl_version')) {
             $curlVersion = \curl_version();
             if (\is_array($curlVersion)) {
