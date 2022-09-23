@@ -70,7 +70,7 @@ class YouTrackClient implements
     {
         $this->httpClient = $httpClient;
         $this->authorizer = $authorizer;
-        $this->endpointPathPrefix = $endpointPathPrefix !== null ? $endpointPathPrefix : 'rest';
+        $this->endpointPathPrefix = $endpointPathPrefix !== null ? $endpointPathPrefix : 'api';
     }
 
     /**
