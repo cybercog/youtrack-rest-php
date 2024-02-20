@@ -1,6 +1,6 @@
 /extras/
 /vendor/
-.phpunit.result.cache
+/.phpunit.cache/
 composer.lock
 composer.phar
 phpunit.xml
