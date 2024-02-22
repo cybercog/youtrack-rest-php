@@ -1,0 +1,34 @@
+version: "3.9"
+services:
+  php81:
+    container_name: php-youtrack-rest-81
+    image: php-youtrack-rest
+    build:
+      context: ./
+      dockerfile: ./.docker/php/php81/Dockerfile
+    tty: true
+    working_dir: /app
+    volumes:
+      - ./:/app
+
+  php82:
+    container_name: php-youtrack-rest-82
+    image: php-youtrack-rest
+    build:
+      context: ./
+      dockerfile: ./.docker/php/php82/Dockerfile
+    tty: true
+    working_dir: /app
+    volumes:
+      - ./:/app
+
+  php83:
+    container_name: php-youtrack-rest-83
+    image: php-youtrack-rest
+    build:
+      context: ./
+      dockerfile: ./.docker/php/php83/Dockerfile
+    tty: true
+    working_dir: /app
+    volumes:
+      - ./:/app
