@@ -15,10 +15,10 @@ namespace Cog\YouTrack\Rest\HttpClient;
 
 use Cog\Contracts\YouTrack\Rest\HttpClient\Exceptions\HttpClientException;
 use Cog\Contracts\YouTrack\Rest\HttpClient\HttpClient as HttpClientInterface;
-use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\BadResponseException;
 use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Utils;
 use Psr\Http\Message\ResponseInterface;
 use Throwable;
 
@@ -86,7 +86,7 @@ class GuzzleHttpClient implements
      */
     private function appendUserAgent(array $options): array
     {
-        $defaultAgent = 'GuzzleHttp/' . Client::VERSION;
+        $defaultAgent = Utils::defaultUserAgent();
         if (extension_loaded('curl') && function_exists('curl_version')) {
             $curlVersion = \curl_version();
             if (\is_array($curlVersion)) {
