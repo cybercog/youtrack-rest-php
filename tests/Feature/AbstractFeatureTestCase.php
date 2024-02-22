@@ -27,22 +27,22 @@ abstract class AbstractFeatureTestCase extends AbstractTestCase
 
     protected function initializeClient(): YouTrackClient
     {
-        $http = new GuzzleHttpClient(new HttpClient([
-            'base_uri' => $_SERVER['YOUTRACK_BASE_URI'],
-        ]));
+        $http = new GuzzleHttpClient(
+            new HttpClient([
+                'base_uri' => $_SERVER['YOUTRACK_BASE_URI'],
+            ])
+        );
         $authorizer = new TokenAuthorizer($_SERVER['YOUTRACK_TOKEN']);
 
         return new YouTrackClient($http, $authorizer);
     }
 
     /**
-     * @param string $path
-     * @return string
-     *
      * @throws \Exception
      */
-    protected function stubsPath(string $path): string
-    {
+    protected function stubsPath(
+        string $path,
+    ): string {
         $path = realpath(__DIR__ . '/stubs/' . $path);
 
         if ($path === false) {
