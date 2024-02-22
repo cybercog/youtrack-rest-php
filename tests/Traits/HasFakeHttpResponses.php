@@ -20,13 +20,11 @@ trait HasFakeHttpResponses
 {
     /**
      * Instantiate fake HTTP Response.
-     *
-     * @param int $statusCode
-     * @param string|null $name
-     * @return \Psr\Http\Message\ResponseInterface
      */
-    protected function createFakeResponse(int $statusCode = 200, string $name = null): ResponseInterface
-    {
+    protected function createFakeResponse(
+        int $statusCode = 200,
+        string | null $name = null,
+    ): ResponseInterface {
         if ($name === null) {
             return new Response($statusCode);
         }
@@ -44,8 +42,9 @@ trait HasFakeHttpResponses
      * @param string $name
      * @return array
      */
-    protected function getFakeResponseHeaders(string $name): array
-    {
+    protected function getFakeResponseHeaders(
+        string $name,
+    ): array {
         $filePath = $this->buildFakeRequestFilePath($name, 'headers');
 
         if (!file_exists($filePath)) {
@@ -63,11 +62,8 @@ trait HasFakeHttpResponses
 
     /**
      * Get fake HTTP Response body.
-     *
-     * @param string $name
-     * @return string|null
      */
-    protected function getFakeResponseBody(string $name): ?string
+    protected function getFakeResponseBody(string $name): string | null
     {
         $filePath = $this->buildFakeRequestFilePath($name, 'body');
 
@@ -86,13 +82,11 @@ trait HasFakeHttpResponses
 
     /**
      * Store HTTP response as fake data for later use.
-     *
-     * @param \Psr\Http\Message\ResponseInterface $response
-     * @param string $name
-     * @return void
      */
-    protected function storeResponseAsFake(ResponseInterface $response, $name): void
-    {
+    protected function storeResponseAsFake(
+        ResponseInterface $response,
+        string $name,
+    ): void {
         $response = $this->unsetFakeResponseHeaders($response, [
             'Server',
             'Date',
@@ -135,8 +129,10 @@ trait HasFakeHttpResponses
      * @param string $value
      * @return array
      */
-    protected function overwriteFakeRequestSessionCookie(array $headers, string $value): array
-    {
+    protected function overwriteFakeRequestSessionCookie(
+        array $headers,
+        string $value,
+    ): array {
         if (!isset($headers['Set-Cookie'])) {
             return $headers;
         }
@@ -154,11 +150,10 @@ trait HasFakeHttpResponses
 
     /**
      * Create directory for HTTP fake responses if not exists.
-     *
-     * @param string $name
      */
-    private function createFakeResponseDirectory(string $name): void
-    {
+    private function createFakeResponseDirectory(
+        string $name,
+    ): void {
         $dir = $this->buildFakeRequestDirectoryPath($name);
         if (!file_exists($dir)) {
             mkdir($dir, 0777, true);
@@ -174,8 +169,10 @@ trait HasFakeHttpResponses
      * @param array $headers
      * @return \Psr\Http\Message\ResponseInterface
      */
-    private function unsetFakeResponseHeaders(ResponseInterface $response, array $headers = []): ResponseInterface
-    {
+    private function unsetFakeResponseHeaders(
+        ResponseInterface $response,
+        array $headers = [],
+    ): ResponseInterface {
         foreach ($headers as $header) {
             $response = $response->withoutHeader($header);
         }
@@ -185,32 +182,28 @@ trait HasFakeHttpResponses
 
     /**
      * Build path to fake HTTP Response data directory.
-     *
-     * @param string $name
-     * @return string
      */
-    private function buildFakeRequestDirectoryPath(string $name): string
-    {
+    private function buildFakeRequestDirectoryPath(
+        string $name,
+    ): string {
         return sprintf(
             '%s/../stubs/server-responses/2017.2/%s',
             __DIR__,
-            ltrim($name, '/')
+            ltrim($name, '/'),
         );
     }
 
     /**
      * Build path to fake HTTP Response data file.
-     *
-     * @param string $name
-     * @param string $filename
-     * @return string
      */
-    private function buildFakeRequestFilePath(string $name, string $filename): string
-    {
+    private function buildFakeRequestFilePath(
+        string $name,
+        string $filename,
+    ): string {
         return sprintf(
             '%s/%s.json',
             $this->buildFakeRequestDirectoryPath($name),
-            $filename
+            $filename,
         );
     }
 }

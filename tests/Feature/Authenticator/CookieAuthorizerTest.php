@@ -22,10 +22,11 @@ use Cog\YouTrack\Rest\Tests\Feature\AbstractFeatureTestCase;
 use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
+use PHPUnit\Framework\Attributes\Test;
 
 final class CookieAuthorizerTest extends AbstractFeatureTestCase
 {
-    /** @test */
+    #[Test]
     public function it_throws_exception_on_failed_cookie_authentication(): void
     {
         $mock = new MockHandler([
