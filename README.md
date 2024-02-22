@@ -48,8 +48,8 @@ Part of the [PHP YouTrack SDK](https://github.com/cybercog/youtrack-php-sdk#read
 ## Requirements
 
 - YouTrack >= 3.0 with REST-API enabled (always enabled, by default)
-- PHP >= 7.1
-- Guzzle HTTP Client >= 6.2
+- PHP >= 8.1
+- Guzzle HTTP Client >= 7.0
 
 ## Related packages
 
@@ -113,8 +113,8 @@ If you discover any security related issues, please email open@cybercog.su inste
 
 ## Contributors
 
-| <a href="https://github.com/antonkomarev">![@antonkomarev](https://avatars.githubusercontent.com/u/1849174?s=110)<br />Anton Komarev</a> | <a href="https://github.com/adam187">![@adam187](https://avatars.githubusercontent.com/u/156628?s=110)<br />Adam Misiorny</a> | <a href="https://github.com/dmkdev"><br />dmkdev</a> | <a href="https://github.com/asteisiunas"><br />asteisiunas</a> | 
-| :---: | :---: | :---: | :---: |
+| <a href="https://github.com/antonkomarev">![@antonkomarev](https://avatars.githubusercontent.com/u/1849174?s=110)<br />Anton Komarev</a> | <a href="https://github.com/adam187">![@adam187](https://avatars.githubusercontent.com/u/156628?s=110)<br />Adam Misiorny</a> | <a href="https://github.com/dmkdev"><br />dmkdev</a> | <a href="https://github.com/asteisiunas"><br />asteisiunas</a> | <a href="https://github.com/MarcHagen">![@MarcHagen](https://avatars.githubusercontent.com/u/980978?s=110)<br />Marc</a> | 
+| :---: | :---: | :---: | :---: |:--:|
 
 [PHP YouTrack REST contributors list](../../contributors)
 
