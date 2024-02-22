@@ -95,10 +95,6 @@ interface Client
 
     /**
      * Write header value.
-     *
-     * @param string $key
-     * @param string $value
-     * @return void
      */
     public function withHeader(string $key, string $value): void;
 

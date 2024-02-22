@@ -20,17 +20,12 @@ interface Authenticator
     /**
      * Authenticate API Client.
      *
-     * @param \Cog\Contracts\YouTrack\Rest\Client\Client $client
-     * @return void
-     *
      * @throws \Cog\Contracts\YouTrack\Rest\Authenticator\Exceptions\AuthenticationException
      */
     public function authenticate(ClientInterface $client): void;
 
     /**
      * Retrieve authentication token.
-     *
-     * @return string
      */
     public function token(): string;
 }

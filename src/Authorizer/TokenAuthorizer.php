@@ -22,26 +22,13 @@ use Cog\Contracts\YouTrack\Rest\Client\Client as ClientInterface;
 class TokenAuthorizer implements
     AuthorizerInterface
 {
-    /**
-     * @var string
-     */
-    private $token;
-
-    /**
-     * TokenAuthorizer constructor.
-     *
-     * @param string $token
-     */
-    public function __construct(string $token)
-    {
-        $this->token = $token;
+    public function __construct(
+        private string $token,
+    ) {
     }
 
     /**
      * Append authorization headers to REST client.
-     *
-     * @param \Cog\Contracts\YouTrack\Rest\Client\Client $client
-     * @return void
      */
     public function appendHeadersTo(ClientInterface $client): void
     {
