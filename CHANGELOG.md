@@ -13,6 +13,7 @@ All notable changes to `cybercog/youtrack-rest-php` will be documented in this f
 - ([#58]) Bumped minimum Guzzle version to v7
 - ([#59]) Raised minimum PHP version to v8.1
 - ([#60]) Enforced class properties strict types
+- ([#61]) Enforced readonly modifier on class properties
 
 ## [7.0.0] - 2022-10-02
 
@@ -155,6 +156,7 @@ All notable changes to `cybercog/youtrack-rest-php` will be documented in this f
 [3.0.0]: https://github.com/cybercog/youtrack-rest-php/compare/2.0.1...3.0.0
 [2.0.1]: https://github.com/cybercog/youtrack-rest-php/compare/1.0.0...2.0.1
 
+[#61]: https://github.com/cybercog/youtrack-rest-php/pull/61
 [#60]: https://github.com/cybercog/youtrack-rest-php/pull/60
 [#59]: https://github.com/cybercog/youtrack-rest-php/pull/59
 [#58]: https://github.com/cybercog/youtrack-rest-php/pull/58

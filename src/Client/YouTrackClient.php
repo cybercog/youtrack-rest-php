@@ -39,13 +39,13 @@ class YouTrackClient implements
     /**
      * Request headers.
      *
-     * @var array
+     * @var array<string, string>
      */
     private array $headers = [];
 
     public function __construct(
-        private HttpClientInterface $httpClient,
-        private AuthorizerInterface $authorizer,
+        private readonly HttpClientInterface $httpClient,
+        private readonly AuthorizerInterface $authorizer,
         string | null $endpointPathPrefix = null,
     ) {
         $this->endpointPathPrefix = $endpointPathPrefix !== null
@@ -66,8 +66,12 @@ class YouTrackClient implements
      * @throws \Cog\Contracts\YouTrack\Rest\Authorizer\Exceptions\InvalidAuthorizationToken
      * @throws \Cog\Contracts\YouTrack\Rest\Client\Exceptions\ClientException
      */
-    public function request(string $method, string $uri, array $params = [], array $options = []): ResponseInterface
-    {
+    public function request(
+        string $method,
+        string $uri,
+        array $params = [],
+        array $options = [],
+    ): ResponseInterface {
         try {
             $response = $this->httpClient->request(
                 $method,
@@ -100,8 +104,11 @@ class YouTrackClient implements
      * @throws \Cog\Contracts\YouTrack\Rest\Authorizer\Exceptions\InvalidAuthorizationToken
      * @throws \Cog\Contracts\YouTrack\Rest\Client\Exceptions\ClientException
      */
-    public function get(string $uri, array $params = [], array $options = []): ResponseInterface
-    {
+    public function get(
+        string $uri,
+        array $params = [],
+        array $options = [],
+    ): ResponseInterface {
         return $this->request('GET', $uri, $params, $options);
     }
 
@@ -117,8 +124,11 @@ class YouTrackClient implements
      * @throws \Cog\Contracts\YouTrack\Rest\Authorizer\Exceptions\InvalidAuthorizationToken
      * @throws \Cog\Contracts\YouTrack\Rest\Client\Exceptions\ClientException
      */
-    public function post(string $uri, array $params = [], array $options = []): ResponseInterface
-    {
+    public function post(
+        string $uri,
+        array $params = [],
+        array $options = [],
+    ): ResponseInterface {
         return $this->request('POST', $uri, $params, $options);
     }
 
@@ -134,8 +144,11 @@ class YouTrackClient implements
      * @throws \Cog\Contracts\YouTrack\Rest\Authorizer\Exceptions\InvalidAuthorizationToken
      * @throws \Cog\Contracts\YouTrack\Rest\Client\Exceptions\ClientException
      */
-    public function put(string $uri, array $params = [], array $options = []): ResponseInterface
-    {
+    public function put(
+        string $uri,
+        array $params = [],
+        array $options = [],
+    ): ResponseInterface {
         return $this->request('PUT', $uri, $params, $options);
     }
 
@@ -151,16 +164,21 @@ class YouTrackClient implements
      * @throws \Cog\Contracts\YouTrack\Rest\Authorizer\Exceptions\InvalidAuthorizationToken
      * @throws \Cog\Contracts\YouTrack\Rest\Client\Exceptions\ClientException
      */
-    public function delete(string $uri, array $params = [], array $options = []): ResponseInterface
-    {
+    public function delete(
+        string $uri,
+        array $params = [],
+        array $options = [],
+    ): ResponseInterface {
         return $this->request('DELETE', $uri, $params, $options);
     }
 
     /**
      * Write header value.
      */
-    public function withHeader(string $key, string $value): void
-    {
+    public function withHeader(
+        string $key,
+        string $value,
+    ): void {
         $this->headers[$key] = $value;
     }
 
@@ -170,16 +188,18 @@ class YouTrackClient implements
      * @param array $headers
      * @return void
      */
-    public function withHeaders(array $headers): void
-    {
+    public function withHeaders(
+        array $headers,
+    ): void {
         $this->headers = array_merge_recursive($this->headers, $headers);
     }
 
     /**
      * Build endpoint URI.
      */
-    protected function buildUri(string $uri): string
-    {
+    protected function buildUri(
+        string $uri,
+    ): string {
         return $this->endpointPathPrefix . '/' . ltrim($uri, '/');
     }
 
@@ -190,8 +210,10 @@ class YouTrackClient implements
      * @param array $options
      * @return array
      */
-    protected function buildOptions(array $params = [], array $options = []): array
-    {
+    protected function buildOptions(
+        array $params = [],
+        array $options = [],
+    ): array {
         $defaultOptions = [
             'form_params' => $params,
             'headers' => $this->buildHeaders(),

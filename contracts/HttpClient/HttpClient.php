@@ -27,5 +27,9 @@ interface HttpClient
      *
      * @throws \Cog\Contracts\YouTrack\Rest\HttpClient\Exceptions\HttpClientException
      */
-    public function request(string $method, string $uri, array $options = []): PsrResponseInterface;
+    public function request(
+        string $method,
+        string $uri,
+        array $options = [],
+    ): PsrResponseInterface;
 }

@@ -35,7 +35,12 @@ interface Client
      * @throws \Cog\Contracts\YouTrack\Rest\Authorizer\Exceptions\InvalidAuthorizationToken
      * @throws \Cog\Contracts\YouTrack\Rest\Client\Exceptions\ClientException
      */
-    public function request(string $method, string $uri, array $params = [], array $options = []): ResponseInterface;
+    public function request(
+        string $method,
+        string $uri,
+        array $params = [],
+        array $options = [],
+    ): ResponseInterface;
 
     /**
      * Create and send an GET HTTP request.
@@ -49,7 +54,11 @@ interface Client
      * @throws \Cog\Contracts\YouTrack\Rest\Authorizer\Exceptions\InvalidAuthorizationToken
      * @throws \Cog\Contracts\YouTrack\Rest\Client\Exceptions\ClientException
      */
-    public function get(string $uri, array $params = [], array $options = []): ResponseInterface;
+    public function get(
+        string $uri,
+        array $params = [],
+        array $options = [],
+    ): ResponseInterface;
 
     /**
      * Create and send an POST HTTP request.
@@ -63,7 +72,11 @@ interface Client
      * @throws \Cog\Contracts\YouTrack\Rest\Authorizer\Exceptions\InvalidAuthorizationToken
      * @throws \Cog\Contracts\YouTrack\Rest\Client\Exceptions\ClientException
      */
-    public function post(string $uri, array $params = [], array $options = []): ResponseInterface;
+    public function post(
+        string $uri,
+        array $params = [],
+        array $options = [],
+    ): ResponseInterface;
 
     /**
      * Create and send an PUT HTTP request.
@@ -77,7 +90,11 @@ interface Client
      * @throws \Cog\Contracts\YouTrack\Rest\Authorizer\Exceptions\InvalidAuthorizationToken
      * @throws \Cog\Contracts\YouTrack\Rest\Client\Exceptions\ClientException
      */
-    public function put(string $uri, array $params = [], array $options = []): ResponseInterface;
+    public function put(
+        string $uri,
+        array $params = [],
+        array $options = [],
+    ): ResponseInterface;
 
     /**
      * Create and send an DELETE HTTP request.
@@ -91,12 +108,19 @@ interface Client
      * @throws \Cog\Contracts\YouTrack\Rest\Authorizer\Exceptions\InvalidAuthorizationToken
      * @throws \Cog\Contracts\YouTrack\Rest\Client\Exceptions\ClientException
      */
-    public function delete(string $uri, array $params = [], array $options = []): ResponseInterface;
+    public function delete(
+        string $uri,
+        array $params = [],
+        array $options = [],
+    ): ResponseInterface;
 
     /**
      * Write header value.
      */
-    public function withHeader(string $key, string $value): void;
+    public function withHeader(
+        string $key,
+        string $value,
+    ): void;
 
     /**
      * Write header values.
@@ -104,5 +128,7 @@ interface Client
      * @param array $headers
      * @return void
      */
-    public function withHeaders(array $headers): void;
+    public function withHeaders(
+        array $headers,
+    ): void;
 }

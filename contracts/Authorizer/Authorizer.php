@@ -20,5 +20,7 @@ interface Authorizer
     /**
      * Append authorization headers to REST client.
      */
-    public function appendHeadersTo(ClientInterface $client): void;
+    public function appendHeadersTo(
+        ClientInterface $client,
+    ): void;
 }

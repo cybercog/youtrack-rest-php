@@ -33,7 +33,9 @@ interface Response
     /**
      * Retrieves a comma-separated string of the values for a single header.
      */
-    public function header(string $header): string;
+    public function header(
+        string $header,
+    ): string;
 
     /**
      * Transform response cookie headers to string.
@@ -60,7 +62,9 @@ interface Response
     /**
      * Assert the status code of the response.
      */
-    public function isStatusCode(int $code): bool;
+    public function isStatusCode(
+        int $code,
+    ): bool;
 
     /**
      * Determine if response has successful status code.

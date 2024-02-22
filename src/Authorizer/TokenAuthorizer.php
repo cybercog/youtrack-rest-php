@@ -23,15 +23,16 @@ class TokenAuthorizer implements
     AuthorizerInterface
 {
     public function __construct(
-        private string $token,
+        private readonly string $token,
     ) {
     }
 
     /**
      * Append authorization headers to REST client.
      */
-    public function appendHeadersTo(ClientInterface $client): void
-    {
+    public function appendHeadersTo(
+        ClientInterface $client,
+    ): void {
         $client->withHeader('Authorization', "Bearer {$this->token}");
     }
 }

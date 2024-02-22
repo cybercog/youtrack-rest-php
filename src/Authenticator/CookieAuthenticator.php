@@ -27,8 +27,8 @@ class CookieAuthenticator implements
     private string $cookie = '';
 
     public function __construct(
-        private string $username,
-        private string $password,
+        private readonly string $username,
+        private readonly string $password,
     ) {
     }
 
@@ -37,8 +37,9 @@ class CookieAuthenticator implements
      *
      * @throws \Cog\Contracts\YouTrack\Rest\Authenticator\Exceptions\AuthenticationException
      */
-    public function authenticate(ClientInterface $client): void
-    {
+    public function authenticate(
+        ClientInterface $client,
+    ): void {
         if ($this->cookie !== '' || $this->isAuthenticating) {
             return;
         }

@@ -20,7 +20,7 @@ class YouTrackResponse implements
     ResponseInterface
 {
     public function __construct(
-        private PsrResponseInterface $response,
+        private readonly PsrResponseInterface $response,
     ) {
     }
 
@@ -46,8 +46,9 @@ class YouTrackResponse implements
     /**
      * Retrieves a comma-separated string of the values for a single header.
      */
-    public function header(string $header): string
-    {
+    public function header(
+        string $header,
+    ): string {
         return $this->response->getHeaderLine($header);
     }
 
@@ -88,8 +89,9 @@ class YouTrackResponse implements
     /**
      * Assert the status code of the response.
      */
-    public function isStatusCode(int $code): bool
-    {
+    public function isStatusCode(
+        int $code,
+    ): bool {
         return $this->response->getStatusCode() === $code;
     }
 

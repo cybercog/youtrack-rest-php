@@ -26,7 +26,7 @@ class GuzzleHttpClient implements
     HttpClientInterface
 {
     public function __construct(
-        private ClientInterface $httpClient,
+        private readonly ClientInterface $httpClient,
     ) {
     }
 
@@ -40,8 +40,11 @@ class GuzzleHttpClient implements
      *
      * @throws \Cog\Contracts\YouTrack\Rest\HttpClient\Exceptions\HttpClientException
      */
-    public function request(string $method, string $uri, array $options = []): ResponseInterface
-    {
+    public function request(
+        string $method,
+        string $uri,
+        array $options = [],
+    ): ResponseInterface {
         try {
             return $this->httpClient->request($method, $uri, $this->buildOptions($options));
         } catch (BadResponseException | RequestException $e) {
@@ -61,8 +64,9 @@ class GuzzleHttpClient implements
      * @param array $options
      * @return array
      */
-    private function buildOptions(array $options): array
-    {
+    private function buildOptions(
+        array $options,
+    ): array {
         return $this->appendUserAgent($options);
     }
 
@@ -72,8 +76,9 @@ class GuzzleHttpClient implements
      * @param array $options
      * @return array
      */
-    private function appendUserAgent(array $options): array
-    {
+    private function appendUserAgent(
+        array $options,
+    ): array {
         $defaultAgent = Utils::defaultUserAgent();
         if (extension_loaded('curl') && function_exists('curl_version')) {
             $curlVersion = \curl_version();
