@@ -46,7 +46,6 @@ class YouTrackClient implements
     public function __construct(
         private HttpClientInterface $httpClient,
         private AuthorizerInterface $authorizer,
-        // @todo test it
         string | null $endpointPathPrefix = null,
     ) {
         $this->endpointPathPrefix = $endpointPathPrefix !== null
