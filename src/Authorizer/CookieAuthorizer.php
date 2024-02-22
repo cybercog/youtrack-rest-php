@@ -20,26 +20,13 @@ use Cog\Contracts\YouTrack\Rest\Client\Client as ClientInterface;
 class CookieAuthorizer implements
     AuthorizerInterface
 {
-    /**
-     * @var \Cog\Contracts\YouTrack\Rest\Authenticator\Authenticator
-     */
-    private $authenticator;
-
-    /**
-     * CookieAuthorizer constructor.
-     *
-     * @param \Cog\Contracts\YouTrack\Rest\Authenticator\Authenticator $authenticator
-     */
-    public function __construct(AuthenticatorInterface $authenticator)
-    {
-        $this->authenticator = $authenticator;
+    public function __construct(
+        private AuthenticatorInterface $authenticator,
+    ) {
     }
 
     /**
      * Append authorization headers to REST client.
-     *
-     * @param \Cog\Contracts\YouTrack\Rest\Client\Client $client
-     * @return void
      *
      * @throws \Cog\Contracts\YouTrack\Rest\Authenticator\Exceptions\AuthenticationException
      */

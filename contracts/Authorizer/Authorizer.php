@@ -19,9 +19,6 @@ interface Authorizer
 {
     /**
      * Append authorization headers to REST client.
-     *
-     * @param \Cog\Contracts\YouTrack\Rest\Client\Client $client
-     * @return void
      */
     public function appendHeadersTo(ClientInterface $client): void;
 }

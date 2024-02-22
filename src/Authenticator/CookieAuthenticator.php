@@ -20,44 +20,20 @@ class CookieAuthenticator implements
     AuthenticatorInterface
 {
     /**
-     * @var string
-     */
-    private $username = '';
-
-    /**
-     * @var string
-     */
-    private $password = '';
-
-    /**
-     * @var string
-     */
-    private $cookie = '';
-
-    /**
      * Determine is trying to authenticate.
-     *
-     * @var bool
      */
-    private $isAuthenticating = false;
+    private bool $isAuthenticating = false;
 
-    /**
-     * CookieAuthenticator constructor.
-     *
-     * @param string $username
-     * @param string $password
-     */
-    public function __construct(string $username, string $password)
-    {
-        $this->username = $username;
-        $this->password = $password;
+    private string $cookie = '';
+
+    public function __construct(
+        private string $username,
+        private string $password,
+    ) {
     }
 
     /**
      * Authenticate client and returns cookie on success login.
-     *
-     * @param \Cog\Contracts\YouTrack\Rest\Client\Client $client
-     * @return void
      *
      * @throws \Cog\Contracts\YouTrack\Rest\Authenticator\Exceptions\AuthenticationException
      */
@@ -81,8 +57,6 @@ class CookieAuthenticator implements
 
     /**
      * Retrieve authentication token.
-     *
-     * @return string
      */
     public function token(): string
     {

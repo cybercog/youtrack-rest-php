@@ -30,47 +30,28 @@ class YouTrackClient implements
     RestClientInterface
 {
     /**
-     * HTTP Client.
-     *
-     * @var \Cog\Contracts\YouTrack\Rest\HttpClient\HttpClient
-     */
-    private $httpClient;
-
-    /**
-     * Authorization driver.
-     *
-     * @var \Cog\Contracts\YouTrack\Rest\Authorizer\Authorizer
-     */
-    private $authorizer;
-
-    /**
      * Endpoint path prefix.
      *
      * @todo test it
-     *
-     * @var string
      */
-    private $endpointPathPrefix;
+    private string $endpointPathPrefix;
 
     /**
      * Request headers.
      *
      * @var array
      */
-    private $headers = [];
+    private array $headers = [];
 
-    /**
-     * YouTrackClient constructor.
-     *
-     * @param \Cog\Contracts\YouTrack\Rest\HttpClient\HttpClient $httpClient
-     * @param \Cog\Contracts\YouTrack\Rest\Authorizer\Authorizer $authorizer
-     * @param string $endpointPathPrefix
-     */
-    public function __construct(HttpClientInterface $httpClient, AuthorizerInterface $authorizer, string $endpointPathPrefix = null)
-    {
-        $this->httpClient = $httpClient;
-        $this->authorizer = $authorizer;
-        $this->endpointPathPrefix = $endpointPathPrefix !== null ? $endpointPathPrefix : 'api';
+    public function __construct(
+        private HttpClientInterface $httpClient,
+        private AuthorizerInterface $authorizer,
+        // @todo test it
+        string | null $endpointPathPrefix = null,
+    ) {
+        $this->endpointPathPrefix = $endpointPathPrefix !== null
+            ? $endpointPathPrefix
+            : 'api';
     }
 
     /**
@@ -89,7 +70,11 @@ class YouTrackClient implements
     public function request(string $method, string $uri, array $params = [], array $options = []): ResponseInterface
     {
         try {
-            $response = $this->httpClient->request($method, $this->buildUri($uri), $this->buildOptions($params, $options));
+            $response = $this->httpClient->request(
+                $method,
+                $this->buildUri($uri),
+                $this->buildOptions($params, $options),
+            );
         } catch (HttpClientException $e) {
             switch ($e->getCode()) {
                 case 401:
@@ -174,10 +159,6 @@ class YouTrackClient implements
 
     /**
      * Write header value.
-     *
-     * @param string $key
-     * @param string $value
-     * @return void
      */
     public function withHeader(string $key, string $value): void
     {
@@ -197,9 +178,6 @@ class YouTrackClient implements
 
     /**
      * Build endpoint URI.
-     *
-     * @param string $uri
-     * @return string
      */
     protected function buildUri(string $uri): string
     {
