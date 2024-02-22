@@ -4,6 +4,8 @@ All notable changes to `cybercog/youtrack-rest-php` will be documented in this f
 
 ## [Unreleased]
 
+## [8.0.0] - 2024-02-22
+
 ### Added
 
 - ([#59]) Added Docker dev environment
