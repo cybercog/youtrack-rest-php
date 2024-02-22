@@ -22,7 +22,9 @@ interface Authenticator
      *
      * @throws \Cog\Contracts\YouTrack\Rest\Authenticator\Exceptions\AuthenticationException
      */
-    public function authenticate(ClientInterface $client): void;
+    public function authenticate(
+        ClientInterface $client,
+    ): void;
 
     /**
      * Retrieve authentication token.

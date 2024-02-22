@@ -21,7 +21,7 @@ class CookieAuthorizer implements
     AuthorizerInterface
 {
     public function __construct(
-        private AuthenticatorInterface $authenticator,
+        private readonly AuthenticatorInterface $authenticator,
     ) {
     }
 
@@ -30,8 +30,9 @@ class CookieAuthorizer implements
      *
      * @throws \Cog\Contracts\YouTrack\Rest\Authenticator\Exceptions\AuthenticationException
      */
-    public function appendHeadersTo(ClientInterface $client): void
-    {
+    public function appendHeadersTo(
+        ClientInterface $client,
+    ): void {
         $this->authenticator->authenticate($client);
 
         $client->withHeader('Cookie', $this->authenticator->token());
