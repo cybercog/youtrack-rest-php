@@ -4,6 +4,15 @@ All notable changes to `cybercog/youtrack-rest-php` will be documented in this f
 
 ## [Unreleased]
 
+### Added
+
+- ([#59]) Added Docker dev environment
+
+### Changed
+
+- ([#58]) Bumped minimum Guzzle version to v7
+- ([#60]) Enforced class properties strict types
+
 ## [7.0.0] - 2022-10-02
 
 ### Changed
@@ -128,7 +137,8 @@ All notable changes to `cybercog/youtrack-rest-php` will be documented in this f
 
 - Initial release.
 
-[Unreleased]: https://github.com/cybercog/youtrack-rest-php/compare/7.0.0...master
+[Unreleased]: https://github.com/cybercog/youtrack-rest-php/compare/8.0.0...master
+[8.0.0]: https://github.com/cybercog/youtrack-rest-php/compare/7.0.0...8.0.0
 [7.0.0]: https://github.com/cybercog/youtrack-rest-php/compare/6.3.0...7.0.0
 [6.3.0]: https://github.com/cybercog/youtrack-rest-php/compare/6.2.2...6.3.0
 [6.2.2]: https://github.com/cybercog/youtrack-rest-php/compare/6.2.1...6.2.2
@@ -144,6 +154,9 @@ All notable changes to `cybercog/youtrack-rest-php` will be documented in this f
 [3.0.0]: https://github.com/cybercog/youtrack-rest-php/compare/2.0.1...3.0.0
 [2.0.1]: https://github.com/cybercog/youtrack-rest-php/compare/1.0.0...2.0.1
 
+[#60]: https://github.com/cybercog/youtrack-rest-php/pull/60
+[#59]: https://github.com/cybercog/youtrack-rest-php/pull/59
+[#58]: https://github.com/cybercog/youtrack-rest-php/pull/58
 [#57]: https://github.com/cybercog/youtrack-rest-php/pull/57
 [#51]: https://github.com/cybercog/youtrack-rest-php/pull/51
 [#49]: https://github.com/cybercog/youtrack-rest-php/pull/49
