@@ -101,7 +101,7 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ## Testing
 
-Run the tests with:
+Run the tests in terminal with:
 
 ```shell
 composer test
