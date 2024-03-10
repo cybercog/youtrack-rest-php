@@ -10,7 +10,7 @@
 >
     <testsuites>
         <testsuite name="Package Test Suite">
-            <directory>tests/</directory>
+            <directory>tests/Feature/</directory>
             <exclude>tests/database/factories/</exclude>
         </testsuite>
     </testsuites>
