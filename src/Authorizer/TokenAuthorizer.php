@@ -34,7 +34,7 @@ class TokenAuthorizer implements
         ClientInterface $client,
     ): void {
         $client->withHeader('Authorization', "Bearer {$this->token}");
-        $client->withHeader('Accept', "application/json");
-        $client->withHeader('Content-Type', "application/json");
+        $client->withHeader('Accept', 'application/json');
+        $client->withHeader('Content-Type', 'application/json');
     }
 }

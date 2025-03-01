@@ -36,7 +36,7 @@ class CookieAuthorizer implements
         $this->authenticator->authenticate($client);
 
         $client->withHeader('Cookie', $this->authenticator->token());
-        $client->withHeader('Accept', "application/json");
-        $client->withHeader('Content-Type', "application/json");
+        $client->withHeader('Accept', 'application/json');
+        $client->withHeader('Content-Type', 'application/json');
     }
 }
