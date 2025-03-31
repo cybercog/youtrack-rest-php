@@ -248,6 +248,7 @@ class YouTrackClient implements
         $this->headers = [
             'User-Agent' => 'Cog-YouTrack-REST-PHP/' . self::VERSION,
             'Accept' => 'application/json',
+            'Content-Type' => 'application/json',
         ];
 
         $this->authorizer->appendHeadersTo($this);
