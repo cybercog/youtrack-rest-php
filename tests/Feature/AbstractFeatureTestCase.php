@@ -30,7 +30,7 @@ abstract class AbstractFeatureTestCase extends AbstractTestCase
         $http = new GuzzleHttpClient(
             new HttpClient([
                 'base_uri' => $_SERVER['YOUTRACK_BASE_URI'],
-            ])
+            ]),
         );
         $authorizer = new TokenAuthorizer($_SERVER['YOUTRACK_TOKEN']);
 

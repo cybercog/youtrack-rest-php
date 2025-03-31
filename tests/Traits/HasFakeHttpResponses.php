@@ -32,7 +32,7 @@ trait HasFakeHttpResponses
         return new Response(
             $statusCode,
             $this->getFakeResponseHeaders($name),
-            $this->getFakeResponseBody($name)
+            $this->getFakeResponseBody($name),
         );
     }
 

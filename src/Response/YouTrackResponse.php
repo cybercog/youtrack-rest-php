@@ -21,8 +21,7 @@ class YouTrackResponse implements
 {
     public function __construct(
         private readonly PsrResponseInterface $response,
-    ) {
-    }
+    ) {}
 
     /**
      * Returns original HTTP client response.

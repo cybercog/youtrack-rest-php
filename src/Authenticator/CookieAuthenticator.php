@@ -29,8 +29,7 @@ class CookieAuthenticator implements
     public function __construct(
         private readonly string $username,
         private readonly string $password,
-    ) {
-    }
+    ) {}
 
     /**
      * Authenticate client and returns cookie on success login.
