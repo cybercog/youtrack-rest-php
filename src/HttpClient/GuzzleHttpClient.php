@@ -27,8 +27,7 @@ class GuzzleHttpClient implements
 {
     public function __construct(
         private readonly ClientInterface $httpClient,
-    ) {
-    }
+    ) {}
 
     /**
      * Send request to the server and fetch the raw response.

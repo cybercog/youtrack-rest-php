@@ -24,8 +24,7 @@ class TokenAuthorizer implements
 {
     public function __construct(
         private readonly string $token,
-    ) {
-    }
+    ) {}
 
     /**
      * Append authorization headers to REST client.
