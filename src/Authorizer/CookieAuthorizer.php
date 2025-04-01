@@ -22,7 +22,8 @@ class CookieAuthorizer implements
 {
     public function __construct(
         private readonly AuthenticatorInterface $authenticator,
-    ) {}
+    ) {
+    }
 
     /**
      * Append authorization headers to REST client.
