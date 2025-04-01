@@ -41,6 +41,7 @@
         "guzzlehttp/guzzle": "^7.8"
     },
     "require-dev": {
+        "ext-curl": "*",
         "mockery/mockery": "^1.6",
         "phpstan/phpstan": "^1.10",
         "phpunit/phpunit": "^10.5"

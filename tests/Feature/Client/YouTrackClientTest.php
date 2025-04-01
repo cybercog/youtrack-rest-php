@@ -24,7 +24,10 @@ final class YouTrackClientTest extends AbstractFeatureTestCase
         $userAgent = 'Cog-YouTrack-REST-PHP/' . Client::VERSION . ' GuzzleHttp/7 curl/' . $curlVersion['version'] . ' PHP/' . PHP_VERSION;
         return [
             'no params' => [
-                'request args' => ['GET', '/issues'],
+                'request args' => [
+                    'GET',
+                    '/issues',
+                ],
                 'expected url' => 'api/issues',
                 'expected headers' => [
                     'Authorization' => ['Bearer my-token'],
@@ -34,7 +37,13 @@ final class YouTrackClientTest extends AbstractFeatureTestCase
                 'expected body' => '',
             ],
             'with params' => [
-                'request args' => ['POST', '/issues', ['key' => 'value']],
+                'request args' => [
+                    'POST',
+                    '/issues',
+                    [
+                        'key' => 'value',
+                    ],
+                ],
                 'expected url' => 'api/issues',
                 'expected headers' => [
                     'Authorization' => ['Bearer my-token'],
@@ -46,10 +55,17 @@ final class YouTrackClientTest extends AbstractFeatureTestCase
                 'expected body' => 'key=value',
             ],
             'with custom headers' => [
-                'request args' => ['POST', '/issues', [], ['headers' => [
-                    'X-Header' => 'x-value',
-                    'Accept' => 'text/plain',
-                ]]],
+                'request args' => [
+                    'POST',
+                    '/issues',
+                    [],
+                    [
+                        'headers' => [
+                            'X-Header' => 'x-value',
+                            'Accept' => 'text/plain',
+                        ],
+                    ],
+                ],
                 'expected url' => 'api/issues',
                 'expected headers' => [
                     'Authorization' => ['Bearer my-token'],
@@ -60,9 +76,16 @@ final class YouTrackClientTest extends AbstractFeatureTestCase
                 'expected body' => '',
             ],
             'with form_params option' => [
-                'request args' => ['POST', '/issues', [], ['form_params' => [
-                    'key' => 'value',
-                ]]],
+                'request args' => [
+                    'POST',
+                    '/issues',
+                    [],
+                    [
+                        'form_params' => [
+                            'key' => 'value',
+                        ],
+                    ],
+                ],
                 'expected url' => 'api/issues',
                 'expected headers' => [
                     'Authorization' => ['Bearer my-token'],
@@ -74,9 +97,18 @@ final class YouTrackClientTest extends AbstractFeatureTestCase
                 'expected body' => 'key=value',
             ],
             'with params and form_params option' => [
-                'request args' => ['POST', '/issues', ['key1' => 'value1'], ['form_params' => [
-                    'key2' => 'value2',
-                ]]],
+                'request args' => [
+                    'POST',
+                    '/issues',
+                    [
+                        'key1' => 'value1',
+                    ],
+                    [
+                        'form_params' => [
+                            'key2' => 'value2',
+                        ],
+                    ],
+                ],
                 'expected url' => 'api/issues',
                 'expected headers' => [
                     'Authorization' => ['Bearer my-token'],
