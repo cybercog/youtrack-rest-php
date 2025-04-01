@@ -214,28 +214,22 @@ class YouTrackClient implements
         array $params = [],
         array $options = [],
     ): array {
-        $defaultOptions = [
-            'form_params' => $params,
-            'headers' => $this->buildHeaders(),
-        ];
-
-        if (isset($options['multipart'])) {
-            unset($defaultOptions['form_params']);
-            foreach ($params as $key => $value) {
-                $options['multipart'][] = [
-                    'name' => $key,
-                    'data' => $value,
-                ];
+        if ($params) {
+            if (isset($options['multipart'])) {
+                foreach ($params as $key => $value) {
+                    $options['multipart'][] = [
+                        'name' => $key,
+                        'contents' => $value,
+                    ];
+                }
+            } else {
+                $options['form_params'] = array_merge($params, $options['form_params'] ?? []);
             }
-        } elseif (isset($options['form_params'])) {
-            $options['form_params'] = array_merge($params, $options['form_params']);
         }
 
-        if (isset($options['headers'])) {
-            $options['headers'] = array_merge($this->buildHeaders(), $options['headers']);
-        }
+        $options['headers'] = array_merge($this->buildHeaders(), $options['headers'] ?? []);
 
-        return array_merge($defaultOptions, $options);
+        return $options;
     }
 
     /**
