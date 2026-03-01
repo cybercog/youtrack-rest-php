@@ -15,4 +15,6 @@ namespace Cog\Contracts\YouTrack\Rest\HttpClient\Exceptions;
 
 use RuntimeException;
 
-class HttpClientException extends RuntimeException {}
+class HttpClientException extends RuntimeException
+{
+}

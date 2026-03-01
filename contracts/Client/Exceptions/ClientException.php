@@ -15,4 +15,6 @@ namespace Cog\Contracts\YouTrack\Rest\Client\Exceptions;
 
 use RuntimeException;
 
-class ClientException extends RuntimeException {}
+class ClientException extends RuntimeException
+{
+}

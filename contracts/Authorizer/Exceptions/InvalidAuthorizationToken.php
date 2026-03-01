@@ -13,4 +13,6 @@ declare(strict_types=1);
 
 namespace Cog\Contracts\YouTrack\Rest\Authorizer\Exceptions;
 
-class InvalidAuthorizationToken extends AuthorizationException {}
+class InvalidAuthorizationToken extends AuthorizationException
+{
+}
