@@ -1,1 +1,4 @@
 preset: psr12
+
+disabled:
+  - psr12_braces
